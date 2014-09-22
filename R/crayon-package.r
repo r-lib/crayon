@@ -43,7 +43,7 @@ has_color <- function() {
 codes <- list(
   reset = c(0, 0),
   bold = c(1, 22), # 21 isn't widely supported and 22 does the same thing
-  dim = c(2, 22),
+  dark = c(2, 22),
   italic = c(3, 23),
   underline = c(4, 24),
   inverse = c(7, 27),
@@ -58,7 +58,7 @@ codes <- list(
   magenta = c(35, 39),
   cyan = c(36, 39),
   white = c(37, 39),
-  gray = c(90, 39),
+  silver = c(90, 39),
 
   bgBlack = c(40, 49),
   bgRed = c(41, 49),
