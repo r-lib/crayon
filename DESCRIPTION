@@ -1,8 +1,9 @@
 Package: crayon
-Title: What the package does (one line)
-Version: 0.1
-Authors@R: "First Last <first.last@example.com> [aut, cre]"
-Description: What the package does (one paragraph)
-Depends: R (>= 3.1.1)
-License: What license is it under?
+Title: Colored Terminal Output
+Version: 1.0.0
+Authors@R: "Gabor Csardi <csardi.gabor@gmail.com> [aut, cre]"
+Description: Colored Terminal Output.
+License: MIT + file LICENSE
 LazyData: true
+URL: https://github.com/gaborcsardi/crayon
+BugReports: https://github.com/gaborcsardi/crayon/issues
