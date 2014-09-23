@@ -52,7 +52,3 @@ test_that("We convert to string", {
   expect_equal(red(0), '\u001b[31m0\u001b[39m')
 
 })
-
-test_that("We don't output escape codes if the input is empty", {
-  expect_equal(red(), '')
-})
