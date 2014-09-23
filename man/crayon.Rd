@@ -33,7 +33,7 @@
 \item{...}{Strings to style.}
 }
 \description{
-Colored terminal output
+TODO: document 'crayon.enabled' option
 }
 \details{
 Styles: reset bold dark italic underline inverse hidden strikethrough

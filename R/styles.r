@@ -39,5 +39,9 @@ make_chr_style <- function(code) {
   )
 }
 
+#' ANSI escape sequences of crayon styles
+#'
+#' @export
+
 styles <- lapply(names(codes), make_chr_style)
 names(styles) <- names(codes)
