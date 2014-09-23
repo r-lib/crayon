@@ -20,3 +20,5 @@ Collate:
     'styles.r'
     'machinery.r'
     'print.r'
+Suggests:
+    testthat
