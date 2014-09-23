@@ -1,2 +1,4 @@
 ^\.travis\.yml$
 ^tags$
+^.travis.yml$
+^appveyor.yml$
