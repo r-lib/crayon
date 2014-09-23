@@ -19,3 +19,16 @@ ansi_regex <- paste0("(?:(?:\\x{001b}\\[)|\\x{009b})",
 has_style <- function(string) {
   grepl(ansi_regex, string, perl = TRUE)
 }
+
+#' Remove ANSI escape sequences from a string
+#'
+#' @param string The input string.
+#' @return The cleaned up string.
+#'
+#' @export
+#' @examples
+#' strip_style(red("foobar")) == "foobar"
+
+strip_style <- function(string) {
+  gsub(ansi_regex, "", string, perl = TRUE)
+}
