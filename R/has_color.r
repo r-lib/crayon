@@ -1,11 +1,30 @@
 
 ## ----------------------------------------------------------------------
 
-#' Does the current R session support color?
+#' Does the current R session support ANSO colors?
 #'
-#' @return \code{TRUE} is the current R session supports color.
+#' The following algorithm is used to detect ANSI support: \itemize{
+#'   \item If the \code{crayon.enabled} option is set to \code{TRUE}
+#'     with \code{options()}, then \code{TRUE} is returned. If it is
+#'     set to something else than \code{TRUE} (typically \code{FALSE}),
+#'     then \code{FALSE} is returned.
+#'   \item Otherwise, if the standard output is not a terminal, then
+#'     \code{FALSE} is returned.
+#'   \item Otherwise, if the platform is Windows, \code{TRUE} is returned.
+#'   \item Otherwise, if the \code{COLORTERM} environment variable is
+#'     set, \code{TRUE} is returned.
+#'   \item Otherwise, if the \code{TERM} environment variable starts
+#'     with \code{screen}, \code{xterm} or \code{vt100}, or matches
+#'     \code{color}, \code{ansi}, \code{cygwin} or \code{linux}
+#'     (with case insentive matching), then \code{TRUE} is returned.
+#'   \item Otherwise \code{FALSE} is returned.
+#' }
+#'
+#' @return \code{TRUE} if the current R session supports color.
 #'
 #' @export
+#' @examples
+#' has_color()
 
 has_color <- function() {
 

@@ -85,7 +85,8 @@ Styles can also be nested, and then inner style takes precedence:
 cat(green(
   'I am a green line ' %+%
   blue$underline$bold('with a blue substring') %+%
-  ' that becomes green again!\n'))
+  ' that becomes green again!\n'
+))
 ```
   
 It is easy to define your own themes:

@@ -8,12 +8,13 @@ chr(x, ...)
 \arguments{
 \item{x}{Object to be coerced.}
 
-\item{...}{Further arguments to pass to methods.}
+\item{...}{Further arguments to pass to \code{as.character}.}
 }
 \value{
 Character value.
 }
 \description{
-Convert to character
+This function just calls \code{as.character}, but it is
+easier to type and read.
 }
 

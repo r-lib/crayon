@@ -1,8 +1,11 @@
 
 #' Convert to character
 #'
+#' This function just calls \code{as.character}, but it is
+#' easier to type and read.
+#'
 #' @param x Object to be coerced.
-#' @param ... Further arguments to pass to methods.
+#' @param ... Further arguments to pass to \code{as.character}.
 #' @return Character value.
 #'
 #' @export

@@ -1,6 +1,7 @@
 
-
 #' Add style to a string
+#'
+#' See \code{names(styles)}, or the crayon manual for available styles.
 #'
 #' @param string Character vector to style.
 #' @param as Style function to apply, either the function object,

@@ -3,88 +3,22 @@
 \name{styles}
 \alias{styles}
 \title{ANSI escape sequences of crayon styles}
-\format{\preformatted{List of 25
- $ reset        :List of 2
-  ..$ open : chr "\\033[0m"
-  ..$ close: chr "\\033[0m"
- $ bold         :List of 2
-  ..$ open : chr "\\033[1m"
-  ..$ close: chr "\\033[22m"
- $ blurred      :List of 2
-  ..$ open : chr "\\033[2m"
-  ..$ close: chr "\\033[22m"
- $ italic       :List of 2
-  ..$ open : chr "\\033[3m"
-  ..$ close: chr "\\033[23m"
- $ underline    :List of 2
-  ..$ open : chr "\\033[4m"
-  ..$ close: chr "\\033[24m"
- $ inverse      :List of 2
-  ..$ open : chr "\\033[7m"
-  ..$ close: chr "\\033[27m"
- $ hidden       :List of 2
-  ..$ open : chr "\\033[8m"
-  ..$ close: chr "\\033[28m"
- $ strikethrough:List of 2
-  ..$ open : chr "\\033[9m"
-  ..$ close: chr "\\033[29m"
- $ black        :List of 2
-  ..$ open : chr "\\033[30m"
-  ..$ close: chr "\\033[39m"
- $ red          :List of 2
-  ..$ open : chr "\\033[31m"
-  ..$ close: chr "\\033[39m"
- $ green        :List of 2
-  ..$ open : chr "\\033[32m"
-  ..$ close: chr "\\033[39m"
- $ yellow       :List of 2
-  ..$ open : chr "\\033[33m"
-  ..$ close: chr "\\033[39m"
- $ blue         :List of 2
-  ..$ open : chr "\\033[34m"
-  ..$ close: chr "\\033[39m"
- $ magenta      :List of 2
-  ..$ open : chr "\\033[35m"
-  ..$ close: chr "\\033[39m"
- $ cyan         :List of 2
-  ..$ open : chr "\\033[36m"
-  ..$ close: chr "\\033[39m"
- $ white        :List of 2
-  ..$ open : chr "\\033[37m"
-  ..$ close: chr "\\033[39m"
- $ silver       :List of 2
-  ..$ open : chr "\\033[90m"
-  ..$ close: chr "\\033[39m"
- $ bgBlack      :List of 2
-  ..$ open : chr "\\033[40m"
-  ..$ close: chr "\\033[49m"
- $ bgRed        :List of 2
-  ..$ open : chr "\\033[41m"
-  ..$ close: chr "\\033[49m"
- $ bgGreen      :List of 2
-  ..$ open : chr "\\033[42m"
-  ..$ close: chr "\\033[49m"
- $ bgYellow     :List of 2
-  ..$ open : chr "\\033[43m"
-  ..$ close: chr "\\033[49m"
- $ bgBlue       :List of 2
-  ..$ open : chr "\\033[44m"
-  ..$ close: chr "\\033[49m"
- $ bgMagenta    :List of 2
-  ..$ open : chr "\\033[45m"
-  ..$ close: chr "\\033[49m"
- $ bgCyan       :List of 2
-  ..$ open : chr "\\033[46m"
-  ..$ close: chr "\\033[49m"
- $ bgWhite      :List of 2
-  ..$ open : chr "\\033[47m"
-  ..$ close: chr "\\033[49m"
-}}
+\format{A named list. Each list element is a list of two
+  strings, named \sQuote{open} and \sQuote{close}.}
 \usage{
 styles
 }
 \description{
-ANSI escape sequences of crayon styles
+You can use this object to list all availables crayon styles,
+via \code{names(styles)}, or to explicitly apply an ANSI
+escape seauence to a string.
+}
+\examples{
+names(styles)
+cat(styles[["bold"]]$close)
+}
+\seealso{
+\code{\link{crayon}} for the beginning of the crayon manual.
 }
 \keyword{datasets}
 

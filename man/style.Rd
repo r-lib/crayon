@@ -15,7 +15,7 @@ or its name.}
 Styled character vector.
 }
 \description{
-Add style to a string
+See \code{names(styles)}, or the crayon manual for available styles.
 }
 \examples{
 ## These are equivalent

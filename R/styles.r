@@ -41,7 +41,18 @@ make_chr_style <- function(code) {
 
 #' ANSI escape sequences of crayon styles
 #'
+#' You can use this object to list all availables crayon styles,
+#' via \code{names(styles)}, or to explicitly apply an ANSI
+#' escape seauence to a string.
+#'
+#' @format A named list. Each list element is a list of two
+#'   strings, named \sQuote{open} and \sQuote{close}.
+#'
+#' @seealso \code{\link{crayon}} for the beginning of the crayon manual.
 #' @export
+#' @examples
+#' names(styles)
+#' cat(styles[["bold"]]$close)
 
 styles <- lapply(names(codes), make_chr_style)
 names(styles) <- names(codes)
