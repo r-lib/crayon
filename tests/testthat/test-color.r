@@ -1,6 +1,10 @@
 
 context("Colors and highlighting")
 
+op <- options()
+on.exit(options(op))
+options(crayon.enabled = TRUE)
+
 test_that("Coloring and highlighting works", {
 
   expect_equal(underline("foo"), '\u001b[4mfoo\u001b[24m')

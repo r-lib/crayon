@@ -9,6 +9,10 @@
 
 has_color <- function() {
 
+  ## Colors forced?
+  enabled <- getOption("crayon.enabled")
+  if (!is.null(enabled)) { return(isTRUE(enabled))  }
+
   ## Are we in a terminal? No?
   if (!isatty(stdout())) { return(FALSE) }
 
