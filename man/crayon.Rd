@@ -11,11 +11,11 @@
 \alias{bgYellow}
 \alias{black}
 \alias{blue}
+\alias{blurred}
 \alias{bold}
 \alias{crayon}
 \alias{crayon-package}
 \alias{cyan}
-\alias{dark}
 \alias{green}
 \alias{hidden}
 \alias{inverse}
@@ -36,7 +36,7 @@
 TODO: document 'crayon.enabled' option
 }
 \details{
-Styles: reset bold dark italic underline inverse hidden strikethrough
+Styles: reset bold blurred italic underline inverse hidden strikethrough
 black red green yellow blue magenta cyan white silver
 bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite.
 }

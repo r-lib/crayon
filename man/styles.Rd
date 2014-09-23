@@ -10,7 +10,7 @@
  $ bold         :List of 2
   ..$ open : chr "\\033[1m"
   ..$ close: chr "\\033[22m"
- $ dark         :List of 2
+ $ blurred      :List of 2
   ..$ open : chr "\\033[2m"
   ..$ close: chr "\\033[22m"
  $ italic       :List of 2

@@ -5,7 +5,7 @@
 codes <- list(
   reset = c(0, 0),
   bold = c(1, 22), # 21 isn't widely supported and 22 does the same thing
-  dark = c(2, 22),
+  blurred = c(2, 22),
   italic = c(3, 23),
   underline = c(4, 24),
   inverse = c(7, 27),

@@ -68,15 +68,15 @@ make_style <- function(style) {
 #
 #' @details
 #'
-#' Styles: reset bold dark italic underline inverse hidden strikethrough
+#' Styles: reset bold blurred italic underline inverse hidden strikethrough
 #' black red green yellow blue magenta cyan white silver
 #' bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite.
 #'
-#' @aliases reset bold dark italic underline inverse hidden strikethrough
+#' @aliases reset bold blurred italic underline inverse hidden strikethrough
 #'    black red green yellow blue magenta cyan white silver
 #'    bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite
 #'
-#' @export reset bold dark italic underline inverse hidden strikethrough
+#' @export reset bold blurred italic underline inverse hidden strikethrough
 #' @export black red green yellow blue magenta cyan white silver
 #' @export bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite
 

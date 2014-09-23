@@ -2,19 +2,33 @@
 \name{concat}
 \alias{\%+\%}
 \alias{concat}
-\title{Concatenate strings}
+\title{Concatenate character vectors}
 \usage{
 lhs \%+\% rhs
 }
 \arguments{
-\item{lhs}{Left hand side, character scalar.}
+\item{lhs}{Left hand side, character vector.}
 
-\item{rhs}{Right hand side, character scalar.}
+\item{rhs}{Right hand side, character vector.}
 }
 \value{
-Concatenated string.
+Concatenated vectors.
 }
 \description{
-Concatenate strings
+The length of the two arguments must match, or
+one of them must be of length one. If the length of
+one argument is one, then the output's length will
+match the length of the other argument. See examples
+below.
+}
+\examples{
+"foo" \%+\% "bar"
+
+letters[1:10] \%+\% chr(1:10)
+
+letters[1:10] \%+\% "-" \%+\% chr(1:10)
+
+## This is empty (unlike for parse)
+character() \%+\% "*"
 }
 
