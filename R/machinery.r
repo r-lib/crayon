@@ -51,6 +51,6 @@ make_style <- function(style) {
 #' @export black red green yellow blue magenta cyan white silver
 #' @export bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite
 
-for (style in names(styles)) {
+sapply(names(styles), function(style) {
   assign(style, make_style(style), envir = asNamespace(packageName()))
-}
+})

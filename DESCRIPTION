@@ -20,5 +20,6 @@ Collate:
     'styles.r'
     'machinery.r'
     'print.r'
+    'style-var.r'
 Suggests:
     testthat
