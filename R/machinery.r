@@ -3,31 +3,31 @@
 ## API design
 "
 # style a string
-blue('Hello world!') %>% cat("\n")
+blue('Hello world!') %>% cat('\n')
 
 # combine styled and normal strings
-blue('Hello') %+% ' World' %+% red('!') %>% cat("\n")
+blue('Hello') %+% ' World' %+% red('!') %>% cat('\n')
 
 # compose multiple styles using the chainable API
-blue$bgRed$bold('Hello world!') %>% cat("\n")
+blue$bgRed$bold('Hello world!') %>% cat('\n')
 
 // pass in multiple arguments
-blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz') %>% cat("\n")
+blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz') %>% cat('\n')
 
 // nest styles
-red('Hello', underline$bgBlue('world') %+% '!') %>% cat("\n")
+red('Hello', underline$bgBlue('world') %+% '!') %>% cat('\n')
 
 // nest styles of the same type even (color, underline, background)
 green(
     'I am a green line ' %+%
     blue$underline$bold('with a blue substring') %+%
     ' that becomes green again!'
-) %>% cat("\n")
+) %>% cat('\n')
 
 # Easily define your own themes.
 
 alert <- bold$red
-alert('Watch out!') %>% cat("\n")
+alert('Watch out!') %>% cat('\n')
 "
 
 crayon_template <- function(...) {
