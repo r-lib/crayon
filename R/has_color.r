@@ -13,7 +13,7 @@ has_color <- function() {
   if (!isatty(stdout())) { return(FALSE) }
 
   ## Are we in a windows terminal?
-  ## TODO
+  if (.Platform$OS.type == "windows") { return(TRUE) }
 
   ## COLORTERM set?
   if ("COLORTERM" %in% names(Sys.getenv())) { return(TRUE) }
