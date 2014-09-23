@@ -46,9 +46,3 @@ test_that("Variable number of arguments", {
   expect_equal(red('foo', 'bar'), '\u001b[31mfoo bar\u001b[39m')
 
 })
-
-test_that("We convert to string", {
-
-  expect_equal(red(0), '\u001b[31m0\u001b[39m')
-
-})

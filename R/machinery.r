@@ -36,7 +36,7 @@ crayon_template <- function(...) {
     stop("Unknown styles:",
          paste(setdiff(my_styles, names(styles)), collapse = ","))
   }
-  text <- paste(..., collapse = "")
+  text <- mypaste(...)
   if (has_color()) {
     for (st in rev(my_styles)) {
       open <- styles[[st]]$open
