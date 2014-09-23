@@ -16,6 +16,7 @@ Collate:
     'utils.r'
     'string.r'
     'crayon-package.r'
+    'has_ansi.r'
     'has_color.r'
     'styles.r'
     'machinery.r'
