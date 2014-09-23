@@ -9,4 +9,5 @@ URL: https://github.com/gaborcsardi/crayon
 BugReports: https://github.com/gaborcsardi/crayon/issues
 Collate:
     'utils.r'
+    'string.r'
     'crayon-package.r'
