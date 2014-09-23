@@ -3,31 +3,31 @@
 ## API design
 "
 # style a string
-blue('Hello world!')
+blue('Hello world!') %>% cat("\n")
 
 # combine styled and normal strings
-blue('Hello') %+% 'World' %+% red('!')
+blue('Hello') %+% ' World' %+% red('!') %>% cat("\n")
 
 # compose multiple styles using the chainable API
-blue$bgRed$bold('Hello world!')
+blue$bgRed$bold('Hello world!') %>% cat("\n")
 
 // pass in multiple arguments
-blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz')
+blue('Hello', 'World!', 'Foo', 'bar', 'biz', 'baz') %>% cat("\n")
 
 // nest styles
-red('Hello', underline.bgBlue('world') %+% '!')
+red('Hello', underline$bgBlue('world') %+% '!') %>% cat("\n")
 
 // nest styles of the same type even (color, underline, background)
 green(
     'I am a green line ' %+%
     blue$underline$bold('with a blue substring') %+%
     ' that becomes green again!'
-)
+) %>% cat("\n")
 
 # Easily define your own themes.
 
 alert <- bold$red
-cat(alert('Watch out!'))
+alert('Watch out!') %>% cat("\n")
 "
 
 crayon_template <- function(...) {
@@ -36,15 +36,15 @@ crayon_template <- function(...) {
     stop("Unknown styles:",
          paste(setdiff(my_styles, names(styles)), collapse = ","))
   }
+  text <- paste(..., collapse = "")
   if (has_color()) {
-    open <- sapply(styles[my_styles], "[[", "open")
-    close <- sapply(styles[my_styles], "[[", "close")
-    paste0(open, collapse = "") %+%
-      paste0(..., collapse = "") %+%
-      paste0(close, collapse = "")
-  } else {
-    paste0(..., collapse = "")
+    for (st in rev(my_styles)) {
+      open <- styles[[st]]$open
+      close <- styles[[st]]$close
+      text <- open %+% gsub(close, open, text, fixed = TRUE) %+% close
+    }
   }
+  text
 }
 
 make_style <- function(style) {
