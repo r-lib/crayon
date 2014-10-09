@@ -18,7 +18,7 @@ crayon_template <- function(...) {
   text
 }
 
-make_style <- function(style) {
+make_my_style <- function(style) {
   crayon <- crayon_template
   attr(crayon, "_styles") <- list(style)
   class(crayon) <- "crayon"
@@ -154,5 +154,5 @@ make_style <- function(style) {
 #'
 
 sapply(names(styles), function(style) {
-  assign(style, make_style(style), envir = asNamespace(packageName()))
+  assign(style, make_my_style(style), envir = asNamespace(packageName()))
 })
