@@ -2,25 +2,73 @@
 ## ----------------------------------------------------------------------
 
 crayon_template <- function(...) {
-  my_styles <- unlist(attr(sys.function(), "_styles"))
-  if (any(!my_styles %in% names(styles))) {
-    stop("Unknown styles:",
-         paste(setdiff(my_styles, names(styles)), collapse = ","))
-  }
+  my_styles <- attr(sys.function(), "_styles")
   text <- mypaste(...)
   if (has_color()) {
     for (st in rev(my_styles)) {
-      open <- styles[[st]]$open
-      close <- styles[[st]]$close
-      text <- open %+% gsub(close, open, text, fixed = TRUE) %+% close
+      text <- st$open %+%
+        gsub(st$close, st$open, text, fixed = TRUE) %+%
+        st$close
     }
   }
   text
 }
 
-make_my_style <- function(style) {
+hash_color_regex <- "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+
+is_builtin_style <- function(x) {
+  x %in% names(builtin_styles)
+}
+
+is_r_color <- function(x) {
+  x %in% colors() || grepl(hash_color_regex, x)
+}
+
+style_from_r_color <- function(color) {
+  style_from_rgb(col2rgb(color))
+}
+
+style_from_rgb <- function(rgb) {
+  stop("R and RGB colors are not implemented yet")
+}
+
+#' Create an ANSI color style
+#'
+#' TODO
+#'
+#' @param ... The style to create. See details below.
+#' @return A function that can be used to color strings.
+#'
+
+make_style <- function(...) {
+
+  args <- list(...)
+  stopifnot(length(args) == 1)
+  style <- args[[1]]
+  style_name <- names(args)[1]
+
+  stopifnot(is.character(style) && length(style) == 1 ||
+            is_rgb_matrix(style) && ncol(style) == 1)
+
+  ansi_seqs <- if (is_builtin_style(style)) {
+    if (is.null(style_name)) style_name <- style
+    builtin_styles[[style]]
+
+  } else if (is_r_color(style)) {
+    if (is.null(style_name)) style_name <- style
+    style_from_r_color(style)
+
+  } else if (is_rgb_matrix(style)) {
+    style_from_rgb(style)
+
+  } else {
+    stop("Unknown style specification: ", style)
+  }
+
+  if (!is.null(style_name)) { styles[[style_name]] <<- ansi_seqs }
+
   crayon <- crayon_template
-  attr(crayon, "_styles") <- list(style)
+  attr(crayon, "_styles") <- structure(list(ansi_seqs), names = style_name)
   class(crayon) <- "crayon"
   crayon
 }
@@ -29,7 +77,7 @@ make_my_style <- function(style) {
 #' @method "$" crayon
 
 `$.crayon` <- function(crayon, style) {
-  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), style)
+  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), styles[style])
   crayon
 }
 
@@ -152,7 +200,30 @@ make_my_style <- function(style) {
 #' cat(warn("Warning: shorter argument was recycled."))
 #' cat(note("Note: no such directory."))
 #'
+NULL
 
-sapply(names(styles), function(style) {
-  assign(style, make_my_style(style), envir = asNamespace(packageName()))
+#' ANSI escape sequences of crayon styles
+#'
+#' You can use this object to list all availables crayon styles,
+#' via \code{names(styles)}, or to explicitly apply an ANSI
+#' escape seauence to a string.
+#'
+#' @format A named list. Each list element is a list of two
+#'   strings, named \sQuote{open} and \sQuote{close}.
+#'
+#' @seealso \code{\link{crayon}} for the beginning of the crayon manual.
+#' @export
+#' @examples
+#' names(styles)
+#' cat(styles[["bold"]]$close)
+
+styles <- structure(list(), names = character())
+
+sapply(names(builtin_styles), function(style) {
+  assign(style, make_style(style), envir = asNamespace(packageName()))
 })
+
+.onAttach <- function(libname, pkgname) {
+  ub <- unlockBinding
+  ub("styles", asNamespace(packageName()))
+}
