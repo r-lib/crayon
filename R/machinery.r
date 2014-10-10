@@ -28,19 +28,19 @@ is_rgb_matrix <- function(x) {
   is.matrix(x) && is.numeric(x) && (nrow(x) == 3 || nrow(x) == 4)
 }
 
-style_from_r_color <- function(color) {
-  style_from_rgb(col2rgb(color))
+style_from_r_color <- function(color, bg) {
+  style_from_rgb(col2rgb(color), bg)
 }
 
 ## TODO
 
-style_8_from_rgb <- function(rgb) {
+style_8_from_rgb <- function(rgb, bg) {
   stop("RGB colors are not implemented on terminals with less than 256 colors")
 }
 
-style_from_rgb <- function(rgb) {
-  if (num_colors() < 256) { return(style_8_from_rgb(rgb)) }
-  ansi256(rgb)
+style_from_rgb <- function(rgb, bg) {
+  if (num_colors() < 256) { return(style_8_from_rgb(rgb, bg)) }
+  ansi256(rgb, bg)
 }
 
 #' Create an ANSI color style
@@ -48,10 +48,11 @@ style_from_rgb <- function(rgb) {
 #' TODO
 #'
 #' @param ... The style to create. See details below.
+#' @param bg Whether the color applies to the background.
 #' @return A function that can be used to color strings.
 #'
 
-make_style <- function(...) {
+make_style <- function(..., bg = FALSE) {
 
   args <- list(...)
   stopifnot(length(args) == 1)
@@ -59,7 +60,8 @@ make_style <- function(...) {
   style_name <- names(args)[1]
 
   stopifnot(is.character(style) && length(style) == 1 ||
-            is_rgb_matrix(style) && ncol(style) == 1)
+            is_rgb_matrix(style) && ncol(style) == 1,
+            is.logical(bg) && length(bg) == 1)
 
   ansi_seqs <- if (is_builtin_style(style)) {
     if (is.null(style_name)) style_name <- style
@@ -67,10 +69,10 @@ make_style <- function(...) {
 
   } else if (is_r_color(style)) {
     if (is.null(style_name)) style_name <- style
-    style_from_r_color(style)
+    style_from_r_color(style, bg)
 
   } else if (is_rgb_matrix(style)) {
-    style_from_rgb(style)
+    style_from_rgb(style, bg)
 
   } else {
     stop("Unknown style specification: ", style)
