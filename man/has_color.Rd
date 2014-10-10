@@ -16,7 +16,7 @@ The following algorithm is used to detect ANSI support: \itemize{
     then \code{FALSE} is returned.
   \item Otherwise, if the standard output is not a terminal, then
     \code{FALSE} is returned.
-  \item Otherwise, if the platform is Windows, \code{TRUE} is returned.
+  \item Otherwise, if the platform is Windows, \code{FALSE} is returned.
   \item Otherwise, if the \code{COLORTERM} environment variable is
     set, \code{TRUE} is returned.
   \item Otherwise, if the \code{TERM} environment variable starts
