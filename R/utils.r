@@ -13,3 +13,16 @@ mypaste <- function(..., sep = " ") {
 
   paste(..., sep = sep)
 }
+
+scale <- function(x, from = c(0, 255), to = c(0, 5), round = TRUE) {
+  y <- (x - from[1]) /
+    (from[2] - from[1]) *
+    (to[2] - to[1]) +
+    to[1]
+
+  if (round) {
+    round(y)
+  } else {
+    y
+  }
+}

@@ -24,12 +24,23 @@ is_r_color <- function(x) {
   x %in% colors() || grepl(hash_color_regex, x)
 }
 
+is_rgb_matrix <- function(x) {
+  is.matrix(x) && is.numeric(x) && (nrow(x) == 3 || nrow(x) == 4)
+}
+
 style_from_r_color <- function(color) {
   style_from_rgb(col2rgb(color))
 }
 
+## TODO
+
+style_8_from_rgb <- function(rgb) {
+  stop("RGB colors are not implemented on terminals with less than 256 colors")
+}
+
 style_from_rgb <- function(rgb) {
-  stop("R and RGB colors are not implemented yet")
+  if (num_colors() < 256) { return(style_8_from_rgb(rgb)) }
+  ansi256(rgb)
 }
 
 #' Create an ANSI color style

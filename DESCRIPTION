@@ -13,6 +13,7 @@ LazyData: true
 URL: https://github.com/gaborcsardi/crayon
 BugReports: https://github.com/gaborcsardi/crayon/issues
 Collate:
+    'ansi-256.r'
     'utils.r'
     'string.r'
     'crayon-package.r'
