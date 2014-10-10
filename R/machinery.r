@@ -32,10 +32,11 @@ style_from_r_color <- function(color, bg) {
   style_from_rgb(col2rgb(color), bg)
 }
 
-## TODO
-
 style_8_from_rgb <- function(rgb, bg) {
-  stop("RGB colors are not implemented on terminals with less than 256 colors")
+  ansi_cols <- if (bg) ansi_bg_rgb else ansi_fg_rgb
+  dist <- colSums((ansi_cols - as.vector(rgb)) ^ 2 )
+  builtin_name <- names(which.min(dist))[1]
+  builtin_styles[[builtin_name]]
 }
 
 style_from_rgb <- function(rgb, bg) {

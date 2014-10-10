@@ -32,6 +32,35 @@ codes <- list(
   bgWhite = c(47, 49)
 )
 
+## ANSI fg color -> R color
+
+ansi_fg_r <- c(
+  "black" = "black",
+  "red" = "red",
+  "green" = "green",
+  "yellow" = "yellow",
+  "blue" = "blue",
+  "magenta" = "magenta",
+  "cyan" = "cyan",
+  "white" = "white",
+  "silver" = "grey"
+)
+
+ansi_fg_rgb <- col2rgb(ansi_fg_r)
+
+ansi_bg_r <- c(
+  "bgBlack" = "black",
+  "bgRed" = "red",
+  "bgGreen" = "green",
+  "bgYellow" = "yellow",
+  "bgBlue" = "blue",
+  "bgMagenta" = "magenta",
+  "bgCyan" = "cyan",
+  "bgWhite" = "white"
+)
+
+ansi_bg_rgb <- col2rgb(ansi_bg_r)
+
 make_chr_style <- function(code) {
   list(
     open = '\u001b[' %+% chr(codes[[code]][1]) %+% 'm',
