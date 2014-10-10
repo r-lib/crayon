@@ -26,3 +26,8 @@ scale <- function(x, from = c(0, 255), to = c(0, 5), round = TRUE) {
     y
   }
 }
+
+capitalize <- function(x) {
+  substr(x, 1, 1) <- toupper(substr(x, 1, 1))
+  x
+}

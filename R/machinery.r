@@ -51,6 +51,7 @@ style_from_rgb <- function(rgb, bg) {
 #' @param bg Whether the color applies to the background.
 #' @return A function that can be used to color strings.
 #'
+#' @export
 
 make_style <- function(..., bg = FALSE) {
 
@@ -64,6 +65,7 @@ make_style <- function(..., bg = FALSE) {
             is.logical(bg) && length(bg) == 1)
 
   ansi_seqs <- if (is_builtin_style(style)) {
+    if (bg) { style <- "bg" %+% capitalize(style) }
     if (is.null(style_name)) style_name <- style
     builtin_styles[[style]]
 
