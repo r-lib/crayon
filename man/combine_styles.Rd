@@ -6,14 +6,18 @@
 \usage{
 combine_styles(...)
 
-\method{"$"}{crayon}(crayon, style)
+\method{$}{crayon}(crayon, style)
 }
 \arguments{
 \item{...}{The styles to combine. They will be applied from
 right to left.}
+
+\item{crayon}{A style function.}
+
+\item{style}{A style name that is included in \code{names(styles())}.}
 }
 \value{
-The combined style.
+The combined style function.
 }
 \description{
 Combine two or more styles or style functions into a new style function

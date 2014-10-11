@@ -17,7 +17,7 @@
 #'
 #' @param ... The styles to combine. They will be applied from
 #'   right to left.
-#' @return The combined style.
+#' @return The combined style function.
 #'
 #' @export
 #' @examples
@@ -44,8 +44,10 @@ combine_styles <- function(...) {
 }
 
 #' @rdname combine_styles
+#' @param crayon A style function.
+#' @param style A style name that is included in \code{names(styles())}.
 #' @export
-#' @method "$" crayon
+#' @method $ crayon
 
 `$.crayon` <- function(crayon, style) {
   attr(crayon, "_styles") <- c(attr(crayon, "_styles"), my_styles[style])

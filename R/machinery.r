@@ -239,7 +239,7 @@ make_crayon <- function(ansi_seq) {
 #'   cat(note("Note: no such directory.\n"))
 #' }
 #'
-#' @aliases "$.crayon"
+#' @aliases
 #'    reset bold blurred italic underline inverse hidden strikethrough
 #'    black red green yellow blue magenta cyan white silver
 #'    bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite
