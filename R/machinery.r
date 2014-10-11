@@ -46,15 +46,67 @@ style_from_rgb <- function(rgb, bg, num_colors) {
 
 #' Create an ANSI color style
 #'
-#' TODO
+#' Create a style, or a style function, or both. This function
+#' is intended for those who wish to use 256 ANSI colors,
+#' instead of the more widely supported eight colors.
 #'
-#' @param ... The style to create. See details below.
+#' @details
+#' The crayon package comes with predefined styles (see
+#' \code{\link{styles}} for a list) and functions for the basic eight-color
+#' ANSI standard (\code{red}, \code{blue}, etc., see \link{crayon}).
+#'
+#' There are no predefined styles or style functions for the 256 color
+#' ANSI mode, however, because we simply did not want to create that
+#' many styles and functions. Instead, \code{make_style} can be
+#' used to create a style (or a style function, or both).
+#'
+#' There are two ways to use this function: \enumerate{
+#'   \item If its first argument is not named, then it returns a function
+#'     that can be used to color strings.
+#'   \item If its first argument is named, then it also creates a
+#'     style with the given name. This style can be used in
+#'     \code{\link{style}}. One can still use the return value
+#'     of the function, to create a style function.
+#' }
+#'
+#' The style (the code{...} argument) can be anything of the
+#' following: \itemize{
+#'   \item An R color name, see \code{colors()}.
+#'   \item A 6- or 8-digit hexa color string, e.g. \code{#ff0000} means
+#'     red. Transparency (alpha channel) values are ignored.
+#'   \item A one-column matrix with three rows for the red, green
+#'     and blue channels, as returned by \code{col2rgb} (in the base
+#'     grDevices package).
+#' }
+#'
+#' \code{make_style} detects the number of colors to use
+#' automatically (this can be overridden using the \code{colors}
+#' argument). If the number of colors is less than 256 (detected or given),
+#' then it falls back to the color in the ANSI eight color mode that
+#' is closest to the specified (RGB or R) color.
+#'
+#' See the examples below.
+#'
+#' @param ... The style to create. See details and examples below.
 #' @param bg Whether the color applies to the background.
 #' @param colors Number of colors, detected automatically
 #'   by default.
 #' @return A function that can be used to color strings.
 #'
+#' @family styles
 #' @export
+#' @examples
+#' ## Create a style function without creating a style
+#' pink <- make_style("pink")
+#' bgMaroon <- make_style(rgb(0.93, 0.19, 0.65), bg = TRUE)
+#' cat(bgMaroon(pink("I am pink if your terminal wants it, too.\n")))
+#'
+#' ## Create a new style for pink and maroon background
+#' make_style(pink = "pink")
+#' make_style(bgMaroon = rgb(0.93, 0.19, 0.65), bg = TRUE)
+#' "pink" %in% names(styles())
+#' "bgMaroon" %in% names(styles())
+#' cat(style("I am pink, too!\n", "pink", bg = "bgMaroon"))
 
 make_style <- function(..., bg = FALSE, colors = num_colors()) {
 
@@ -204,6 +256,7 @@ make_crayon <- function(ansi_seq) {
 #' @export black red green yellow blue magenta cyan white silver
 #' @export bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite
 #'
+#' @seealso \code{\link{make_style}} for using the 256 ANSI colors.
 #' @examples
 #' cat(blue("Hello", "world!"))
 #'
@@ -221,9 +274,9 @@ make_crayon <- function(ansi_seq) {
 #' error <- red $ bold
 #' warn <- magenta $ underline
 #' note <- cyan
-#' cat(error("Error: subscript out of bounds!"))
-#' cat(warn("Warning: shorter argument was recycled."))
-#' cat(note("Note: no such directory."))
+#' cat(error("Error: subscript out of bounds!\n"))
+#' cat(warn("Warning: shorter argument was recycled.\n"))
+#' cat(note("Note: no such directory.\n"))
 #'
 NULL
 

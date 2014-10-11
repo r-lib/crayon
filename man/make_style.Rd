@@ -6,7 +6,7 @@
 make_style(..., bg = FALSE, colors = num_colors())
 }
 \arguments{
-\item{...}{The style to create. See details below.}
+\item{...}{The style to create. See details and examples below.}
 
 \item{bg}{Whether the color applies to the background.}
 
@@ -17,6 +17,61 @@ by default.}
 A function that can be used to color strings.
 }
 \description{
-TODO
+Create a style, or a style function, or both. This function
+is intended for those who wish to use 256 ANSI colors,
+instead of the more widely supported eight colors.
+}
+\details{
+The crayon package comes with predefined styles (see
+\code{\link{styles}} for a list) and functions for the basic eight-color
+ANSI standard (\code{red}, \code{blue}, etc., see \link{crayon}).
+
+There are no predefined styles or style functions for the 256 color
+ANSI mode, however, because we simply did not want to create that
+many styles and functions. Instead, \code{make_style} can be
+used to create a style (or a style function, or both).
+
+There are two ways to use this function: \enumerate{
+  \item If its first argument is not named, then it returns a function
+    that can be used to color strings.
+  \item If its first argument is named, then it also creates a
+    style with the given name. This style can be used in
+    \code{\link{style}}. One can still use the return value
+    of the function, to create a style function.
+}
+
+The style (the code{...} argument) can be anything of the
+following: \itemize{
+  \item An R color name, see \code{colors()}.
+  \item A 6- or 8-digit hexa color string, e.g. \code{#ff0000} means
+    red. Transparency (alpha channel) values are ignored.
+  \item A one-column matrix with three rows for the red, green
+    and blue channels, as returned by \code{col2rgb} (in the base
+    grDevices package).
+}
+
+\code{make_style} detects the number of colors to use
+automatically (this can be overridden using the \code{colors}
+argument). If the number of colors is less than 256 (detected or given),
+then it falls back to the color in the ANSI eight color mode that
+is closest to the specified (RGB or R) color.
+
+See the examples below.
+}
+\examples{
+## Create a style function without creating a style
+pink <- make_style("pink")
+bgMaroon <- make_style(rgb(0.93, 0.19, 0.65), bg = TRUE)
+cat(bgMaroon(pink("I am pink if your terminal wants it, too.\\n")))
+
+## Create a new style for pink and maroon background
+make_style(pink = "pink")
+make_style(bgMaroon = rgb(0.93, 0.19, 0.65), bg = TRUE)
+"pink" \%in\% names(styles())
+"bgMaroon" \%in\% names(styles())
+cat(style("I am pink, too!\\n", "pink", bg = "bgMaroon"))
+}
+\seealso{
+Other styles: \code{\link{drop_style}}
 }
 

@@ -147,8 +147,11 @@ cat(green(
 error <- red $ bold
 warn <- magenta $ underline
 note <- cyan
-cat(error("Error: subscript out of bounds!"))
-cat(warn("Warning: shorter argument was recycled."))
-cat(note("Note: no such directory."))
+cat(error("Error: subscript out of bounds!\\n"))
+cat(warn("Warning: shorter argument was recycled.\\n"))
+cat(note("Note: no such directory.\\n"))
+}
+\seealso{
+\code{\link{make_style}} for using the 256 ANSI colors.
 }
 
