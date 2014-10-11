@@ -1,9 +1,8 @@
 
 context("General style function")
 
-op <- options()
+op <- options(crayon.enabled = TRUE)
 on.exit(options(op))
-options(crayon.enabled = TRUE)
 
 test_that("style works", {
 
