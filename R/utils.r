@@ -31,3 +31,16 @@ capitalize <- function(x) {
   substr(x, 1, 1) <- toupper(substr(x, 1, 1))
   x
 }
+
+multicol <- function(x) {
+  xs <- strip_style(x)
+  max_len <- max(nchar(xs))
+  to_add <- max_len - nchar(xs)
+  x <- paste0(x, substring("            ", 1, to_add))
+  screen_width <- getOption("width")
+  num_cols <- trunc(screen_width / max_len)
+  num_rows <- ceiling(length(x) / num_cols)
+  x <- c(x, rep("", num_cols * num_rows - length(x)))
+  xm <- matrix(x, ncol = num_cols, byrow = TRUE)
+  apply(xm, 1, paste, collapse = "") %+% "\n"
+}
