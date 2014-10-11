@@ -3,10 +3,15 @@
 \alias{make_style}
 \title{Create an ANSI color style}
 \usage{
-make_style(...)
+make_style(..., bg = FALSE, colors = num_colors())
 }
 \arguments{
 \item{...}{The style to create. See details below.}
+
+\item{bg}{Whether the color applies to the background.}
+
+\item{num_colors}{Number of colors, detected automatically
+by default.}
 }
 \value{
 A function that can be used to color strings.

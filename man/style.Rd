@@ -3,13 +3,16 @@
 \alias{style}
 \title{Add style to a string}
 \usage{
-style(string, as)
+style(string, as, bg = NULL)
 }
 \arguments{
 \item{string}{Character vector to style.}
 
 \item{as}{Style function to apply, either the function object,
-or its name.}
+or its name, or an object to pass to \code{\link{make_style}}.}
+
+\item{bg}{Background style, a style function, or a name that
+is passed to \code{\link{make_style}}.}
 }
 \value{
 Styled character vector.
