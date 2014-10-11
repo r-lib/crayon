@@ -18,10 +18,10 @@
 #' style("foobar", "bold")
 #' bold("foobar")
 
-style <- function(string, as, bg = NULL) {
+style <- function(string, as = NULL, bg = NULL) {
 
   as <- use_or_make_style(as)
-  bg <- use_or_make_style(bg)
+  bg <- use_or_make_style(bg, bg = TRUE)
 
   if (!is(as, "crayon")) stop("Cannot make style from 'as'")
   if (!is(bg, "crayon")) stop("Cannot make style from 'bg'")
