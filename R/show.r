@@ -1,5 +1,8 @@
 
-#' Show the ANSI colors on the screen
+#' @include style-var.r
+NULL
+
+#' Show the ANSI color table on the screen
 #'
 #' @param colors Number of colors to show, meaningful values
 #'   are 8 and 256. It is automatically set to the number of

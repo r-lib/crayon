@@ -22,7 +22,7 @@ Collate:
     'styles.r'
     'machinery.r'
     'print.r'
-    'show.r'
     'style-var.r'
+    'show.r'
 Suggests:
     testthat
