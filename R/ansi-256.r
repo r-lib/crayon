@@ -11,7 +11,7 @@ ansi256 <- function(rgb, bg = FALSE) {
   if (rgb[1] == rgb[2] && rgb[2] == rgb[3]) {
     ## Gray
     list(
-      open = codes[gray_index][scale(rgb[1], to = c(0, 23))],
+      open = codes[gray_index][scale(rgb[1], to = c(0, 23)) + 1],
       close = codes[reset_index]
     )
     
