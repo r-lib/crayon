@@ -147,7 +147,7 @@ make_crayon <- function(ansi_seq) {
   crayon <- crayon_template
   attr(crayon, "_styles") <- ansi_seq
   class(crayon) <- "crayon"
-  invisible(crayon)
+  crayon
 }
 
 #' @include styles.r

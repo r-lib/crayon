@@ -3,6 +3,12 @@
 #' @method print crayon
 
 print.crayon <- function(x, ...) {
-  ## TODO
-  print.default(x, ...)
+  st <- paste(names(attr(x, "_styles")), collapse = ", ")
+  cat(sep = "",
+    "Crayon style function, ",
+    st,
+    ": ",
+    x("example output."),
+    "\n"
+  )
 }
