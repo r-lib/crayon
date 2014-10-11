@@ -10,7 +10,7 @@ make_style(..., bg = FALSE, colors = num_colors())
 
 \item{bg}{Whether the color applies to the background.}
 
-\item{num_colors}{Number of colors, detected automatically
+\item{colors}{Number of colors, detected automatically
 by default.}
 }
 \value{

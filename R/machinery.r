@@ -50,7 +50,7 @@ style_from_rgb <- function(rgb, bg, num_colors) {
 #'
 #' @param ... The style to create. See details below.
 #' @param bg Whether the color applies to the background.
-#' @param num_colors Number of colors, detected automatically
+#' @param colors Number of colors, detected automatically
 #'   by default.
 #' @return A function that can be used to color strings.
 #'
