@@ -261,3 +261,22 @@ sapply(names(builtin_styles), function(style) {
 define_style <- function(name, ansi_seq) {
   my_styles[[name]] <<- ansi_seq
 }
+
+#' Remove a style
+#'
+#' @param style The name of the style to remove. No error is given
+#'   for non-existing names.
+#' @return Nothing.
+#'
+#' @family styles
+#' @export
+#' @examples
+#' make_style(new_style = "maroon", bg = TRUE)
+#' cat(style("I am maroon", "new_style"), "\n")
+#' drop_style("new_style")
+#' "new_style" %in% names(styles())
+
+drop_style <- function(style) {
+  my_styles[[style]] <<- NULL
+  invisible()
+}
