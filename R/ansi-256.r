@@ -6,9 +6,9 @@ rgb_index <- 17:232
 gray_index <- 233:256
 reset_index <- 257
 
-ansi256 <- function(rgb, bg = FALSE) {
+ansi256 <- function(rgb, bg = FALSE, grey = FALSE) {
   codes <- if (bg) bgcodes else fgcodes
-  if (rgb[1] == rgb[2] && rgb[2] == rgb[3]) {
+  if (grey) {
     ## Gray
     list(
       open = codes[gray_index][scale(rgb[1], to = c(0, 23)) + 1],

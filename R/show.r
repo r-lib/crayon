@@ -35,8 +35,9 @@ ansi_colors_256_col <-
 
 ansi_colors_256_grey <-
   sapply(0:23, function(g) {
-    s <- paste0("grey ", format(g, width = 2), "    ")
-    style(s, as = "grey", bg = grey(g / 23)) %+%
+    s <- paste0(" grey ", format(g, width = 2), "    ")
+    style(s, as = "grey",
+          bg = make_style(grey(g / 23), grey = TRUE, bg = TRUE)) %+%
       (if ((g + 1) %% 6) "" else "\n")
   })
 

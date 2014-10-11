@@ -28,8 +28,8 @@ is_rgb_matrix <- function(x) {
   is.matrix(x) && is.numeric(x) && (nrow(x) == 3 || nrow(x) == 4)
 }
 
-style_from_r_color <- function(color, bg, num_colors) {
-  style_from_rgb(col2rgb(color), bg, num_colors)
+style_from_r_color <- function(color, bg, num_colors, grey) {
+  style_from_rgb(col2rgb(color), bg, num_colors, grey)
 }
 
 style_8_from_rgb <- function(rgb, bg) {
@@ -39,9 +39,9 @@ style_8_from_rgb <- function(rgb, bg) {
   builtin_styles[[builtin_name]]
 }
 
-style_from_rgb <- function(rgb, bg, num_colors) {
+style_from_rgb <- function(rgb, bg, num_colors, grey) {
   if (num_colors < 256) { return(style_8_from_rgb(rgb, bg)) }
-  ansi256(rgb, bg)
+  ansi256(rgb, bg, grey)
 }
 
 #' Create an ANSI color style
@@ -89,6 +89,12 @@ style_from_rgb <- function(rgb, bg, num_colors) {
 #'
 #' @param ... The style to create. See details and examples below.
 #' @param bg Whether the color applies to the background.
+#' @param grey Whether to specifically create a grey color.
+#'   This flag is included, because ANSI 256 has a finer color scale
+#'   for greys, then the usual 0:5 scale for R, G and B components.
+#'   It is only used for RGB color specifications (either numerically
+#'   or via a hexa string), and it is ignored on eigth color ANSI
+#'   terminals.
 #' @param colors Number of colors, detected automatically
 #'   by default.
 #' @return A function that can be used to color strings.
@@ -108,7 +114,8 @@ style_from_rgb <- function(rgb, bg, num_colors) {
 #' "bgMaroon" %in% names(styles())
 #' cat(style("I am pink, too!\n", "pink", bg = "bgMaroon"))
 
-make_style <- function(..., bg = FALSE, colors = num_colors()) {
+make_style <- function(..., bg = FALSE, grey = FALSE,
+                       colors = num_colors()) {
 
   args <- list(...)
   stopifnot(length(args) == 1)
@@ -129,10 +136,10 @@ make_style <- function(..., bg = FALSE, colors = num_colors()) {
 
   } else if (is_r_color(style)) {
     if (is.null(style_name)) style_name <- style
-    style_from_r_color(style, bg, colors)
+    style_from_r_color(style, bg, colors, grey)
 
   } else if (is_rgb_matrix(style)) {
-    style_from_rgb(style, bg, colors)
+    style_from_rgb(style, bg, colors, grey)
 
   } else {
     stop("Unknown style specification: ", style)
