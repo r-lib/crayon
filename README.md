@@ -10,20 +10,6 @@ for notes, warnings, errors; and combine styles.
 ANSI color support is automatically detected and used. Crayon was largely
 inspired by [chalk](https://github.com/sindresorhus/chalk).
 
-## Styles and colors
-
-### Basic ANSI styles
-
-They are supported by most terminals.
-
-![](ANSI-8-OSX.png)
-
-### ANSI 256 colors
-
-They are supported by many modern terminals.
-
-![](ANSI-256-OSX.png)
-
 ## Installation
 
 ```r
@@ -69,6 +55,10 @@ has a corresponding function with the same name.
 * `bgMagenta`
 * `bgCyan`
 * `bgWhite`
+
+### Screenshot on OSX
+
+![](ANSI-8-OSX.png)
 
 ## Usage
 
@@ -130,3 +120,5 @@ bgMaroon <- make_style("maroon", bg = TRUE)
 fancy <- combine_styles(ivory, bgMaroon)
 cat(fancy("This will have some fancy colors"), "\n")
 ```
+
+![](ANSI-256-OSX.png)

@@ -2,3 +2,5 @@
 ^tags$
 ^.travis.yml$
 ^appveyor.yml$
+^ANSI-8-OSX.png$
+^ANSI-256-OSX.png$
