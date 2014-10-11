@@ -28,8 +28,8 @@ is_rgb_matrix <- function(x) {
   is.matrix(x) && is.numeric(x) && (nrow(x) == 3 || nrow(x) == 4)
 }
 
-style_from_r_color <- function(color, bg) {
-  style_from_rgb(col2rgb(color), bg)
+style_from_r_color <- function(color, bg, num_colors) {
+  style_from_rgb(col2rgb(color), bg, num_colors)
 }
 
 style_8_from_rgb <- function(rgb, bg) {
@@ -39,8 +39,8 @@ style_8_from_rgb <- function(rgb, bg) {
   builtin_styles[[builtin_name]]
 }
 
-style_from_rgb <- function(rgb, bg) {
-  if (num_colors() < 256) { return(style_8_from_rgb(rgb, bg)) }
+style_from_rgb <- function(rgb, bg, num_colors) {
+  if (num_colors < 256) { return(style_8_from_rgb(rgb, bg)) }
   ansi256(rgb, bg)
 }
 
@@ -50,11 +50,13 @@ style_from_rgb <- function(rgb, bg) {
 #'
 #' @param ... The style to create. See details below.
 #' @param bg Whether the color applies to the background.
+#' @param num_colors Number of colors, detected automatically
+#'   by default.
 #' @return A function that can be used to color strings.
 #'
 #' @export
 
-make_style <- function(..., bg = FALSE) {
+make_style <- function(..., bg = FALSE, colors = num_colors()) {
 
   args <- list(...)
   stopifnot(length(args) == 1)
@@ -63,7 +65,8 @@ make_style <- function(..., bg = FALSE) {
 
   stopifnot(is.character(style) && length(style) == 1 ||
             is_rgb_matrix(style) && ncol(style) == 1,
-            is.logical(bg) && length(bg) == 1)
+            is.logical(bg) && length(bg) == 1,
+            is.numeric(colors) && length(colors) == 1)
 
   ansi_seqs <- if (is_builtin_style(style)) {
     if (bg) { style <- "bg" %+% capitalize(style) }
@@ -72,10 +75,10 @@ make_style <- function(..., bg = FALSE) {
 
   } else if (is_r_color(style)) {
     if (is.null(style_name)) style_name <- style
-    style_from_r_color(style, bg)
+    style_from_r_color(style, bg, colors)
 
   } else if (is_rgb_matrix(style)) {
-    style_from_rgb(style, bg)
+    style_from_rgb(style, bg, colors)
 
   } else {
     stop("Unknown style specification: ", style)
