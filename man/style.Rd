@@ -3,7 +3,7 @@
 \alias{style}
 \title{Add style to a string}
 \usage{
-style(string, as, bg = NULL)
+style(string, as = NULL, bg = NULL)
 }
 \arguments{
 \item{string}{Character vector to style.}
