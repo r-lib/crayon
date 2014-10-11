@@ -255,7 +255,7 @@ sapply(names(builtin_styles), function(style) {
 
 .onAttach <- function(libname, pkgname) {
   ub <- unlockBinding
-  ub("my_styles", asNamespace(packageName()))
+  ub("my_styles", asNamespace(pkgname))
 }
 
 define_style <- function(name, ansi_seq) {
