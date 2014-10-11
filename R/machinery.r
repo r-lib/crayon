@@ -61,7 +61,7 @@ make_style <- function(..., bg = FALSE, colors = num_colors()) {
   args <- list(...)
   stopifnot(length(args) == 1)
   style <- args[[1]]
-  style_name <- names(args)[1]
+  orig_style_name <- style_name <- names(args)[1]
 
   stopifnot(is.character(style) && length(style) == 1 ||
             is_rgb_matrix(style) && ncol(style) == 1,
@@ -69,7 +69,9 @@ make_style <- function(..., bg = FALSE, colors = num_colors()) {
             is.numeric(colors) && length(colors) == 1)
 
   ansi_seqs <- if (is_builtin_style(style)) {
-    if (bg) { style <- "bg" %+% capitalize(style) }
+    if (bg && substr(style, 1, 2) != "bg") {
+      style <- "bg" %+% capitalize(style)
+    }
     if (is.null(style_name)) style_name <- style
     builtin_styles[[style]]
 
@@ -84,19 +86,23 @@ make_style <- function(..., bg = FALSE, colors = num_colors()) {
     stop("Unknown style specification: ", style)
   }
 
-  if (!is.null(style_name)) { styles[[style_name]] <<- ansi_seqs }
+  if (!is.null(orig_style_name)) define_style(orig_style_name, ansi_seqs)
 
+  make_crayon(structure(list(ansi_seqs), names = style_name))
+}
+
+make_crayon <- function(ansi_seq) {
   crayon <- crayon_template
-  attr(crayon, "_styles") <- structure(list(ansi_seqs), names = style_name)
+  attr(crayon, "_styles") <- ansi_seq
   class(crayon) <- "crayon"
-  crayon
+  invisible(crayon)
 }
 
 #' @export
 #' @method "$" crayon
 
 `$.crayon` <- function(crayon, style) {
-  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), styles[style])
+  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), my_styles[style])
   crayon
 }
 
@@ -223,26 +229,35 @@ NULL
 
 #' ANSI escape sequences of crayon styles
 #'
-#' You can use this object to list all availables crayon styles,
-#' via \code{names(styles)}, or to explicitly apply an ANSI
+#' You can use this function to list all availables crayon styles,
+#' via \code{names(styles())}, or to explicitly apply an ANSI
 #' escape seauence to a string.
 #'
-#' @format A named list. Each list element is a list of two
+#' @return A named list. Each list element is a list of two
 #'   strings, named \sQuote{open} and \sQuote{close}.
 #'
 #' @seealso \code{\link{crayon}} for the beginning of the crayon manual.
 #' @export
 #' @examples
-#' names(styles)
-#' cat(styles[["bold"]]$close)
+#' names(styles())
+#' cat(styles()[["bold"]]$close)
 
-styles <- structure(list(), names = character())
+styles <- function() {
+  my_styles
+}
+
+my_styles <- structure(list(), names = character())
 
 sapply(names(builtin_styles), function(style) {
+  my_styles[[style]] <<- builtin_styles[[style]]
   assign(style, make_style(style), envir = asNamespace(packageName()))
 })
 
 .onAttach <- function(libname, pkgname) {
   ub <- unlockBinding
-  ub("styles", asNamespace(packageName()))
+  ub("my_styles", asNamespace(packageName()))
+}
+
+define_style <- function(name, ansi_seq) {
+  my_styles[[name]] <<- ansi_seq
 }
