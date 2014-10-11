@@ -20,20 +20,8 @@
 
 style <- function(string, as, bg = NULL) {
 
-  if (!is.function(as)) {
-    as <- use_or_make_style(as)
-  }
-
-  if (is.null(bg)) {
-    bg <- identity
-    class(bg) <- "crayon"
-
-  } else if (!is.function(bg)) {
-    bg <- use_or_make_style(bg, bg = TRUE)
-
-  } else {
-
-  }
+  as <- use_or_make_style(as)
+  bg <- use_or_make_style(bg)
 
   if (!is(as, "crayon")) stop("Cannot make style from 'as'")
   if (!is(bg, "crayon")) stop("Cannot make style from 'bg'")
@@ -42,7 +30,11 @@ style <- function(string, as, bg = NULL) {
 }
 
 use_or_make_style <- function(style, bg = FALSE) {
-  if (style %in% names(styles())) {
+  if (is.null(style)) {
+    structure(base::identity, class = "crayon")
+  } else if (is(style, "crayon")) {
+    style
+  } else if (style %in% names(styles())) {
     make_crayon(styles()[style])
   } else {
     make_style(style, bg = bg)

@@ -112,7 +112,7 @@ to assemble stings with different styles. \preformatted{  cat("... to highlight 
 }
 
 Styles can be combined using the \code{$} operator: \preformatted{  cat(yellow$bgMagenta$bold('Hello world!\n'))
-}
+} See also \code{\link{combine_styles}}.
 
 Styles can also be nested, and then inner style takes
 precedence: \preformatted{  cat(green(

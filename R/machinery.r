@@ -150,14 +150,6 @@ make_crayon <- function(ansi_seq) {
   invisible(crayon)
 }
 
-#' @export
-#' @method "$" crayon
-
-`$.crayon` <- function(crayon, style) {
-  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), my_styles[style])
-  crayon
-}
-
 #' @include styles.r
 #'
 #' @usage
@@ -229,7 +221,7 @@ make_crayon <- function(ansi_seq) {
 #' }
 #'
 #' Styles can be combined using the \code{$} operator: \preformatted{  cat(yellow$bgMagenta$bold('Hello world!\n'))
-#' }
+#' } See also \code{\link{combine_styles}}.
 #'
 #' Styles can also be nested, and then inner style takes
 #' precedence: \preformatted{  cat(green(
