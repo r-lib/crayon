@@ -18,6 +18,7 @@ Collate:
     'utils.r'
     'string.r'
     'crayon-package.r'
+    'disposable.r'
     'has_ansi.r'
     'has_color.r'
     'styles.r'
