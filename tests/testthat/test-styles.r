@@ -3,6 +3,8 @@ context("Defining new styles")
 
 test_that("new styles are local to importing package", {
 
+  skip("This is not implemented, yet.")
+
   lib_dir <- tempfile()
 
   on.exit(try(unloadNamespace("foo1"), silent = TRUE), add = TRUE)
@@ -45,4 +47,5 @@ test_that("new styles are local to importing package", {
   expect_false("ivory444" %in% foo1::g())
   expect_false("ivory444" %in% foo2::g())
 
+  ## TODO: what if the package(s) are not attached
 })
