@@ -9,6 +9,9 @@ has_color()
 \code{TRUE} if the current R session supports color.
 }
 \description{
+Does the current R session support ANSI colors?
+}
+\details{
 The following algorithm is used to detect ANSI support: \itemize{
   \item If the \code{crayon.enabled} option is set to \code{TRUE}
     with \code{options()}, then \code{TRUE} is returned. If it is

@@ -3,6 +3,7 @@
 
 #' Does the current R session support ANSI colors?
 #'
+#' @details
 #' The following algorithm is used to detect ANSI support: \itemize{
 #'   \item If the \code{crayon.enabled} option is set to \code{TRUE}
 #'     with \code{options()}, then \code{TRUE} is returned. If it is
@@ -51,15 +52,29 @@ has_color <- function() {
 
 #' Number of colors the terminal supports
 #'
+#' @details
 #' We use the \code{tput} shell command to detect the
 #' number of colors. If \code{tput} is not available,
 #' but we think that the terminal supports colors, then
 #' eigth colors are assumed.
 #'
+#'
+#' For efficiency, \code{num_colors} caches its result. To
+#' re-check the number of colors, set the \code{forget} argument to
+#' \code{TRUE}.
+#'
+#' @param forget Whether to forget the cached result of the color check.
 #' @return Numeric scalar, the number of colors the terminal supports.
 #' @export
+#' @examples
+#' num_colors()
 
-num_colors <- function() {
+num_colors <- function(forget = FALSE) {
+  if (forget) memoise::forget(i_num_colors)
+  i_num_colors()
+}
+
+i_num_colors <- memoise::memoise(function() {
   if (!has_color()) { return(1) }
   cols <- try(silent = TRUE,
               system("tput colors", intern = TRUE))
@@ -67,4 +82,4 @@ num_colors <- function() {
   cols <- as.numeric(cols)
   if (cols %in% c(0, 1)) { return(1) }
   cols
-}
+})

@@ -26,5 +26,7 @@ Collate:
     'print.r'
     'style-var.r'
     'show.r'
+Imports:
+    memoise
 Suggests:
     testthat
