@@ -210,5 +210,6 @@ col_strsplit <- function(x, split, ...) {
   plain <- strip_style(x)
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
-  lapply(chunks, function(tab) col_substring(x, tab$start, tab$end))
+  mapply(chunks, x, SIMPLIFY = FALSE, FUN = function(tab, xx)
+    col_substring(xx, tab$start, tab$end))
 }
