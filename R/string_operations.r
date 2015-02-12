@@ -10,8 +10,8 @@ map_to_ansi <- function(x, text = NULL) {
     text,
     function(text) {
       data.frame(
-        pos = cumsum(c(1, text$length)),
-        offset = c(text$start - 1, NA)
+        pos = cumsum(c(1, text$length, Inf)),
+        offset = c(text$start - 1, tail(text$end, 1), NA)
       )
     })
 
