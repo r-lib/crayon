@@ -47,11 +47,12 @@ multicol <- function(x) {
 
 re_table <- function(...) {
   lapply(gregexpr(...), function(x) {
-    data.frame(
+    res <- data.frame(
       start = x,
       end = x + attr(x, "match.length") - 1,
       length = attr(x, "match.length")
     )
+    res <- res[res$start != -1, ]
   })
 }
 
