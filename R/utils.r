@@ -1,4 +1,28 @@
 
+data_frame <- function(...) {
+
+  args <- list(...)
+
+  ## Replicate arguments if needed
+  len <- vapply(args, length, numeric(1))
+  stopifnot(length(setdiff(len, 1)) <= 1)
+  len <- max(0, max(len))
+  args <- lapply(args, function(x) rep(x, length.out = len))
+
+  ## Names
+  names <- as.character(names(args))
+  length(names) <- length(args)
+  names <- ifelse(
+    is.na(names) | names == "",
+    paste0("V", seq_along(args)),
+    names)
+
+  structure(args,
+            class = "data.frame",
+            names = names,
+            row.names = seq_along(args[[1]]))
+}
+
 check_string <- function(x) {
   stopifnot(is.character(x), length(x) == 1, !is.na(x))
 }
@@ -47,7 +71,7 @@ multicol <- function(x) {
 
 re_table <- function(...) {
   lapply(gregexpr(...), function(x) {
-    res <- data.frame(
+    res <- data_frame(
       start = x,
       end = x + attr(x, "match.length") - 1,
       length = attr(x, "match.length")
@@ -61,10 +85,10 @@ re_table <- function(...) {
 non_matching <- function(table, str, empty = FALSE) {
   mapply(table, str, SIMPLIFY = FALSE, FUN = function(t, s) {
     if (! nrow(t)) {
-      data.frame(start = 1, end = base::nchar(s), length = base::nchar(s))
+      data_frame(start = 1, end = base::nchar(s), length = base::nchar(s))
     } else {
-      res <- data.frame(start = c(1, t$end + 1),
-                      end = c(t$start - 1, base::nchar(s)))
+      res <- data_frame(start = c(1, t$end + 1),
+                        end = c(t$start - 1, base::nchar(s)))
       res$length <- res$end - res$start + 1
       if (!empty) res[ res$length != 0, , drop = FALSE ]
       res
