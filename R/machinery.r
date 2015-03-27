@@ -305,6 +305,10 @@ sapply(names(builtin_styles), function(style) {
   assign(style, make_style(style), envir = asNamespace(packageName()))
 })
 
+.onLoad <- function(libname, pkgname) {
+  num_colors(forget = TRUE)
+}
+
 .onAttach <- function(libname, pkgname) {
   ub <- unlockBinding
   ub("my_styles", asNamespace(pkgname))
