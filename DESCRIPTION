@@ -2,7 +2,7 @@ Package: crayon
 Title: Colored Terminal Output
 Version: 1.2.0
 Authors@R: "Gabor Csardi <csardi.gabor@gmail.com> [aut, cre]"
-Description: Crayon adds support for colored terminal output on
+Description: Colored terminal output on
     terminals that support ANSI color and highlight codes.
     ANSI color support is automatically detected.
     Colors and highlighting can be combined and nested. New styles
