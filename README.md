@@ -1,8 +1,9 @@
 
 # Crayon - stylish terminal output in R
 
-[![Linux Build Status](https://travis-ci.org/gaborcsardi/crayon.png?branch=master)](https://travis-ci.org/gaborcsardi/crayon)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/gaborcsardi/crayon)](https://ci.appveyor.com/project/gaborcsardi/crayon)
+[![Linux Build Status](https://travis-ci.org/gaborcsardi/crayon.svg?branch=master)](https://travis-ci.org/gaborcsardi/crayon)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/gaborcsardi/crayon?svg=true)](https://ci.appveyor.com/project/gaborcsardi/crayon)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/crayon)](http://cran.r-project.org/web/packages/crayon/index.html)
 
 With crayon it is easy to add color to terminal output, create styles
 for notes, warnings, errors; and combine styles.
