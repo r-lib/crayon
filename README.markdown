@@ -60,7 +60,7 @@ has a corresponding function with the same name.
 
 ### Screenshot on OSX
 
-![](ANSI-8-OSX.png)
+![](inst/ANSI-8-OSX.png)
 
 ## Usage
 
@@ -123,4 +123,4 @@ fancy <- combine_styles(ivory, bgMaroon)
 cat(fancy("This will have some fancy colors"), "\n")
 ```
 
-![](ANSI-256-OSX.png)
+![](inst/ANSI-256-OSX.png)
