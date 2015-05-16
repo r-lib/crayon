@@ -1,3 +1,8 @@
+# 1.2.1
+
+* Fix detecting number of colors when `tput` exists, but
+  fails with an error and/or does not return anything useful.
+  (@jumhester, #18, #19)
 
 # 1.2.0
 

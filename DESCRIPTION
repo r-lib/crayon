@@ -1,6 +1,6 @@
 Package: crayon
 Title: Colored Terminal Output
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: person("Gabor", "Csardi", , "csardi.gabor@gmail.com", role = c("aut", "cre"))
 Description: Colored terminal output on
     terminals that support ANSI color and highlight codes.
