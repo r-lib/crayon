@@ -78,7 +78,7 @@ i_num_colors <- memoise::memoise(function() {
   if (!has_color()) { return(1) }
   cols <- suppressWarnings(try(silent = TRUE,
               as.numeric(system("tput colors", intern = TRUE))))
-  if (inherits(cols, "try-error") || is.na(cols)) { return(8) }
+  if (inherits(cols, "try-error") || !length(cols) || is.na(cols)) { return(8) }
   if (cols %in% c(0, 1)) { return(1) }
   cols
 })
