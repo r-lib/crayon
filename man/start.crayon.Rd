@@ -19,6 +19,7 @@ input. For other reasons, just call the style as a function on
 the string.
 }
 \examples{
+## The input is red (if color is supported)
 get_name <- function() {
   cat("Enter your name:", start(red))
   input <- readline()
