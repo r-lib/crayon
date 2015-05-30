@@ -23,6 +23,7 @@ Collate:
     'has_color.r'
     'styles.r'
     'machinery.r'
+    'parts.r'
     'print.r'
     'style-var.r'
     'show.r'
