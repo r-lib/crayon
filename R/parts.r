@@ -35,6 +35,11 @@ start.crayon <- function(x) {
 
 #' @export
 
+start <- function(...)
+  UseMethod("start")
+
+#' @export
+
 finish <- function(...)
   UseMethod("finish")
 
