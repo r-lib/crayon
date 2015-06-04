@@ -9,6 +9,9 @@
 #' input. For other reasons, just call the style as a function on
 #' the string.
 #'
+#' @param x Style.
+#' @param ... Ignored.
+#'
 #' @export
 #' @method start crayon
 #' @examples
@@ -22,7 +25,7 @@
 #' name <- get_name()
 #' name
 
-start.crayon <- function(x) {
+start.crayon <- function(x, ...) {
   if (has_color()) {
     paste(
       vapply(attr(x, "_styles"), "[[", "", "open"),
@@ -33,21 +36,23 @@ start.crayon <- function(x) {
   }
 }
 
+#' @rdname start.crayon
 #' @export
 
-start <- function(...)
+start <- function(x, ...)
   UseMethod("start")
 
+#' @rdname start.crayon
 #' @export
 
-finish <- function(...)
+finish <- function(x, ...)
   UseMethod("finish")
 
 #' @rdname start.crayon
 #' @export
 #' @method finish crayon
 
-finish.crayon <- function(x) {
+finish.crayon <- function(x, ...) {
   if (has_color()) {
     paste(
       rev(vapply(attr(x, "_styles"), "[[", "", "close")),
