@@ -39,6 +39,9 @@ has_color <- function() {
   ## Are we in a windows terminal?
   if (.Platform$OS.type == "windows") { return(FALSE) }
 
+  ## Running in a recent Emacs?
+  if (inside_emacs() && emacs_version()[1] >= 23) { return(TRUE) }
+
   ## COLORTERM set?
   if ("COLORTERM" %in% names(Sys.getenv())) { return(TRUE) }
 
@@ -76,6 +79,7 @@ num_colors <- function(forget = FALSE) {
 
 i_num_colors <- memoise::memoise(function() {
   if (!has_color()) { return(1) }
+  if (inside_emacs()) { return(8) }
   cols <- suppressWarnings(try(silent = TRUE,
               as.numeric(system("tput colors", intern = TRUE))))
   if (inherits(cols, "try-error") || !length(cols) || is.na(cols)) { return(8) }
