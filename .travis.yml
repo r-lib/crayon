@@ -1,22 +1,29 @@
-# Sample .travis.yml for R projects from https://github.com/craigcitro/r-travis
 
 language: c
 sudo: required
 
 before_install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
+  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
+  - chmod 755 pkg-build.sh
+  - ./pkg-build.sh bootstrap
 
 install:
-  - ./travis-tool.sh install_deps
+  - ./pkg-build.sh install_deps
 
-script: ./travis-tool.sh run_tests
+script:
+  - ./pkg-build.sh run_build
+  - ./pkg-build.sh run_check
 
 after_failure:
-  - ./travis-tool.sh dump_logs
+  - ./pkg-build.sh dump_logs
 
 notifications:
   email:
     on_success: change
     on_failure: change
+
+env:
+  matrix:
+    - RVERSION=oldrel
+    - RVERSION=release
+    - RVERSION=devel
