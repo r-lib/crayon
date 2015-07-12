@@ -11,6 +11,7 @@
 #' @return Styled character vector.
 #'
 #' @export
+#' @importFrom methods is
 #'
 #' @examples
 #' ## These are equivalent
@@ -28,6 +29,8 @@ style <- function(string, as = NULL, bg = NULL) {
 
   as(bg(string))
 }
+
+#' @importFrom methods is
 
 use_or_make_style <- function(style, bg = FALSE) {
   if (is.null(style)) {

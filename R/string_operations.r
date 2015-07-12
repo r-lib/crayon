@@ -2,6 +2,8 @@
 ## Create a mapping between the string and its style-less version.
 ## This is useful to work with the colored string.
 
+#' @importFrom utils tail
+
 map_to_ansi <- function(x, text = NULL) {
 
   if (is.null(text)) text <- non_matching(re_table(ansi_regex, x), x)

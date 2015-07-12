@@ -8,6 +8,8 @@ with_wd <- function(dir, expr) {
   eval(substitute(expr), envir = parent.frame())
 }
 
+#' @importFrom utils tar
+
 build_pkg <- function(path, pkg_file = NULL) {
   if (!file.exists(path)) stop("path does not exist")
   pkg_name <- basename(path)
@@ -18,6 +20,8 @@ build_pkg <- function(path, pkg_file = NULL) {
           tar(basename(pkg_file), pkg_name, compression = "gzip"))
   pkg_file
 }
+
+#' @importFrom utils package.skeleton install.packages
 
 install_tmp_pkg <- function(..., pkg_name, lib_dir, imports = character()) {
   if (!file.exists(lib_dir)) stop("lib_dir does not exist")

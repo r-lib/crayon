@@ -20,6 +20,8 @@ is_builtin_style <- function(x) {
   x %in% names(builtin_styles)
 }
 
+#' @importFrom grDevices colors
+
 is_r_color <- function(x) {
   x %in% colors() || grepl(hash_color_regex, x)
 }
@@ -27,6 +29,8 @@ is_r_color <- function(x) {
 is_rgb_matrix <- function(x) {
   is.matrix(x) && is.numeric(x) && (nrow(x) == 3 || nrow(x) == 4)
 }
+
+#' @importFrom grDevices col2rgb
 
 style_from_r_color <- function(color, bg, num_colors, grey) {
   style_from_rgb(col2rgb(color), bg, num_colors, grey)
