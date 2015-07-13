@@ -1,3 +1,7 @@
+# 1.3.1
+
+* Fixed some `R CMD check` problems.
+
 # 1.3.0
 
 * Colors are turned on by default in Emacs ESS 23.x and above.
