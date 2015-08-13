@@ -1,5 +1,14 @@
 
-# Crayon - stylish terminal output in R
+<h1 align="center">
+    <br>
+    <br>
+    <img width="400" src="./inst/logo.png" alt="crayon">
+    <br>
+    <br>
+    <br>
+</h1>
+
+> Stylish terminal output in R
 
 [![Linux Build Status](https://travis-ci.org/gaborcsardi/crayon.svg?branch=master)](https://travis-ci.org/gaborcsardi/crayon)
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/gaborcsardi/crayon?svg=true)](https://ci.appveyor.com/project/gaborcsardi/crayon)
