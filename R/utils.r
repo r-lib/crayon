@@ -119,6 +119,7 @@ emacs_version <- function() {
   ver <- Sys.getenv("INSIDE_EMACS")
   if (ver == "") return(NA_integer_)
 
+  ver <- gsub("'", "", ver)
   ver <- strsplit(ver, ",", fixed = TRUE)[[1]]
   ver <- strsplit(ver, ".", fixed = TRUE)[[1]]
   as.numeric(ver)
