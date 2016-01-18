@@ -14,8 +14,8 @@ BugReports: https://github.com/gaborcsardi/crayon/issues
 Collate:
     'ansi-256.r'
     'combine.r'
-    'utils.r'
     'string.r'
+    'utils.r'
     'crayon-package.r'
     'disposable.r'
     'has_ansi.r'
@@ -34,3 +34,4 @@ Imports:
     utils
 Suggests:
     testthat
+RoxygenNote: 5.0.1
