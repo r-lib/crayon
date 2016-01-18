@@ -36,8 +36,13 @@ has_color <- function() {
   ## Are we in a terminal? No?
   if (!isatty(stdout())) { return(FALSE) }
 
-  ## Are we in a windows terminal?
-  if (.Platform$OS.type == "windows") { return(FALSE) }
+  ## Are we in a windows terminal with color support?
+  if (.Platform$OS.type == "windows") {
+    if (Sys.getenv("ConEmuANSI") == "ON") { return(TRUE) }
+
+    ## Are we in another windows terminal or GUI? :(
+    return(FALSE)
+  }
 
   ## Running in a recent Emacs?
   if (inside_emacs() && emacs_version()[1] >= 23) { return(TRUE) }
