@@ -65,11 +65,15 @@ has_color <- function() {
 #' Number of colors the terminal supports
 #'
 #' @details
-#' We use the \code{tput} shell command to detect the
+#' If the \code{crayon.colors} option is set, then we
+#' just use that. It should be an integer number.
+#'
+#' In Emacs, we report eight colors.
+#'
+#' Otherwise, we use the \code{tput} shell command to detect the
 #' number of colors. If \code{tput} is not available,
 #' but we think that the terminal supports colors, then
 #' eigth colors are assumed.
-#'
 #'
 #' For efficiency, \code{num_colors} caches its result. To
 #' re-check the number of colors, set the \code{forget} argument to
@@ -87,11 +91,23 @@ num_colors <- function(forget = FALSE) {
 }
 
 i_num_colors <- memoise::memoise(function() {
+
+  ## Number of colors forced
+  cols <- getOption("crayon.colors")
+  if (!is.null(cols)) { return(as.integer(cols)) }
+
+  ## Otherwise try to detect. If no color support, then 1
   if (!has_color()) { return(1) }
+
+  ## Emacs
   if (inside_emacs()) { return(8) }
+
+  ## Try to run tput colors. If it did not run, but has_colors() is TRUE,
+  ## then we just report 8 colors
   cols <- suppressWarnings(try(silent = TRUE,
               as.numeric(system("tput colors", intern = TRUE))))
   if (inherits(cols, "try-error") || !length(cols) || is.na(cols)) { return(8) }
   if (cols %in% c(-1, 0, 1)) { return(1) }
+
   cols
 })

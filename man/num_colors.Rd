@@ -16,11 +16,15 @@ Numeric scalar, the number of colors the terminal supports.
 Number of colors the terminal supports
 }
 \details{
-We use the \code{tput} shell command to detect the
+If the \code{crayon.colors} option is set, then we
+just use that. It should be an integer number.
+
+In Emacs, we report eight colors.
+
+Otherwise, we use the \code{tput} shell command to detect the
 number of colors. If \code{tput} is not available,
 but we think that the terminal supports colors, then
 eigth colors are assumed.
-
 
 For efficiency, \code{num_colors} caches its result. To
 re-check the number of colors, set the \code{forget} argument to
