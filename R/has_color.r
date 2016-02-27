@@ -92,50 +92,38 @@ has_color <- function() {
 #' @examples
 #' num_colors()
 
-num_colors <- (
-  function() {
-    # implement memoization by using a closure and saving previous value
-    # in `prev.val` here
-    prev.val <- NULL
+num_colors <- (function() {
+  # closure env to store state
 
-    # return the closure
-    function(forget = FALSE) {
-      if(!identical(forget, FALSE) && !isTRUE(forget)) {
-        stop("`forget` must be TRUE or FALSE")
-      }
-      if(is.null(prev.val) || forget) {
-        ## Number of colors forced
-        cols <- getOption("crayon.colors")
-        cols <- if (!is.null(cols)) {
-          as.integer(cols)
-        } else if (!has_color()) {
-          ## Otherwise try to detect. If no color support, then 1
-          1
-        } else if (inside_emacs()) {
-          ## Emacs
-          8
-        } else {
-          ## Try to run tput colors. If it did not run, but has_colors() is TRUE,
-          ## then we just report 8 colors
-          cols.tmp <- suppressWarnings(try(silent = TRUE,
-                      as.numeric(system("tput colors", intern = TRUE))))
-          if (
-            inherits(cols.tmp, "try-error") || !length(cols.tmp) ||
-            is.na(cols.tmp)
-          ) {
-            8
-          } else if (cols.tmp %in% c(-1, 0, 1)) {
-            1
-         } else cols.tmp
-        }
-        ## See comment above in docs
+  cache <- NULL
 
-        if (cols == 8 && identical(Sys.getenv("TERM"), "xterm")) cols <- 256
+  function(forget=FALSE) {
+    if (forget || is.null(cache)) cache <<- i_num_colors()
+    cache
+  }
+})()
 
-        ## Update closure value, and return
-        prev.val <<- cols
-        cols
-      } else {
-        prev.val
-  } } }
-)()
+i_num_colors <- function() {
+
+  ## Number of colors forced
+  cols <- getOption("crayon.colors")
+  if (!is.null(cols)) { return(as.integer(cols)) }
+
+  ## Otherwise try to detect. If no color support, then 1
+  if (!has_color()) { return(1) }
+
+  ## Emacs
+  if (inside_emacs()) { return(8) }
+
+  ## Try to run tput colors. If it did not run, but has_colors() is TRUE,
+  ## then we just report 8 colors
+  cols <- suppressWarnings(try(silent = TRUE,
+              as.numeric(system("tput colors", intern = TRUE))))
+  if (inherits(cols, "try-error") || !length(cols) || is.na(cols)) { return(8) }
+  if (cols %in% c(-1, 0, 1)) { return(1) }
+
+  ## See comment above in docs
+  if (cols == 8 && identical(Sys.getenv("TERM"), "xterm")) cols <- 256
+
+  cols
+}
