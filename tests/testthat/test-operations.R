@@ -18,8 +18,11 @@ test_that("col_nchar", {
 
 test_that("col_substr", {
   for (s in str) {
-    for (i in 1 %:% col_nchar(s)) {
-      for (j in i %:% col_nchar(s)) {
+    # replaced `%:%` since not in this package nor in previous imports;
+    # assuming it is a safe equivalent of `:` (hard to google for)
+    s.n <- col_nchar(s)
+    for (i in seq_len(s.n)) {
+      for (j in if(i <= s.n) i:s.n) {
         expect_equal(strip_style(col_substr(s, i, j)),
                      substr(strip_style(s), i, j), info = paste(s, i, j))
       }
@@ -47,7 +50,7 @@ test_that("col_substr, start after string end", {
   expect_equal(col_substr("red", 3, 4), "d")
   expect_equal(col_substr("red", 3, 5), "d")
   expect_equal(strip_style(col_substr("\033[31mred\033[39m", 3, 4)), "d")
-  expect_equal(strip_style(col_substr("\033[31mred\033[39m", 3, 5)), "d")  
+  expect_equal(strip_style(col_substr("\033[31mred\033[39m", 3, 5)), "d")
 })
 
 test_that("col_substr, multiple strings", {
@@ -66,13 +69,14 @@ test_that("col_substr, multiple strings", {
 
 test_that("col_substring", {
   for (s in str) {
-    for (i in 1 %:% col_nchar(s)) {
-      for (j in i %:% col_nchar(s)) {
+    s.n <- col_nchar(s)
+    for (i in seq_len(s.n)) {
+      for (j in if(i <= s.n) i:s.n) {
         expect_equal(strip_style(col_substring(s, i, j)),
                      substring(strip_style(s), i, j), info = paste(s, i, j))
       }
     }
-  }  
+  }
 })
 
 test_that("col_substring, multiple strings", {
@@ -91,10 +95,10 @@ test_that("col_substring, multiple strings", {
 
 test_that("col_strsplit", {
   red <- "\033[31mred\033[39m"
-  
+
   str <- "plain-plain"
   expect_equal(col_strsplit(str, "-"), strsplit(str, "-"))
-  
+
   str <- red %+% "-plain"
   expect_equal(strip_style(col_strsplit(str, "-")[[1]]),
                strsplit(strip_style(str), "-")[[1]])
@@ -105,7 +109,7 @@ test_that("col_strsplit", {
   str <- red %+% "-" %+% red %+% "-" %+% red
   expect_equal(strip_style(col_strsplit(str, "-")[[1]]),
                strsplit(strip_style(str), "-")[[1]])
-  
+
 })
 
 test_that("col_strsplit multiple strings", {
@@ -116,7 +120,7 @@ test_that("col_strsplit multiple strings", {
 
   r1 <- lapply(col_strsplit(str, "-"), strip_style)
   r2 <- strsplit(strip_style(str), "-")
-  
+
 })
 
 test_that("col_strsplit empty string", {
