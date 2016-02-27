@@ -26,6 +26,23 @@ test_that("number of colors is detected", {
 
 })
 
+test_that("closure based memoization works", {
+
+  # use `crayon.colors` option to force expected color return
+  old.opt <- options(crayon.colors = 42, crayon.enabled=TRUE)
+  expect_equal(num_colors(forget = TRUE), 42)
+  options(crayon.colors = 43)
+  expect_equal(num_colors(), 42)
+  expect_equal(num_colors(forget = TRUE), 43)
+
+  # reset options and run one more time
+  options(old.opt)
+  expect_equal(num_colors(), 43)
+
+  # reset cache to original value
+  try(num_colors(forget = TRUE))
+})
+
 test_that("tput errors are handled gracefully", {
 
   # if tput errors num_colors is 8
