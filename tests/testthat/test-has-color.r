@@ -13,11 +13,9 @@ test_that("Color is detected properly", {
   expect_false(hc)
 
   ## If enabled, then yes
-  op <- options(crayon.enabled = TRUE)
+  options(crayon.enabled = TRUE)
   hc <- has_color()
-  options(op)
   expect_true(hc)
-
 })
 
 test_that("number of colors is detected", {
