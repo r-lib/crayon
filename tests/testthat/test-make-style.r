@@ -30,13 +30,13 @@ test_that("hexa color regex works", {
                 "foo#123456bar")
 
   for (color in positive) {
-    expect_true(grepl(crayon:::hash_color_regex, color))
-    expect_true(grepl(crayon:::hash_color_regex, toupper(color)))
+    expect_true(grepl(hash_color_regex, color))
+    expect_true(grepl(hash_color_regex, toupper(color)))
   }
 
   for (color in negative) {
-    expect_false(grepl(crayon:::hash_color_regex, color))
-    expect_false(grepl(crayon:::hash_color_regex, toupper(color)))
+    expect_false(grepl(hash_color_regex, color))
+    expect_false(grepl(hash_color_regex, toupper(color)))
   }
 
 })
