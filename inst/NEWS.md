@@ -1,6 +1,19 @@
 # 1.3.2
 
-* Removed dependency to `memoise`
+* Removed dependency to `memoise` (@brodieG, #25)
+
+* Fixed a test case that changed the `crayon.enabled`
+  setting, potentially (@brodieG)
+
+* Added `crayon.colors` option, to specify the number of
+  colors explicitly
+
+* `TERM=xterm` and `tput colors=8` will use 256 colors,
+  as 256 colors are usually supported in this case (#17)
+
+* Support colors in ConEmu and cmder, on Windows
+
+* Fix color detection in Emacs tramp
 
 # 1.3.1
 
