@@ -92,12 +92,18 @@ has_color <- function() {
 #' @examples
 #' num_colors()
 
-num_colors <- function(forget = FALSE) {
-  if (forget) memoise::forget(i_num_colors)
-  i_num_colors()
-}
+num_colors <- (function() {
+  # closure env to store state
 
-i_num_colors <- memoise::memoise(function() {
+  cache <- NULL
+
+  function(forget=FALSE) {
+    if (forget || is.null(cache)) cache <<- i_num_colors()
+    cache
+  }
+})()
+
+i_num_colors <- function() {
 
   ## Number of colors forced
   cols <- getOption("crayon.colors")
@@ -120,4 +126,4 @@ i_num_colors <- memoise::memoise(function() {
   if (cols == 8 && identical(Sys.getenv("TERM"), "xterm")) cols <- 256
 
   cols
-})
+}

@@ -1,7 +1,13 @@
 Package: crayon
 Title: Colored Terminal Output
-Version: 1.3.1
-Authors@R: person("Gabor", "Csardi", , "csardi.gabor@gmail.com", role = c("aut", "cre"))
+Version: 1.3.2
+Authors@R: c(
+    person("Gabor", "Csardi", , "csardi.gabor@gmail.com",
+    role = c("aut", "cre")),
+    person(
+    "Brodie", "Gaslam", email="brodie.gaslam@yahoo.com",
+    role=c("ctb"))
+    )
 Description: Colored terminal output on terminals that support 'ANSI'
     color and highlight codes. It also works in 'Emacs' 'ESS'. 'ANSI'
     color support is automatically detected. Colors and highlighting can
@@ -28,7 +34,6 @@ Collate:
     'show.r'
     'string_operations.r'
 Imports:
-    memoise,
     grDevices,
     methods,
     utils
