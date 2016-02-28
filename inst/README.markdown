@@ -14,9 +14,9 @@
 [![Windows Build status](https://ci.appveyor.com/api/projects/status/github/gaborcsardi/crayon?svg=true)](https://ci.appveyor.com/project/gaborcsardi/crayon)
 [![](http://www.r-pkg.org/badges/version/crayon)](http://cran.rstudio.com/web/packages/crayon/index.html)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/crayon)](http://cran.r-project.org/web/packages/crayon/index.html)
+[![Coverage Status](https://img.shields.io/codecov/c/github/gaborcsardi/crayon/master.svg)](https://codecov.io/github/gaborcsardi/crayon?branch=master)
 
-With crayon it is easy to add color to terminal output, create styles
-for notes, warnings, errors; and combine styles.
+With crayon it is easy to add color to terminal output, create styles for notes, warnings, errors; and combine styles.
 
 ANSI color support is automatically detected and used. Crayon was largely
 inspired by [chalk](https://github.com/sindresorhus/chalk).

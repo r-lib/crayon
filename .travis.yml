@@ -9,6 +9,7 @@ before_install:
 
 install:
   - ./pkg-build.sh install_deps
+  - ./pkg-build.sh install_r covr
 
 script:
   - ./pkg-build.sh run_build
@@ -16,6 +17,9 @@ script:
 
 after_failure:
   - ./pkg-build.sh dump_logs
+
+after_success:
+  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh run_script -e 'covr::codecov()'; fi
 
 notifications:
   email:
@@ -26,6 +30,6 @@ env:
   matrix:
     - RVERSION=oldrel
     - RVERSION=release
-    - RVERSION=devel
+    - RVERSION=devel COVERAGE=true
   global:
     - NOT_CRAN=1
