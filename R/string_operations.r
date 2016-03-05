@@ -109,7 +109,7 @@ col_nchar <- function(x, ...) {
 
 col_substr <- function(x, start, stop) {
   ansi <- re_table(ansi_regex, x)
-  text <- non_matching(ansi, x)
+  text <- non_matching(ansi, x, empty=TRUE)
   mapper <- map_to_ansi(x, text = text)
   nstart <- mapper(start)
   nstop  <- mapper(stop)
