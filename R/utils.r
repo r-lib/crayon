@@ -90,8 +90,9 @@ non_matching <- function(table, str, empty = FALSE) {
       res <- data_frame(start = c(1, t$end + 1),
                         end = c(t$start - 1, base::nchar(s)))
       res$length <- res$end - res$start + 1
-      if (!empty) res[ res$length != 0, , drop = FALSE ]
-      res
+      if (!empty) {
+        res[ res$length != 0, , drop = FALSE ]
+      } else res
     }
   })
 }

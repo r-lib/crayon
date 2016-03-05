@@ -6,7 +6,9 @@
 
 map_to_ansi <- function(x, text = NULL) {
 
-  if (is.null(text)) text <- non_matching(re_table(ansi_regex, x), x)
+  if (is.null(text)) {
+    text <- non_matching(re_table(ansi_regex, x), x, empty=TRUE)
+  }
 
   map <- lapply(
     text,
