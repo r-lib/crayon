@@ -15,6 +15,9 @@
 
 * Fix color detection in Emacs tramp
 
+* `col_substr` no longer returns a chunk when strings end in
+  `split`; this aligns with `base::strsplit` (#26)
+
 # 1.3.1
 
 * Fixed some `R CMD check` problems.
