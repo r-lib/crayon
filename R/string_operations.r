@@ -214,6 +214,13 @@ col_strsplit <- function(x, split, ...) {
   plain <- strip_style(x)
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
+  # drop any zero length trailing chunks that are created when the split
+  # happens at end of string; this is to replicate 'substr' behavior
+  chunks <- lapply(
+    chunks,
+    function(y) if(nrow(y) > 1L && !tail(y, 1L)$length) head(y, -1L) else y
+  )
+  # Pull out chunks from colored string
   mapply(chunks, x, SIMPLIFY = FALSE, FUN = function(tab, xx)
     col_substring(xx, tab$start, tab$end))
 }
