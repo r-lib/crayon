@@ -106,6 +106,15 @@ test_that("col_strsplit", {
   expect_equal(strip_style(col_strsplit(str, "-")[[1]]),
                strsplit(strip_style(str), "-")[[1]])
   
+  # with leading and trailing separators
+  str.2 <- "-" %+% red %+% "-" %+% red %+% "-" %+% red %+% "-"
+  expect_equal(strip_style(col_strsplit(str.2, "-")[[1]]),
+               strsplit(strip_style(str.2), "-")[[1]])
+
+  # greater than length 1
+  str.3 <- paste0("-", c(green("hello"), red("goodbye")), "-world-")
+  expect_equal(strip_style(unlist(col_strsplit(str.3, "-"))),
+               unlist(strsplit(strip_style(str.3), "-")))
 })
 
 test_that("col_strsplit multiple strings", {
