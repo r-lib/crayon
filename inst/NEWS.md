@@ -15,6 +15,8 @@
 
 * Fix color detection in Emacs tramp
 
+* Some performance improvements to `col_substr`
+
 # 1.3.1
 
 * Fixed some `R CMD check` problems.

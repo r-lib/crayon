@@ -71,12 +71,12 @@ multicol <- function(x) {
 
 re_table <- function(...) {
   lapply(gregexpr(...), function(x) {
-    res <- data_frame(
+    res <- cbind(
       start = x,
       end = x + attr(x, "match.length") - 1,
       length = attr(x, "match.length")
     )
-    res <- res[res$start != -1, ]
+    res <- res[res[, "start"] != -1, , drop=FALSE]
   })
 }
 
@@ -85,12 +85,12 @@ re_table <- function(...) {
 non_matching <- function(table, str, empty = FALSE) {
   mapply(table, str, SIMPLIFY = FALSE, FUN = function(t, s) {
     if (! nrow(t)) {
-      data_frame(start = 1, end = base::nchar(s), length = base::nchar(s))
+      cbind(start = 1, end = base::nchar(s), length = base::nchar(s))
     } else {
-      res <- data_frame(start = c(1, t$end + 1),
-                        end = c(t$start - 1, base::nchar(s)))
-      res$length <- res$end - res$start + 1
-      if (!empty) res[ res$length != 0, , drop = FALSE ]
+      start <- c(1, t[, "end"] + 1)
+      end <- c(t[, "start"] - 1, base::nchar(s))
+      res <- cbind(start = start, end = end, length = end - start + 1)
+      if (!empty) res[ res[, "length"] != 0, , drop = FALSE ]
       res
     }
   })
