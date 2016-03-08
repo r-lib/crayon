@@ -218,7 +218,8 @@ col_strsplit <- function(x, split, ...) {
   # happens at end of string; this is to replicate 'substr' behavior
   chunks <- lapply(
     chunks,
-    function(y) if(nrow(y) > 1L && !tail(y, 1L)$length) head(y, -1L) else y
+    function(y)
+      if(nrow(y) > 1L && !tail(y, 1L)[, "length"]) head(y, -1L) else y
   )
   # Pull out chunks from colored string
   mapply(chunks, x, SIMPLIFY = FALSE, FUN = function(tab, xx)
