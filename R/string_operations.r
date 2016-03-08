@@ -11,9 +11,9 @@ map_to_ansi <- function(x, text = NULL) {
   map <- lapply(
     text,
     function(text) {
-      data.frame(
-        pos = cumsum(c(1, text$length, Inf)),
-        offset = c(text$start - 1, tail(text$end, 1), NA)
+      cbind(
+        pos = cumsum(c(1, text[, "length"], Inf)),
+        offset = c(text[, "start"] - 1, tail(text[, "end"], 1), NA)
       )
     })
 
@@ -23,8 +23,8 @@ map_to_ansi <- function(x, text = NULL) {
       if (pos < 1) {
         pos
       } else {
-        slot <- which(pos < table$pos)[1] - 1
-        table$offset[slot] + pos - table$pos[slot] + 1
+        slot <- which(pos < table[, "pos"])[1] - 1
+        table[slot, "offset"] + pos - table[slot, "pos"] + 1
       }
     })
   }
@@ -213,5 +213,5 @@ col_strsplit <- function(x, split, ...) {
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
   mapply(chunks, x, SIMPLIFY = FALSE, FUN = function(tab, xx)
-    col_substring(xx, tab$start, tab$end))
+    col_substring(xx, tab[, "start"], tab[, "end"]))
 }
