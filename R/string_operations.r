@@ -219,9 +219,15 @@ col_strsplit <- function(x, split, ...) {
   chunks <- lapply(
     chunks,
     function(y)
-      if(nrow(y) > 1L && !tail(y, 1L)[, "length"]) head(y, -1L) else y
+      if(nrow(y) && !tail(y, 1L)[, "length"]) head(y, -1L) else y
   )
+  zero.chunks <- !vapply(chunks, nrow, integer(1L))
   # Pull out chunks from colored string
-  mapply(chunks, x, SIMPLIFY = FALSE, FUN = function(tab, xx)
-    col_substring(xx, tab[, "start"], tab[, "end"]))
+  res <- vector("list", length(chunks))
+  res[zero.chunks] <- list(character(0L))
+  res[!zero.chunks] <- mapply(
+    chunks[!zero.chunks], x[!zero.chunks], SIMPLIFY = FALSE,
+    FUN = function(tab, xx) col_substring(xx, tab[, "start"], tab[, "end"])
+  )
+  res
 }
