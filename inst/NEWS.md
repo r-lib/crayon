@@ -15,8 +15,11 @@
 
 * Fix color detection in Emacs tramp
 
-* `col_substr` no longer returns an empty chunk at end when strings end in
-  `split`; this aligns with `base::strsplit` (@brodieG, #26)
+* `col_strsplit` corner cases:
+    * handle empty chunks at beginning or end of strings
+      like `base::strsplit` (@brodieG, #26)
+    * explicitly deal with 'split' values that are not
+      length 1 as that is not currently supported
 
 * Some performance improvements to `col_substr` (@brodieG)
 
