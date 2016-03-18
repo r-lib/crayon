@@ -10,11 +10,10 @@ col_strsplit(x, split, ...)
 \item{x}{Character vector, potentially ANSI styled, or a vector to
 coarced to character.}
 
-\item{split}{Character vector (or object which can be coerced to such)
-containing regular expression(s) (unless \code{fixed = TRUE}) to use for
-splitting.  If empty matches occur, in particular if \code{split} has
-length 0, \code{x} is split into single characters.  If \code{split} has
-length greater than 1, it is re-cycled along \code{x}.}
+\item{split}{Character vector of length 1 (or object which can be coerced to
+such) containing regular expression(s) (unless \code{fixed = TRUE}) to use
+for splitting.  If empty matches occur, in particular if \code{split} has
+zero characters, \code{x} is split into single characters.}
 
 \item{...}{Extra arguments are passed to \code{base::strsplit}.}
 }
@@ -25,7 +24,7 @@ A list of the same length as \code{x}, the \eqn{i}-th element of
 }
 \description{
 This is the color-aware counterpart of \code{base::strsplit}.
-It works exactly like the original, but keeps the colors in the
+It works almost exactly like the original, but keeps the colors in the
 substrings.
 }
 \examples{

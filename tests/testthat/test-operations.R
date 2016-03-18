@@ -147,3 +147,11 @@ test_that("col_strsplit edge cases", {
     col_strsplit(c("abaa", "ababza"), "b."), strsplit(c("abaa", "ababza"), "b.")
   )
 })
+
+test_that("Weird length 'split'", {
+  expect_error(col_strsplit(c("ab", "bd"), c("b", "d")), "must be character")
+  expect_identical(col_strsplit("ab", NULL), strsplit("ab", NULL))
+  expect_identical(
+    col_strsplit("ab", character(0L)), strsplit("ab", character(0L))
+  )
+})
