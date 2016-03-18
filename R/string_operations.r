@@ -214,15 +214,26 @@ col_strsplit <- function(x, split, ...) {
   plain <- strip_style(x)
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
-  # drop any zero length trailing chunks that are created when the split
-  # happens at end of string; this is to replicate 'substr' behavior
+  # silently recycle `split`; note currently `re_table` doesn't use this but
+  # should eventually
+  split.r <- if(length(split) > length(x)) head(split, length(x)) else
+    head(rep(split, ceiling(length(x) / length(split))), length(x))
+  # Drop empty chunks to align with `substr` behavior
   chunks <- lapply(
-    chunks,
-    function(y)
-      if(nrow(y) && !tail(y, 1L)[, "length"]) head(y, -1L) else y
+    seq_along(chunks),
+    function(i) {
+      y <- chunks[[i]]
+      # empty split means drop empty first match
+      if(nrow(y) && !nzchar(split.r[[i]]) && !head(y, 1L)[, "length"]) {
+        y <- y[-1L, , drop=FALSE]
+      }
+      # drop empty last matches
+      if(nrow(y) && !tail(y, 1L)[, "length"]) y[-nrow(y), , drop=FALSE] else y
+    }
   )
   zero.chunks <- !vapply(chunks, nrow, integer(1L))
-  # Pull out chunks from colored string
+  # Pull out zero chunks from colored string b/c col_substring won't work
+  # with them
   res <- vector("list", length(chunks))
   res[zero.chunks] <- list(character(0L))
   res[!zero.chunks] <- mapply(

@@ -115,15 +115,6 @@ test_that("col_strsplit", {
   str.3 <- paste0("-", c(green("hello"), red("goodbye")), "-world-")
   expect_equal(strip_style(unlist(col_strsplit(str.3, "-"))),
                unlist(strsplit(strip_style(str.3), "-")))
-  # special cases
-  expect_equal(col_strsplit("", ""), strsplit("", ""))
-  expect_equal(col_strsplit("a", "a"), strsplit("a", "a"))
-  # this following test isn't working yet
-  # expect_equal(col_strsplit("a", ""), strsplit("a", ""))
-  expect_equal(col_strsplit("", "a"), strsplit("", "a"))
-
-
-
 })
 
 test_that("col_strsplit multiple strings", {
@@ -137,11 +128,22 @@ test_that("col_strsplit multiple strings", {
   
 })
 
-test_that("col_strsplit empty string", {
-
-  ## these following tests have different behavior than `strsplit`, will need
-  ## to update once we work through issues
-
-  # expect_equal(col_strsplit("", "-"), list(""))
-  # expect_equal(strip_style(col_strsplit("\033[31m\033[39m", "-")[[1]]), "")
+test_that("col_strsplit edge cases", {
+  expect_equal(col_strsplit("", "-"), list(character(0L)))
+  expect_equal(
+    strip_style(col_strsplit("\033[31m\033[39m", "-")[[1]]), character(0L)
+  )
+  # special cases
+  expect_equal(col_strsplit("", ""), strsplit("", ""))
+  expect_equal(col_strsplit("a", "a"), strsplit("a", "a"))
+  # this following test isn't working yet
+  expect_equal(col_strsplit("a", ""), strsplit("a", ""))
+  expect_equal(col_strsplit("", "a"), strsplit("", "a"))
+  # Longer strings
+  expect_identical(
+    col_strsplit(c("", "a", "aa"), "a"), strsplit(c("", "a", "aa"), "a")
+  )
+  expect_identical(
+    col_strsplit(c("abaa", "ababza"), "b."), strsplit(c("abaa", "ababza"), "b.")
+  )
 })
