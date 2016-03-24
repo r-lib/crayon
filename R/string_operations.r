@@ -108,6 +108,8 @@ col_nchar <- function(x, ...) {
 #' substr(strip_style(c(str, str2)), c(3,5), c(7, 18))
 
 col_substr <- function(x, start, stop) {
+  if(!is.character(x)) x <- as.character(x)
+  if(!length(x)) return(x)
   ansi <- re_table(ansi_regex, x)
   text <- non_matching(ansi, x, empty=TRUE)
   mapper <- map_to_ansi(x, text = text)

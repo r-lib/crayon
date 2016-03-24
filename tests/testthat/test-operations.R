@@ -89,6 +89,19 @@ test_that("col_substring, multiple strings", {
   }
 })
 
+test_that("col_substr, col_strsplit, zero length input", {
+  c0 <- character(0L)
+  o0 <- structure(list(), class="abc")
+  co0 <- structure(character(0L), class="abc")
+  expect_identical(col_substr(c0, 1, 1), substr(c0, 1, 1))
+  expect_identical(col_substr(o0, 1, 1), substr(o0, 1, 1))
+  expect_identical(col_substr(co0, 1, 1), substr(co0, 1, 1))
+
+  expect_identical(col_substring(c0, 1, 1), substring(c0, 1, 1))
+  expect_identical(col_substring(o0, 1, 1), substring(o0, 1, 1))
+  expect_identical(col_substring(co0, 1, 1), substring(co0, 1, 1))
+})
+
 test_that("col_strsplit", {
   red <- "\033[31mred\033[39m"
   
