@@ -219,10 +219,9 @@ col_strsplit <- function(x, split, ...) {
   plain <- strip_style(x)
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
-  # silently recycle `split`; note currently `re_table` doesn't use this but
-  # should eventually
-  split.r <- if(length(split) > length(x)) head(split, length(x)) else
-    head(rep(split, ceiling(length(x) / length(split))), length(x))
+  # silently recycle `split`; doesn't matter currently since we don't support
+  # split longer than 1, but might in future
+  split.r <- rep(split, length.out=length(x))
   # Drop empty chunks to align with `substr` behavior
   chunks <- lapply(
     seq_along(chunks),
