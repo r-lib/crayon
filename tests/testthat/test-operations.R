@@ -64,6 +64,30 @@ test_that("col_substr, multiple strings", {
   }
 })
 
+test_that("col_substr corner cases", {
+  # Zero length input
+
+  c0 <- character(0L)
+  o0 <- structure(list(), class="abc")
+  co0 <- structure(character(0L), class="abc")
+  expect_identical(col_substr(c0, 1, 1), substr(c0, 1, 1))
+  expect_identical(col_substr(o0, 1, 1), substr(o0, 1, 1))
+  expect_identical(col_substr(co0, 1, 1), substr(co0, 1, 1))
+
+  expect_identical(col_substring(c0, 1, 1), substring(c0, 1, 1))
+  expect_identical(col_substring(o0, 1, 1), substring(o0, 1, 1))
+  expect_identical(col_substring(co0, 1, 1), substring(co0, 1, 1))
+
+  # Character start/stop
+  expect_identical(col_substr("abc", "1", 1), substr("abc", "1", 1))
+  expect_identical(col_substr("abc", 1, "1"), substr("abc", 1, "1"))
+
+  # non-numeric arguments cause errors; NOTE: this actually "works" 
+  # with 'substr' but not implemented in 'col_substr'
+  expect_error(col_substr("abc", "hello", 1), "non-numeric")
+
+})
+
 test_that("col_substring", {
   for (s in str) {
     for (i in 1 %:% col_nchar(s)) {
@@ -89,14 +113,12 @@ test_that("col_substring, multiple strings", {
   }
 })
 
-test_that("col_substr, col_strsplit, zero length input", {
+test_that("col_substring corner cases", {
+  # Zero length input
+
   c0 <- character(0L)
   o0 <- structure(list(), class="abc")
   co0 <- structure(character(0L), class="abc")
-  expect_identical(col_substr(c0, 1, 1), substr(c0, 1, 1))
-  expect_identical(col_substr(o0, 1, 1), substr(o0, 1, 1))
-  expect_identical(col_substr(co0, 1, 1), substr(co0, 1, 1))
-
   expect_identical(col_substring(c0, 1, 1), substring(c0, 1, 1))
   expect_identical(col_substring(o0, 1, 1), substring(o0, 1, 1))
   expect_identical(col_substring(co0, 1, 1), substring(co0, 1, 1))

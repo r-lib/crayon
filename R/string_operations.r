@@ -110,6 +110,12 @@ col_nchar <- function(x, ...) {
 col_substr <- function(x, start, stop) {
   if(!is.character(x)) x <- as.character(x)
   if(!length(x)) return(x)
+  start <- as.integer(start)
+  stop <- as.integer(stop)
+  if(!length(start) || !length(stop))
+    stop("invalid substring arguments")
+  if(anyNA(start) || anyNA(stop))
+    stop("non-numeric substring arguments not supported")
   ansi <- re_table(ansi_regex, x)
   text <- non_matching(ansi, x, empty=TRUE)
   mapper <- map_to_ansi(x, text = text)
