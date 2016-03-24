@@ -15,11 +15,16 @@
 
 * Fix color detection in Emacs tramp
 
-* `col_strsplit` corner cases:
+* `col_strsplit` and `col_substr` corner cases:
+
     * handle empty chunks at beginning or end of strings
       like `base::strsplit` (@brodieG, #26)
+
     * explicitly deal with 'split' values that are not
       length 1 as that is not currently supported
+
+    * handle zero length `x` argument in `col_substr`, and
+      add more explicit error messages for corner cases
 
 * Some performance improvements to `col_substr` (@brodieG)
 
