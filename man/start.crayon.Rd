@@ -3,13 +3,10 @@
 \name{start.crayon}
 \alias{finish}
 \alias{finish.crayon}
-\alias{start}
 \alias{start.crayon}
 \title{Switch on or off a style}
 \usage{
 \method{start}{crayon}(x, ...)
-
-start(x, ...)
 
 finish(x, ...)
 
