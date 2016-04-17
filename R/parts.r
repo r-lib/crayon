@@ -24,7 +24,7 @@
 #' name <- get_name()
 #' name
 
-start <- function(x, ...) {
+start.crayon <- function(x, ...) {
   if (has_color()) {
     paste(
       vapply(attr(x, "_styles"), "[[", "", "open"),
@@ -35,10 +35,18 @@ start <- function(x, ...) {
   }
 }
 
-#' @rdname start
+#' @importFrom stats start
+#' @rdname start.crayon
 #' @export
 
-finish <- function(x, ...) {
+finish <- function(x, ...)
+  UseMethod("finish")
+
+#' @rdname start.crayon
+#' @export
+#' @method finish crayon
+
+finish.crayon <- function(x, ...) {
   if (has_color()) {
     paste(
       rev(vapply(attr(x, "_styles"), "[[", "", "close")),
