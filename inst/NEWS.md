@@ -17,6 +17,9 @@
 
 * Some performance improvements to `col_substr`
 
+* Change rgb to ANSI code mapping, based on the "paint" ruby gem
+  (@richfitz, #33, #34)
+
 # 1.3.1
 
 * Fixed some `R CMD check` problems.

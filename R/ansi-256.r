@@ -17,10 +17,32 @@ ansi256 <- function(rgb, bg = FALSE, grey = FALSE) {
     
   } else {
     ## Not gray
-    rgb <- scale(rgb)
     list(
-      open = codes[rgb_index][rgb[1] * 36 + rgb[2] * 6 + rgb[3] + 1],
+      open = codes[ansi256_rgb_index(rgb[1L], rgb[2L], rgb[3L])],
       close = codes[reset_index]
     )
+  }
+}
+
+## This is based off the algorithm in the ruby "paint" gem, as
+## implemented in rainbowrite.
+ansi256_rgb_index <- function(red, green, blue) {
+  gray_possible <- TRUE
+  sep <- 42.5
+  while (gray_possible) {
+    if (red < sep || green < sep || blue < sep) {
+      gray <- red < sep && green < sep && blue < sep
+      gray_possible <- FALSE
+    }
+    sep <- sep + 42.5
+  }
+
+  ## NOTE: The +1 here translates from base0 to base1 for the index
+  ## that does the same.  Not ideal, but that does get the escape
+  ## characters in nicely.
+  if (gray) {
+    232 + round((red + green + blue) / 33) + 1
+  } else {
+    16 + sum(floor(6 * c(red, green, blue) / 256) * c(36, 6, 1)) + 1
   }
 }
