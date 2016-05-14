@@ -64,6 +64,30 @@ test_that("col_substr, multiple strings", {
   }
 })
 
+test_that("col_substr corner cases", {
+  # Zero length input
+
+  c0 <- character(0L)
+  o0 <- structure(list(), class="abc")
+  co0 <- structure(character(0L), class="abc")
+  expect_identical(col_substr(c0, 1, 1), substr(c0, 1, 1))
+  expect_identical(col_substr(o0, 1, 1), substr(o0, 1, 1))
+  expect_identical(col_substr(co0, 1, 1), substr(co0, 1, 1))
+
+  expect_identical(col_substring(c0, 1, 1), substring(c0, 1, 1))
+  expect_identical(col_substring(o0, 1, 1), substring(o0, 1, 1))
+  expect_identical(col_substring(co0, 1, 1), substring(co0, 1, 1))
+
+  # Character start/stop
+  expect_identical(col_substr("abc", "1", 1), substr("abc", "1", 1))
+  expect_identical(col_substr("abc", 1, "1"), substr("abc", 1, "1"))
+
+  # non-numeric arguments cause errors; NOTE: this actually "works" 
+  # with 'substr' but not implemented in 'col_substr'
+  expect_error(col_substr("abc", "hello", 1), "non-numeric")
+
+})
+
 test_that("col_substring", {
   for (s in str) {
     for (i in 1 %:% col_nchar(s)) {
@@ -89,6 +113,17 @@ test_that("col_substring, multiple strings", {
   }
 })
 
+test_that("col_substring corner cases", {
+  # Zero length input
+
+  c0 <- character(0L)
+  o0 <- structure(list(), class="abc")
+  co0 <- structure(character(0L), class="abc")
+  expect_identical(col_substring(c0, 1, 1), substring(c0, 1, 1))
+  expect_identical(col_substring(o0, 1, 1), substring(o0, 1, 1))
+  expect_identical(col_substring(co0, 1, 1), substring(co0, 1, 1))
+})
+
 test_that("col_strsplit", {
   red <- "\033[31mred\033[39m"
   
@@ -106,6 +141,15 @@ test_that("col_strsplit", {
   expect_equal(strip_style(col_strsplit(str, "-")[[1]]),
                strsplit(strip_style(str), "-")[[1]])
   
+  # with leading and trailing separators
+  str.2 <- "-" %+% red %+% "-" %+% red %+% "-" %+% red %+% "-"
+  expect_equal(strip_style(col_strsplit(str.2, "-")[[1]]),
+               strsplit(strip_style(str.2), "-")[[1]])
+
+  # greater than length 1
+  str.3 <- paste0("-", c(green("hello"), red("goodbye")), "-world-")
+  expect_equal(strip_style(unlist(col_strsplit(str.3, "-"))),
+               unlist(strsplit(strip_style(str.3), "-")))
 })
 
 test_that("col_strsplit multiple strings", {
@@ -119,8 +163,30 @@ test_that("col_strsplit multiple strings", {
   
 })
 
-test_that("col_strsplit empty string", {
+test_that("col_strsplit edge cases", {
+  expect_equal(col_strsplit("", "-"), list(character(0L)))
+  expect_equal(
+    strip_style(col_strsplit("\033[31m\033[39m", "-")[[1]]), character(0L)
+  )
+  # special cases
+  expect_equal(col_strsplit("", ""), strsplit("", ""))
+  expect_equal(col_strsplit("a", "a"), strsplit("a", "a"))
+  # this following test isn't working yet
+  expect_equal(col_strsplit("a", ""), strsplit("a", ""))
+  expect_equal(col_strsplit("", "a"), strsplit("", "a"))
+  # Longer strings
+  expect_identical(
+    col_strsplit(c("", "a", "aa"), "a"), strsplit(c("", "a", "aa"), "a")
+  )
+  expect_identical(
+    col_strsplit(c("abaa", "ababza"), "b."), strsplit(c("abaa", "ababza"), "b.")
+  )
+})
 
-  expect_equal(col_strsplit("", "-"), list(""))
-  expect_equal(strip_style(col_strsplit("\033[31m\033[39m", "-")[[1]]), "")
+test_that("Weird length 'split'", {
+  expect_error(col_strsplit(c("ab", "bd"), c("b", "d")), "must be character")
+  expect_identical(col_strsplit("ab", NULL), strsplit("ab", NULL))
+  expect_identical(
+    col_strsplit("ab", character(0L)), strsplit("ab", character(0L))
+  )
 })
