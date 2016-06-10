@@ -121,7 +121,6 @@ emacs_version <- function() {
   ver <- gsub("'", "", ver)
   ver <- strsplit(ver, ",", fixed = TRUE)[[1]]
   ver <- strsplit(ver, ".", fixed = TRUE)[[1]]
-  ver <- gsub("'", "", ver)
   as.numeric(ver)
 }
 
