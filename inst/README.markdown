@@ -134,3 +134,7 @@ cat(fancy("This will have some fancy colors"), "\n")
 ```
 
 ![](/inst/ANSI-256-OSX.png)
+
+## License
+
+MIT @ Gábor Csárdi
