@@ -202,6 +202,7 @@ col_substring <- function(text, first, last = 1000000L) {
 #'
 #' @family ANSI string operations
 #' @export
+#' @importFrom utils head
 #' @examples
 #' str <- red("I am red---") %+%
 #'   green("and I am green-") %+%
