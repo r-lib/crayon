@@ -38,7 +38,16 @@ test_that("Nested styles of the same type are supported", {
 test_that("Reset all styles", {
 
   expect_equal(reset(red$bgGreen$underline('foo') %+% 'foo'),
-               '\u001b[0m\u001b[31m\u001b[42m\u001b[4mfoo\u001b[24m\u001b[49m\u001b[39mfoo\u001b[0m')
+
+'\033[0m\033[31m\033[42m\033[4mfoo\033[24m\033[49m\033[39mfoo\033[0m\033[22m\033[23m\033[24m\033[27m\033[28m\033[29m\033[39m\033[49m'
+)
+
+  # reset, but only in middle of string
+
+  expect_equal(
+    red$bgGreen$underline('bunny bunny', reset(' foo '), 'foo'),
+    '\033[31m\033[42m\033[4mbunny bunny \033[0m foo \033[0m\033[22m\033[23m\033[4m\033[27m\033[28m\033[29m\033[31m\033[42m foo\033[24m\033[49m\033[39m'
+  )
 })
 
 test_that("Variable number of arguments", {
