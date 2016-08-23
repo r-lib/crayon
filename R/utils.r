@@ -90,8 +90,7 @@ non_matching <- function(table, str, empty = FALSE) {
       start <- c(1, t[, "end"] + 1)
       end <- c(t[, "start"] - 1, base::nchar(s))
       res <- cbind(start = start, end = end, length = end - start + 1)
-      if (!empty) res[ res[, "length"] != 0, , drop = FALSE ]
-      res
+      if (!empty) res[ res[, "length"] != 0, , drop = FALSE ] else res
     }
   })
 }

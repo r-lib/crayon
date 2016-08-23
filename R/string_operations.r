@@ -6,7 +6,9 @@
 
 map_to_ansi <- function(x, text = NULL) {
 
-  if (is.null(text)) text <- non_matching(re_table(ansi_regex, x), x)
+  if (is.null(text)) {
+    text <- non_matching(re_table(ansi_regex, x), x, empty=TRUE)
+  }
 
   map <- lapply(
     text,
@@ -106,8 +108,16 @@ col_nchar <- function(x, ...) {
 #' substr(strip_style(c(str, str2)), c(3,5), c(7, 18))
 
 col_substr <- function(x, start, stop) {
+  if(!is.character(x)) x <- as.character(x)
+  if(!length(x)) return(x)
+  start <- as.integer(start)
+  stop <- as.integer(stop)
+  if(!length(start) || !length(stop))
+    stop("invalid substring arguments")
+  if(anyNA(start) || anyNA(stop))
+    stop("non-numeric substring arguments not supported")
   ansi <- re_table(ansi_regex, x)
-  text <- non_matching(ansi, x)
+  text <- non_matching(ansi, x, empty=TRUE)
   mapper <- map_to_ansi(x, text = text)
   nstart <- mapper(start)
   nstop  <- mapper(stop)
@@ -176,16 +186,15 @@ col_substring <- function(text, first, last = 1000000L) {
 #' Split an ANSI colored string
 #'
 #' This is the color-aware counterpart of \code{base::strsplit}.
-#' It works exactly like the original, but keeps the colors in the
+#' It works almost exactly like the original, but keeps the colors in the
 #' substrings.
 #'
 #' @param x Character vector, potentially ANSI styled, or a vector to
 #'   coarced to character.
-#' @param split Character vector (or object which can be coerced to such)
-#'   containing regular expression(s) (unless \code{fixed = TRUE}) to use for
-#'   splitting.  If empty matches occur, in particular if \code{split} has
-#'   length 0, \code{x} is split into single characters.  If \code{split} has
-#'   length greater than 1, it is re-cycled along \code{x}.
+#' @param split Character vector of length 1 (or object which can be coerced to
+#'   such) containing regular expression(s) (unless \code{fixed = TRUE}) to use
+#'   for splitting.  If empty matches occur, in particular if \code{split} has
+#'   zero characters, \code{x} is split into single characters.
 #' @param ... Extra arguments are passed to \code{base::strsplit}.
 #' @return A list of the same length as \code{x}, the \eqn{i}-th element of
 #'   which contains the vector of splits of \code{x[i]}. ANSI styles are
@@ -193,6 +202,7 @@ col_substring <- function(text, first, last = 1000000L) {
 #'
 #' @family ANSI string operations
 #' @export
+#' @importFrom utils head
 #' @examples
 #' str <- red("I am red---") %+%
 #'   green("and I am green-") %+%
@@ -209,9 +219,37 @@ col_substring <- function(text, first, last = 1000000L) {
 #' strsplit(strip_style(str), "")
 
 col_strsplit <- function(x, split, ...) {
+  split <- try(as.character(split), silent=TRUE)
+  if(inherits(split, "try-error") || !is.character(split) || length(split) > 1L)
+    stop("`split` must be character of length <= 1, or must coerce to that")
+  if(!length(split)) split <- ""
   plain <- strip_style(x)
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
-  mapply(chunks, x, SIMPLIFY = FALSE, FUN = function(tab, xx)
-    col_substring(xx, tab[, "start"], tab[, "end"]))
+  # silently recycle `split`; doesn't matter currently since we don't support
+  # split longer than 1, but might in future
+  split.r <- rep(split, length.out=length(x))
+  # Drop empty chunks to align with `substr` behavior
+  chunks <- lapply(
+    seq_along(chunks),
+    function(i) {
+      y <- chunks[[i]]
+      # empty split means drop empty first match
+      if(nrow(y) && !nzchar(split.r[[i]]) && !head(y, 1L)[, "length"]) {
+        y <- y[-1L, , drop=FALSE]
+      }
+      # drop empty last matches
+      if(nrow(y) && !tail(y, 1L)[, "length"]) y[-nrow(y), , drop=FALSE] else y
+    }
+  )
+  zero.chunks <- !vapply(chunks, nrow, integer(1L))
+  # Pull out zero chunks from colored string b/c col_substring won't work
+  # with them
+  res <- vector("list", length(chunks))
+  res[zero.chunks] <- list(character(0L))
+  res[!zero.chunks] <- mapply(
+    chunks[!zero.chunks], x[!zero.chunks], SIMPLIFY = FALSE,
+    FUN = function(tab, xx) col_substring(xx, tab[, "start"], tab[, "end"])
+  )
+  res
 }

@@ -13,7 +13,6 @@
 #' @param ... Ignored.
 #'
 #' @export
-#' @method start crayon
 #' @examples
 #' ## The input is red (if color is supported)
 #' get_name <- function() {
@@ -36,12 +35,7 @@ start.crayon <- function(x, ...) {
   }
 }
 
-#' @rdname start.crayon
-#' @export
-
-start <- function(x, ...)
-  UseMethod("start")
-
+#' @importFrom stats start
 #' @rdname start.crayon
 #' @export
 
