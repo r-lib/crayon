@@ -55,3 +55,8 @@ chr <- function(x, ...) as.character(x, ...)
     paste0(lhs, rhs)
   }
 }
+
+#' @export
+as.character.crayon <- function(x, ...) {
+  start(x)
+}
