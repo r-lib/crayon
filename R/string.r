@@ -55,3 +55,23 @@ chr <- function(x, ...) as.character(x, ...)
     paste0(lhs, rhs)
   }
 }
+
+#' @export
+as.character.crayon <- function(x, ...) {
+  start(x)
+}
+
+#' @export
+`-.crayon` <- function(e1, e2) {
+  if (!missing(e2)) {
+    base::`-`(e1, e2)
+  }
+  my_styles <- attr(e1, "_styles")
+  if (has_color()) {
+    for (i in seq_along(my_styles)) {
+      my_styles[[i]]$open <- my_styles[[i]]$close
+    }
+  }
+  attr(e1, "_styles") <- my_styles
+  e1
+}
