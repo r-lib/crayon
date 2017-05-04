@@ -1,3 +1,8 @@
+
+# 1.3.2.9000
+
+* Autodetect RStudio ANSI support
+
 # 1.3.2
 
 * Removed dependency to `memoise` (@brodieG, #25)

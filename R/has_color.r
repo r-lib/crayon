@@ -36,6 +36,9 @@ has_color <- function() {
   enabled <- getOption("crayon.enabled")
   if (!is.null(enabled)) { return(isTRUE(enabled))  }
 
+  ## RStudio with (potential) ANSI support?
+  if (rstudio_with_ansi_support()) { return(rstudioapi::hasColorConsole()) }
+
   ## Are we in a terminal? No?
   if (!isatty(stdout())) { return(FALSE) }
 
@@ -111,6 +114,9 @@ i_num_colors <- function() {
 
   ## Otherwise try to detect. If no color support, then 1
   if (!has_color()) { return(1) }
+
+  ## RStudio
+  if (rstudio_with_ansi_support()) { return(256) }
 
   ## Emacs
   if (inside_emacs()) { return(8) }

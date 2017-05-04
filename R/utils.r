@@ -127,3 +127,9 @@ emacs_version <- function() {
 inside_emacs <- function() {
   Sys.getenv("EMACS") != ""
 }
+
+rstudio_with_ansi_support <- function() {
+  Sys.getenv("RSTUDIO", "") != "" &&
+    requireNamespace("rstudioapi", quietly = TRUE) &&
+    rstudioapi::hasFun("getConsoleHasColor")
+}
