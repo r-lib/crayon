@@ -125,7 +125,7 @@ emacs_version <- function() {
 }
 
 inside_emacs <- function() {
-  Sys.getenv("INSIDE_EMACS") != ""
+    Sys.getenv("EMACS") != "" || Sys.getenv("INSIDE_EMACS") != ""
 }
 
 rstudio_with_ansi_support <- function() {
