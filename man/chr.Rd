@@ -18,4 +18,3 @@ Character value.
 This function just calls \code{as.character}, but it is
 easier to type and read.
 }
-

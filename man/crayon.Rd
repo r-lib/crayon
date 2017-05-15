@@ -2,33 +2,34 @@
 % Please edit documentation in R/crayon-package.r, R/machinery.r
 \docType{package}
 \name{crayon}
-\alias{bgBlack}
-\alias{bgBlue}
-\alias{bgCyan}
-\alias{bgGreen}
-\alias{bgMagenta}
-\alias{bgRed}
-\alias{bgWhite}
-\alias{bgYellow}
-\alias{black}
-\alias{blue}
-\alias{blurred}
-\alias{bold}
 \alias{crayon}
 \alias{crayon-package}
-\alias{cyan}
-\alias{green}
-\alias{hidden}
-\alias{inverse}
-\alias{italic}
-\alias{magenta}
-\alias{red}
+\alias{crayon}
 \alias{reset}
-\alias{silver}
-\alias{strikethrough}
+\alias{bold}
+\alias{blurred}
+\alias{italic}
 \alias{underline}
-\alias{white}
+\alias{inverse}
+\alias{hidden}
+\alias{strikethrough}
+\alias{black}
+\alias{red}
+\alias{green}
 \alias{yellow}
+\alias{blue}
+\alias{magenta}
+\alias{cyan}
+\alias{white}
+\alias{silver}
+\alias{bgBlack}
+\alias{bgRed}
+\alias{bgGreen}
+\alias{bgYellow}
+\alias{bgBlue}
+\alias{bgMagenta}
+\alias{bgCyan}
+\alias{bgWhite}
 \title{Colored terminal output}
 \usage{
 ## Simple styles
@@ -130,6 +131,7 @@ It is easy to define your own themes: \preformatted{  error <- red $ bold
   cat(note("Note: no such directory.\n"))
 }
 }
+
 \examples{
 cat(blue("Hello", "world!"))
 
@@ -155,4 +157,3 @@ cat(note("Note: no such directory.\\n"))
 \seealso{
 \code{\link{make_style}} for using the 256 ANSI colors.
 }
-

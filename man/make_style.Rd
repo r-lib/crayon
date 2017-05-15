@@ -82,4 +82,3 @@ cat(style("I am pink, too!\\n", "pink", bg = "bgMaroon"))
 \seealso{
 Other styles: \code{\link{drop_style}}
 }
-

@@ -27,4 +27,3 @@ style("foobar", bold)
 style("foobar", "bold")
 bold("foobar")
 }
-

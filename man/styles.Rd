@@ -22,4 +22,3 @@ cat(styles()[["bold"]]$close)
 \seealso{
 \code{\link{crayon}} for the beginning of the crayon manual.
 }
-

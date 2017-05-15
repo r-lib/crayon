@@ -36,4 +36,3 @@ The following algorithm is used to detect ANSI support: \itemize{
 \examples{
 has_color()
 }
-

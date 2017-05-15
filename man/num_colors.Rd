@@ -40,4 +40,3 @@ re-check the number of colors, set the \code{forget} argument to
 \examples{
 num_colors()
 }
-

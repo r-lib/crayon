@@ -25,4 +25,3 @@ drop_style("new_style")
 \seealso{
 Other styles: \code{\link{make_style}}
 }
-

@@ -18,4 +18,3 @@ Remove ANSI escape sequences from a string
 \examples{
 strip_style(red("foobar")) == "foobar"
 }
-

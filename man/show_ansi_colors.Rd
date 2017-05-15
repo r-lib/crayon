@@ -17,4 +17,3 @@ The printed string, invisibly.
 \description{
 Show the ANSI color table on the screen
 }
-
