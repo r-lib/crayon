@@ -22,7 +22,7 @@ test_that("Color is detected properly", {
 test_that("number of colors is detected", {
 
   nc <- num_colors()
-  expect_more_than(nc, 0)
+  expect_true(nc > 0)
   expect_equal(nc, as.integer(nc))
 
 })

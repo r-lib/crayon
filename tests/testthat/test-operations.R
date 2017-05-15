@@ -84,7 +84,9 @@ test_that("col_substr corner cases", {
 
   # non-numeric arguments cause errors; NOTE: this actually "works" 
   # with 'substr' but not implemented in 'col_substr'
-  expect_error(col_substr("abc", "hello", 1), "non-numeric")
+  suppressWarnings(
+    expect_error(col_substr("abc", "hello", 1), "non-numeric")
+  )
 
 })
 
