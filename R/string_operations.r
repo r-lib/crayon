@@ -274,6 +274,8 @@ col_align <- function(text, width = getOption("width"),
   align <- match.arg(align)
   nc <- col_nchar(text)
 
+  if (!length(text)) return(text)
+
   if (align == "left") {
     paste0(text, make_space(width - nc))
 
@@ -292,4 +294,23 @@ make_space <- function(num, filling = " ") {
   res <- strrep(filling, num)
   Encoding(res) <- Encoding(filling)
   res
+}
+
+strrep <- function (x, times) {
+  x = as.character(x)
+  if (length(x) == 0L) return(x)
+
+  mapply(
+    function(x, times) {
+      if (is.na(x) || is.na(times)) {
+        NA_character_
+      } else if (times <= 0L) {
+        ""
+      } else {
+        paste0(rep(x, times), collapse = "")
+      }
+    },
+    x, times,
+    USE.NAMES = FALSE
+  )
 }

@@ -192,3 +192,31 @@ test_that("Weird length 'split'", {
     col_strsplit("ab", character(0L)), strsplit("ab", character(0L))
   )
 })
+
+test_that("col_align", {
+  expect_equal(col_align(character()), character())
+  expect_equal(col_align("", 0), "")
+  expect_equal(col_align(" ", 0), " ")
+  expect_equal(col_align(" ", 1), " ")
+  expect_equal(col_align(" ", 2), "  ")
+  expect_equal(col_align("a", 1), "a")
+  expect_equal(col_align(letters, 1), letters)
+  expect_equal(col_align(letters, 0), letters)
+  expect_equal(col_align(letters, -1), letters)
+
+  expect_equal(col_align(letters, 2), paste0(letters, " "))
+  expect_equal(col_align(letters, 3, "center"), paste0(" ", letters, " "))
+  expect_equal(col_align(letters, 2, "right"), paste0(" ", letters))
+
+  expect_equal(
+    col_align(c("foo", "foobar", "", "a"), 6, "left"),
+    c("foo   ", "foobar", "      ", "a     "))
+
+  expect_equal(
+    col_align(c("foo", "foobar", "", "a"), 6, "center"),
+    c("  foo ", "foobar", "      ", "   a  "))
+
+  expect_equal(
+    col_align(c("foo", "foobar", "", "a"), 6, "right"),
+    c("   foo", "foobar", "      ", "     a"))
+})
