@@ -25,3 +25,8 @@ col_align(red("foobar"), 20, "left")
 col_align(red("foobar"), 20, "center")
 col_align(red("foobar"), 20, "right")
 }
+\seealso{
+Other ANSI string operations: \code{\link{col_nchar}},
+  \code{\link{col_strsplit}}, \code{\link{col_substring}},
+  \code{\link{col_substr}}
+}

@@ -43,7 +43,7 @@ cat(col_strsplit(str, "")[[1]], "\\n", sep = " ")
 strsplit(strip_style(str), "")
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_nchar}},
-  \code{\link{col_substring}}, \code{\link{col_substr}}
+Other ANSI string operations: \code{\link{col_align}},
+  \code{\link{col_nchar}}, \code{\link{col_substring}},
+  \code{\link{col_substr}}
 }
-

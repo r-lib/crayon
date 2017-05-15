@@ -51,7 +51,7 @@ cat(col_substr(c(str, str2), c(3,5), c(7, 18)), sep = "\\n")
 substr(strip_style(c(str, str2)), c(3,5), c(7, 18))
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_nchar}},
-  \code{\link{col_strsplit}}, \code{\link{col_substring}}
+Other ANSI string operations: \code{\link{col_align}},
+  \code{\link{col_nchar}}, \code{\link{col_strsplit}},
+  \code{\link{col_substring}}
 }
-

@@ -261,6 +261,7 @@ col_strsplit <- function(x, split, ...) {
 #' @param align Whether to align `"left"`, `"center"` or `"right"`.
 #' @return The aligned character vector.
 #'
+#' @family ANSI string operations
 #' @export
 #' @examples
 #' col_align(red("foobar"), 20, "left")
