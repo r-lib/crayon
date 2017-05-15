@@ -253,3 +253,38 @@ col_strsplit <- function(x, split, ...) {
   )
   res
 }
+
+#' Align an ANSI colored string
+#'
+#' @param text The character vector to align.
+#' @param width Width of the field to align in.
+#' @param align Whether to align `"left"`, `"center"` or `"right"`.
+#' @return The aligned character vector.
+#'
+#' @export
+#' @examples
+#' col_align(red("foobar"), 20, "left")
+#' col_align(red("foobar"), 20, "center")
+#' col_align(red("foobar"), 20, "right")
+
+col_align <- function(text, width = getOption("width"),
+                      align = c("left", "center", "right")) {
+
+  align <- match.arg(align)
+  nc <- col_nchar(text)
+
+  if (width <= nc) {
+    text
+
+  } else if (align == "left") {
+    paste0(text, make_space(width - nc))
+
+  } else if (align == "center") {
+    paste0(make_space(ceiling((width - nc) / 2)),
+           text,
+           make_space(floor((width - nc) / 2)))
+
+  } else {
+    paste0(make_space(width - nc), text)
+  }
+}
