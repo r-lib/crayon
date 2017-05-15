@@ -274,10 +274,7 @@ col_align <- function(text, width = getOption("width"),
   align <- match.arg(align)
   nc <- col_nchar(text)
 
-  if (width <= nc) {
-    text
-
-  } else if (align == "left") {
+  if (align == "left") {
     paste0(text, make_space(width - nc))
 
   } else if (align == "center") {
@@ -291,5 +288,8 @@ col_align <- function(text, width = getOption("width"),
 }
 
 make_space <- function(num, filling = " ") {
-  paste(rep(filling, num), collapse = "")
+  num <- pmax(0, num)
+  res <- strrep(filling, num)
+  Encoding(res) <- Encoding(filling)
+  res
 }
