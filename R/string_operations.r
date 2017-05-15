@@ -289,3 +289,7 @@ col_align <- function(text, width = getOption("width"),
     paste0(make_space(width - nc), text)
   }
 }
+
+make_space <- function(num, filling = " ") {
+  paste(rep(filling, num), collapse = "")
+}
