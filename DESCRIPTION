@@ -38,7 +38,7 @@ Imports:
     methods,
     utils
 Suggests:
-    rstudioapi,
+    rstudioapi (>= 0.6.0.9000),
     testthat
 Remotes: 
     rstudio/rstudioapi
