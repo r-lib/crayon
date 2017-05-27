@@ -263,14 +263,14 @@ make_crayon <- function(ansi_seq) {
 #' @examples
 #' cat(blue("Hello", "world!"))
 #'
-#' cat("... to highlight the " \%+\% red("search term") \%+\%
+#' cat("... to highlight the " %+% red("search term") %+%
 #'     " in a block of text")
 #'
 #' cat(yellow$bgMagenta$bold('Hello world!'))
 #'
 #' cat(green(
-#'  'I am a green line ' \%+\%
-#'  blue$underline$bold('with a blue substring') \%+\%
+#'  'I am a green line ' %+%
+#'  blue$underline$bold('with a blue substring') %+%
 #'  ' that becomes green again!'
 #' ))
 #'
