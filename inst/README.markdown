@@ -11,11 +11,11 @@
 > Stylish terminal output in R
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Linux Build Status](https://travis-ci.org/gaborcsardi/crayon.svg?branch=master)](https://travis-ci.org/gaborcsardi/crayon)
-[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/gaborcsardi/crayon?svg=true)](https://ci.appveyor.com/project/gaborcsardi/crayon)
+[![Linux Build Status](https://travis-ci.org/r-pkgs/crayon.svg?branch=master)](https://travis-ci.org/r-pkgs/crayon)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/r-pkgs/crayon?svg=true)](https://ci.appveyor.com/project/gaborcsardi/crayon)
 [![](http://www.r-pkg.org/badges/version/crayon)](http://cran.rstudio.com/web/packages/crayon/index.html)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/crayon)](http://cran.r-project.org/web/packages/crayon/index.html)
-[![Coverage Status](https://img.shields.io/codecov/c/github/gaborcsardi/crayon/master.svg)](https://codecov.io/github/gaborcsardi/crayon?branch=master)
+[![Coverage Status](https://img.shields.io/codecov/c/github/r-pkgs/crayon/master.svg)](https://codecov.io/github/r-pkgs/crayon?branch=master)
 
 With crayon it is easy to add color to terminal output, create styles for notes, warnings, errors; and combine styles.
 
@@ -25,7 +25,7 @@ inspired by [chalk](https://github.com/sindresorhus/chalk).
 ## Installation
 
 ```r
-devtools::install_github("gaborcsardi/crayon")
+devtools::install_github("r-pkgs/crayon")
 library(crayon)
 ```
 
