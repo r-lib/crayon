@@ -15,8 +15,8 @@ Description: Colored terminal output on terminals that support 'ANSI'
     This package was inspired by the 'chalk' 'JavaScript' project.
 License: MIT + file LICENSE
 LazyData: true
-URL: https://github.com/r-pkgs/crayon#readme
-BugReports: https://github.com/r-pkgs/crayon/issues
+URL: https://github.com/r-lib/crayon#readme
+BugReports: https://github.com/r-lib/crayon/issues
 Collate:
     'ansi-256.r'
     'combine.r'
