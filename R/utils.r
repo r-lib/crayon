@@ -133,5 +133,3 @@ rstudio_with_ansi_support <- function() {
     requireNamespace("rstudioapi", quietly = TRUE) &&
     rstudioapi::hasFun("getConsoleHasColor")
 }
-
-`%::%` <- function(pkg, fun) getExportedValue(pkg, fun)
