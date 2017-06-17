@@ -38,9 +38,7 @@ Imports:
     methods,
     utils
 Suggests:
-    rstudioapi (>= 0.6.0.9000),
+    rstudioapi,
     testthat
-Remotes: 
-    rstudio/rstudioapi
 RoxygenNote: 6.0.1.9000
 Encoding: UTF-8
