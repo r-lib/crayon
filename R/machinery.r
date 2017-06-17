@@ -299,27 +299,24 @@ NULL
 #' cat(styles()[["bold"]]$close)
 
 styles <- function() {
-  my_styles
+  data_env$my_styles
 }
 
-my_styles <- structure(list(), names = character())
+data_env <- new.env(parent = emptyenv())
+
+data_env$my_styles <- structure(list(), names = character())
 
 sapply(names(builtin_styles), function(style) {
-  my_styles[[style]] <<- builtin_styles[[style]]
-  assign(style, make_style(style), envir = asNamespace(packageName()))
+  data_env$my_styles[[style]] <<- builtin_styles[[style]]
+  assign(style, make_style(style), envir = asNamespace("crayon"))
 })
 
 .onLoad <- function(libname, pkgname) {
   num_colors(forget = TRUE)
 }
 
-.onAttach <- function(libname, pkgname) {
-  ub <- unlockBinding
-  ub("my_styles", asNamespace(pkgname))
-}
-
 define_style <- function(name, ansi_seq) {
-  my_styles[[name]] <<- ansi_seq
+  data_env$my_styles[[name]] <<- ansi_seq
 }
 
 #' Remove a style
@@ -337,6 +334,6 @@ define_style <- function(name, ansi_seq) {
 #' "new_style" %in% names(styles())
 
 drop_style <- function(style) {
-  my_styles[[style]] <<- NULL
+  data_env$my_styles[[style]] <<- NULL
   invisible()
 }

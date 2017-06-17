@@ -50,6 +50,7 @@ combine_styles <- function(...) {
 #' @method $ crayon
 
 `$.crayon` <- function(crayon, style) {
-  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), my_styles[style])
+  attr(crayon, "_styles") <-
+    c(attr(crayon, "_styles"), data_env$my_styles[style])
   crayon
 }
