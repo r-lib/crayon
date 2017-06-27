@@ -122,7 +122,7 @@ Most modern terminals support the ANSI standard for 256 colors,
 and you can define new styles that make use of them. The `make_style`
 function defines a new style. It can handle R's built in color names
 (see the output of `colors()`), and also RGB specifications, via the
-`rbg()` function. It automatically chooses the ANSI colors that
+`rgb()` function. It automatically chooses the ANSI colors that
 are closest to the specified R and RGB colors, and it also has
 a fallback to terminals with 8 ANSI colors only.
 
