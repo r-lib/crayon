@@ -35,13 +35,13 @@ map_to_ansi <- function(x, text = NULL) {
 
 #' Count number of characters in an ANSI colored string
 #'
-#' This is a color-aware counterpart of \code{base::nchar},
+#' This is a color-aware counterpart of [base::nchar()],
 #' which does not do well, since it also counts the ANSI control
 #' characters.
 #'
 #' @param x Character vector, potentially ANSO styled, or a vector to be
 #'   coarced to character.
-#' @param ... Additional arguments, passed on to \code{base::nchar}
+#' @param ... Additional arguments, passed on to `base::nchar()`
 #'   after removing ANSI escape sequences.
 #' @return Numeric vector, the length of the strings in the character
 #'   vector.
@@ -67,7 +67,7 @@ col_nchar <- function(x, ...) {
 
 #' Substring(s) of an ANSI colored string
 #'
-#' This is a color-aware counterpart of \code{base::substr}.
+#' This is a color-aware counterpart of [base::substr()].
 #' It works exactly like the original, but keeps the colors
 #' in the substrings. The ANSI escape sequences are ignored when
 #' calculating the positions within the string.
@@ -75,10 +75,10 @@ col_nchar <- function(x, ...) {
 #' @param x Character vector, potentially ANSI styled, or a vector to
 #'   coarced to character.
 #' @param start Starting index or indices, recycled to match the length
-#'   of \code{x}.
+#'   of `x`.
 #' @param stop Ending index or indices, recycled to match the length
-#'   of \code{x}.
-#' @return Character vector of the same length as \code{x}, containing
+#'   of `x`.
+#' @return Character vector of the same length as `x`, containing
 #'   the requested substrings. ANSI styles are retained.
 #'
 #' @family ANSI string operations
@@ -134,19 +134,19 @@ col_substr <- function(x, start, stop) {
 
 #' Substring(s) of an ANSI colored string
 #'
-#' This is the color-aware counterpart of \code{base::substring}.
+#' This is the color-aware counterpart of [base::substring()].
 #' It works exactly like the original, but keeps the colors in the
 #' substrings. The ANSI escape sequences are ignored when
 #' calculating the positions within the string.
 #'
 #' @param text Character vector, potentially ANSI styled, or a vector to
-#'   coarced to character. It is recycled to the longest of \code{first}
-#'   and \code{last}.
+#'   coarced to character. It is recycled to the longest of `first`
+#'   and `last`.
 #' @param first Starting index or indices, recycled to match the length
-#'   of \code{x}.
+#'   of `x`.
 #' @param last Ending index or indices, recycled to match the length
-#'   of \code{x}.
-#' @return Character vector of the same length as \code{x}, containing
+#'   of `x`.
+#' @return Character vector of the same length as `x`, containing
 #'   the requested substrings. ANSI styles are retained.
 #'
 #' @family ANSI string operations
@@ -185,19 +185,19 @@ col_substring <- function(text, first, last = 1000000L) {
 
 #' Split an ANSI colored string
 #'
-#' This is the color-aware counterpart of \code{base::strsplit}.
+#' This is the color-aware counterpart of [base::strsplit()].
 #' It works almost exactly like the original, but keeps the colors in the
 #' substrings.
 #'
 #' @param x Character vector, potentially ANSI styled, or a vector to
 #'   coarced to character.
 #' @param split Character vector of length 1 (or object which can be coerced to
-#'   such) containing regular expression(s) (unless \code{fixed = TRUE}) to use
-#'   for splitting.  If empty matches occur, in particular if \code{split} has
-#'   zero characters, \code{x} is split into single characters.
-#' @param ... Extra arguments are passed to \code{base::strsplit}.
-#' @return A list of the same length as \code{x}, the \eqn{i}-th element of
-#'   which contains the vector of splits of \code{x[i]}. ANSI styles are
+#'   such) containing regular expression(s) (unless `fixed = TRUE`) to use
+#'   for splitting.  If empty matches occur, in particular if `split` has
+#'   zero characters, `x` is split into single characters.
+#' @param ... Extra arguments are passed to `base::strsplit()`.
+#' @return A list of the same length as `x`, the \eqn{i}-th element of
+#'   which contains the vector of splits of `x[i]`. ANSI styles are
 #'   retained.
 #'
 #' @family ANSI string operations

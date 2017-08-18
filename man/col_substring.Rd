@@ -19,10 +19,10 @@ of \code{x}.}
 }
 \value{
 Character vector of the same length as \code{x}, containing
-  the requested substrings. ANSI styles are retained.
+the requested substrings. ANSI styles are retained.
 }
 \description{
-This is the color-aware counterpart of \code{base::substring}.
+This is the color-aware counterpart of \code{\link[base:substring]{base::substring()}}.
 It works exactly like the original, but keeps the colors in the
 substrings. The ANSI escape sequences are ignored when
 calculating the positions within the string.

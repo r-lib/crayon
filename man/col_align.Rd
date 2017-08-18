@@ -12,9 +12,9 @@ col_align(text, width = getOption("width"), align = c("left", "center",
 
 \item{width}{Width of the field to align in.}
 
-\item{align}{Whether to align `"left"`, `"center"` or `"right"`.}
+\item{align}{Whether to align \code{"left"}, \code{"center"} or \code{"right"}.}
 
-\item{type}{Passed on to [col_nchar()] and there to [nchar()]}
+\item{type}{Passed on to \code{\link[=col_nchar]{col_nchar()}} and there to \code{\link[=nchar]{nchar()}}}
 }
 \value{
 The aligned character vector.

@@ -1,13 +1,13 @@
 
 #' Add style to a string
 #'
-#' See \code{names(styles)}, or the crayon manual for available styles.
+#' See `names(styles)`, or the crayon manual for available styles.
 #'
 #' @param string Character vector to style.
 #' @param as Style function to apply, either the function object,
-#'   or its name, or an object to pass to \code{\link{make_style}}.
+#'   or its name, or an object to pass to [make_style()].
 #' @param bg Background style, a style function, or a name that
-#'   is passed to \code{\link{make_style}}.
+#'   is passed to [make_style()].
 #' @return Styled character vector.
 #'
 #' @export

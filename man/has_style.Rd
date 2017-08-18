@@ -12,7 +12,7 @@ vector.}
 }
 \value{
 Logical vector, \code{TRUE} for the strings that have some
-  ANSI styling.
+ANSI styling.
 }
 \description{
 Check if a string has some ANSI styling
