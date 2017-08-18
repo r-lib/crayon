@@ -14,7 +14,7 @@ col_align(text, width = getOption("width"), align = c("left", "center",
 
 \item{align}{Whether to align `"left"`, `"center"` or `"right"`.}
 
-\item{nchar}{Passed on to [col_nchar()] and there to [nchar()]}
+\item{type}{Passed on to [col_nchar()] and there to [nchar()]}
 }
 \value{
 The aligned character vector.
