@@ -259,6 +259,7 @@ col_strsplit <- function(x, split, ...) {
 #' @param text The character vector to align.
 #' @param width Width of the field to align in.
 #' @param align Whether to align `"left"`, `"center"` or `"right"`.
+#' @param type Passed on to [col_nchar()] and there to [nchar()]
 #' @return The aligned character vector.
 #'
 #' @family ANSI string operations
@@ -269,10 +270,11 @@ col_strsplit <- function(x, split, ...) {
 #' col_align(red("foobar"), 20, "right")
 
 col_align <- function(text, width = getOption("width"),
-                      align = c("left", "center", "right")) {
+                      align = c("left", "center", "right"),
+                      type = "width") {
 
   align <- match.arg(align)
-  nc <- col_nchar(text)
+  nc <- col_nchar(text, type = type)
 
   if (!length(text)) return(text)
 

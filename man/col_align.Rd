@@ -5,7 +5,7 @@
 \title{Align an ANSI colored string}
 \usage{
 col_align(text, width = getOption("width"), align = c("left", "center",
-  "right"))
+  "right"), type = "width")
 }
 \arguments{
 \item{text}{The character vector to align.}
@@ -13,6 +13,8 @@ col_align(text, width = getOption("width"), align = c("left", "center",
 \item{width}{Width of the field to align in.}
 
 \item{align}{Whether to align `"left"`, `"center"` or `"right"`.}
+
+\item{type}{Passed on to [col_nchar()] and there to [nchar()]}
 }
 \value{
 The aligned character vector.

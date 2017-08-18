@@ -219,4 +219,17 @@ test_that("col_align", {
   expect_equal(
     col_align(c("foo", "foobar", "", "a"), 6, "right"),
     c("   foo", "foobar", "      ", "     a"))
+
+  # #54: alignment of wide characters
+  expect_equal(
+    col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "left"),
+    c("foo   ", "\u6210\u4ea4\u65e5", "      ", "a     "))
+
+  expect_equal(
+    col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "center"),
+    c("  foo ", "\u6210\u4ea4\u65e5", "      ", "   a  "))
+
+  expect_equal(
+    col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "right"),
+    c("   foo", "\u6210\u4ea4\u65e5", "      ", "     a"))
 })
