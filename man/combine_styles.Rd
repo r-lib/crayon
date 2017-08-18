@@ -34,7 +34,7 @@ e.g. background color, foreground color, bold font.
 
 The \code{$} operator can also be used to combine styles.
 Not that the left hand side of \code{$} is a style function,
-and the right hand side is the name of a style in \code{styles()}.
+and the right hand side is the name of a style in \code{\link[=styles]{styles()}}.
 }
 \examples{
 ## Use style names

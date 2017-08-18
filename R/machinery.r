@@ -56,12 +56,12 @@ style_from_rgb <- function(rgb, bg, num_colors, grey) {
 #'
 #' @details
 #' The crayon package comes with predefined styles (see
-#' \code{\link{styles}} for a list) and functions for the basic eight-color
-#' ANSI standard (\code{red}, \code{blue}, etc., see \link{crayon}).
+#' [styles()] for a list) and functions for the basic eight-color
+#' ANSI standard (`red`, `blue`, etc., see \link{crayon}).
 #'
 #' There are no predefined styles or style functions for the 256 color
 #' ANSI mode, however, because we simply did not want to create that
-#' many styles and functions. Instead, \code{make_style} can be
+#' many styles and functions. Instead, `make_style()` can be
 #' used to create a style (or a style function, or both).
 #'
 #' There are two ways to use this function: \enumerate{
@@ -69,22 +69,22 @@ style_from_rgb <- function(rgb, bg, num_colors, grey) {
 #'     that can be used to color strings.
 #'   \item If its first argument is named, then it also creates a
 #'     style with the given name. This style can be used in
-#'     \code{\link{style}}. One can still use the return value
+#'     [style()]. One can still use the return value
 #'     of the function, to create a style function.
 #' }
 #'
 #' The style (the code{...} argument) can be anything of the
 #' following: \itemize{
-#'   \item An R color name, see \code{colors()}.
-#'   \item A 6- or 8-digit hexa color string, e.g. \code{#ff0000} means
+#'   \item An R color name, see [colors()].
+#'   \item A 6- or 8-digit hexa color string, e.g. `#ff0000` means
 #'     red. Transparency (alpha channel) values are ignored.
 #'   \item A one-column matrix with three rows for the red, green
-#'     and blue channels, as returned by \code{col2rgb} (in the base
+#'     and blue channels, as returned by `col2rgb` (in the base
 #'     grDevices package).
 #' }
 #'
-#' \code{make_style} detects the number of colors to use
-#' automatically (this can be overridden using the \code{colors}
+#' `make_style()` detects the number of colors to use
+#' automatically (this can be overridden using the `colors`
 #' argument). If the number of colors is less than 256 (detected or given),
 #' then it falls back to the color in the ANSI eight color mode that
 #' is closest to the specified (RGB or R) color.
@@ -231,8 +231,8 @@ make_crayon <- function(ansi_seq) {
 #'       " in a block of text\n")
 #' }
 #'
-#' Styles can be combined using the \code{$} operator: \preformatted{  cat(yellow$bgMagenta$bold('Hello world!\n'))
-#' } See also \code{\link{combine_styles}}.
+#' Styles can be combined using the `$` operator: \preformatted{  cat(yellow$bgMagenta$bold('Hello world!\n'))
+#' } See also [combine_styles()].
 #'
 #' Styles can also be nested, and then inner style takes
 #' precedence: \preformatted{  cat(green(
@@ -259,7 +259,7 @@ make_crayon <- function(ansi_seq) {
 #' @export black red green yellow blue magenta cyan white silver
 #' @export bgBlack bgRed bgGreen bgYellow bgBlue bgMagenta bgCyan bgWhite
 #'
-#' @seealso \code{\link{make_style}} for using the 256 ANSI colors.
+#' @seealso [make_style()] for using the 256 ANSI colors.
 #' @examples
 #' cat(blue("Hello", "world!"))
 #'
@@ -286,13 +286,13 @@ NULL
 #' ANSI escape sequences of crayon styles
 #'
 #' You can use this function to list all availables crayon styles,
-#' via \code{names(styles())}, or to explicitly apply an ANSI
+#' via `names(styles())`, or to explicitly apply an ANSI
 #' escape seauence to a string.
 #'
 #' @return A named list. Each list element is a list of two
 #'   strings, named \sQuote{open} and \sQuote{close}.
 #'
-#' @seealso \code{\link{crayon}} for the beginning of the crayon manual.
+#' @seealso [crayon()] for the beginning of the crayon manual.
 #' @export
 #' @examples
 #' names(styles())

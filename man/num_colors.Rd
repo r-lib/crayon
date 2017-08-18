@@ -33,7 +33,7 @@ compatible terminals in fact do support 256 colors.
 There is some discussion about this here:
 \url{https://github.com/r-lib/crayon/issues/17}
 
-For efficiency, \code{num_colors} caches its result. To
+For efficiency, \code{num_colors()} caches its result. To
 re-check the number of colors, set the \code{forget} argument to
 \code{TRUE}.
 }

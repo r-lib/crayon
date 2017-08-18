@@ -57,14 +57,14 @@ has a corresponding function with the same name.
 
 
 \itemize{
-  \item reset
-  \item bold
-  \item blurred (usually called \sQuote{dim}, renamed to avoid name clash)
-  \item italic (not widely supported)
-  \item underline
-  \item inverse
-  \item hidden
-  \item strikethrough (not widely supported)
+\item reset
+\item bold
+\item blurred (usually called \sQuote{dim}, renamed to avoid name clash)
+\item italic (not widely supported)
+\item underline
+\item inverse
+\item hidden
+\item strikethrough (not widely supported)
 }
 }
 
@@ -72,15 +72,15 @@ has a corresponding function with the same name.
 
 
 \itemize{
-  \item black
-  \item red
-  \item green
-  \item yellow
-  \item blue
-  \item magenta
-  \item cyan
-  \item white
-  \item silver (usually called \sQuote{gray}, renamed to avoid name clash)
+\item black
+\item red
+\item green
+\item yellow
+\item blue
+\item magenta
+\item cyan
+\item white
+\item silver (usually called \sQuote{gray}, renamed to avoid name clash)
 }
 }
 
@@ -88,14 +88,14 @@ has a corresponding function with the same name.
 
 
 \itemize{
-  \item bgBlack
-  \item bgRed
-  \item bgGreen
-  \item bgYellow
-  \item bgBlue
-  \item bgMagenta
-  \item bgCyan
-  \item bgWhite
+\item bgBlack
+\item bgRed
+\item bgGreen
+\item bgYellow
+\item bgBlue
+\item bgMagenta
+\item bgCyan
+\item bgWhite
 }
 }
 
@@ -113,7 +113,7 @@ to assemble stings with different styles. \preformatted{  cat("... to highlight 
 }
 
 Styles can be combined using the \code{$} operator: \preformatted{  cat(yellow$bgMagenta$bold('Hello world!\n'))
-} See also \code{\link{combine_styles}}.
+} See also \code{\link[=combine_styles]{combine_styles()}}.
 
 Styles can also be nested, and then inner style takes
 precedence: \preformatted{  cat(green(
@@ -155,5 +155,5 @@ cat(note("Note: no such directory.\\n"))
 
 }
 \seealso{
-\code{\link{make_style}} for using the 256 ANSI colors.
+\code{\link[=make_style]{make_style()}} for using the 256 ANSI colors.
 }

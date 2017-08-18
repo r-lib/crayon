@@ -5,26 +5,26 @@
 #'
 #' @details
 #' The following algorithm is used to detect ANSI support: \itemize{
-#'   \item If the \code{crayon.enabled} option is set to \code{TRUE}
-#'     with \code{options()}, then \code{TRUE} is returned. If it is
-#'     set to something else than \code{TRUE} (typically \code{FALSE}),
-#'     then \code{FALSE} is returned.
+#'   \item If the `crayon.enabled` option is set to `TRUE`
+#'     with [options()], then `TRUE` is returned. If it is
+#'     set to something else than `TRUE` (typically `FALSE`),
+#'     then `FALSE` is returned.
 #'   \item Otherwise, if the standard output is not a terminal, then
-#'     \code{FALSE} is returned.
-#'   \item Otherwise, if the platform is Windows, \code{TRUE} is returned
+#'     `FALSE` is returned.
+#'   \item Otherwise, if the platform is Windows, `TRUE` is returned
 #'     if running in ConEmu (\url{https://conemu.github.io/}) or
 #'     cmder (\url{http://cmder.net}) with ANSI color support.
-#'     Otherwise \code{FALSE} is returned.
-#'   \item Otherwise, if the \code{COLORTERM} environment variable is
-#'     set, \code{TRUE} is returned.
-#'   \item Otherwise, if the \code{TERM} environment variable starts
-#'     with \code{screen}, \code{xterm} or \code{vt100}, or matches
-#'     \code{color}, \code{ansi}, \code{cygwin} or \code{linux}
-#'     (with case insentive matching), then \code{TRUE} is returned.
-#'   \item Otherwise \code{FALSE} is returned.
+#'     Otherwise `FALSE` is returned.
+#'   \item Otherwise, if the `COLORTERM` environment variable is
+#'     set, `TRUE` is returned.
+#'   \item Otherwise, if the `TERM` environment variable starts
+#'     with `screen`, `xterm` or `vt100`, or matches
+#'     `color`, `ansi`, `cygwin` or `linux`
+#'     (with case insentive matching), then `TRUE` is returned.
+#'   \item Otherwise `FALSE` is returned.
 #' }
 #'
-#' @return \code{TRUE} if the current R session supports color.
+#' @return `TRUE` if the current R session supports color.
 #'
 #' @export
 #' @examples
@@ -70,15 +70,15 @@ has_color <- function() {
 #' Number of colors the terminal supports
 #'
 #' @details
-#' If the \code{crayon.colors} option is set, then we
+#' If the `crayon.colors` option is set, then we
 #' just use that. It should be an integer number. You can use this
 #' option as a workaround if crayon does not detect the number of
 #' colors accurately.
 #'
 #' In Emacs, we report eight colors.
 #'
-#' Otherwise, we use the \code{tput} shell command to detect the
-#' number of colors. If \code{tput} is not available,
+#' Otherwise, we use the `tput` shell command to detect the
+#' number of colors. If `tput` is not available,
 #' but we think that the terminal supports colors, then
 #' eigth colors are assumed.
 #'
@@ -87,9 +87,9 @@ has_color <- function() {
 #' There is some discussion about this here:
 #' \url{https://github.com/r-lib/crayon/issues/17}
 #'
-#' For efficiency, \code{num_colors} caches its result. To
-#' re-check the number of colors, set the \code{forget} argument to
-#' \code{TRUE}.
+#' For efficiency, `num_colors()` caches its result. To
+#' re-check the number of colors, set the `forget` argument to
+#' `TRUE`.
 #'
 #' @param forget Whether to forget the cached result of the color check.
 #' @return Numeric scalar, the number of colors the terminal supports.

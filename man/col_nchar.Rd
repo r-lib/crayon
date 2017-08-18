@@ -10,15 +10,15 @@ col_nchar(x, ...)
 \item{x}{Character vector, potentially ANSO styled, or a vector to be
 coarced to character.}
 
-\item{...}{Additional arguments, passed on to \code{base::nchar}
+\item{...}{Additional arguments, passed on to \code{base::nchar()}
 after removing ANSI escape sequences.}
 }
 \value{
 Numeric vector, the length of the strings in the character
-  vector.
+vector.
 }
 \description{
-This is a color-aware counterpart of \code{base::nchar},
+This is a color-aware counterpart of \code{\link[base:nchar]{base::nchar()}},
 which does not do well, since it also counts the ANSI control
 characters.
 }

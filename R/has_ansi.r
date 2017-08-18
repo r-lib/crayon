@@ -7,7 +7,7 @@ ansi_regex <- paste0("(?:(?:\\x{001b}\\[)|\\x{009b})",
 #'
 #' @param string The string to check. It can also be a character
 #'   vector.
-#' @return Logical vector, \code{TRUE} for the strings that have some
+#' @return Logical vector, `TRUE` for the strings that have some
 #'   ANSI styling.
 #'
 #' @export
