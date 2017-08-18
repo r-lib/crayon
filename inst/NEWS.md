@@ -3,6 +3,8 @@
 
 * Autodetect RStudio ANSI support
 
+* `col_align()` gains `type` argument, default `"width"` (#54).
+
 # 1.3.2
 
 * Removed dependency to `memoise` (@brodieG, #25)
