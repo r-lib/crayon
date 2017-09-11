@@ -54,7 +54,7 @@ has_color <- function() {
   }
 
   ## Running in a recent Emacs?
-  if (inside_emacs() && emacs_version()[1] >= 23) { return(TRUE) }
+  if (inside_emacs() && ! is.na(emacs_version()[1]) && emacs_version()[1] >= 23) { return(TRUE) }
 
   ## COLORTERM set?
   if ("COLORTERM" %in% names(Sys.getenv())) { return(TRUE) }
