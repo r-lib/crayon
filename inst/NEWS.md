@@ -1,6 +1,8 @@
 
 # 1.3.2.9000
 
+* Style fucntions convert arguments to character now
+
 * Autodetect RStudio ANSI support
 
 * `col_align()` gains `type` argument, default `"width"` (#54).
