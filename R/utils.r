@@ -1,30 +1,10 @@
 
-data_frame <- function(...) {
-
-  args <- list(...)
-
-  ## Replicate arguments if needed
-  len <- vapply(args, length, numeric(1))
-  stopifnot(length(setdiff(len, 1)) <= 1)
-  len <- max(0, max(len))
-  args <- lapply(args, function(x) rep(x, length.out = len))
-
-  ## Names
-  names <- as.character(names(args))
-  length(names) <- length(args)
-  names <- ifelse(
-    is.na(names) | names == "",
-    paste0("V", seq_along(args)),
-    names)
-
-  structure(args,
-            class = "data.frame",
-            names = names,
-            row.names = seq_along(args[[1]]))
+is_string <- function(x) {
+  is.character(x) && length(x) == 1 && !is.na(x)
 }
 
 check_string <- function(x) {
-  stopifnot(is.character(x), length(x) == 1, !is.na(x))
+  stopifnot(is_string(x))
 }
 
 mypaste <- function(..., sep = " ") {
@@ -131,8 +111,4 @@ rstudio_with_ansi_support <- function() {
   Sys.getenv("RSTUDIO", "") != "" &&
     requireNamespace("rstudioapi", quietly = TRUE) &&
     rstudioapi::hasFun("getConsoleHasColor")
-}
-
-is_string <- function(x) {
-  is.character(x) && length(x) == 1 && !is.na(x)
 }
