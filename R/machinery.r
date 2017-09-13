@@ -307,7 +307,7 @@ data_env <- new.env(parent = emptyenv())
 data_env$my_styles <- structure(list(), names = character())
 
 sapply(names(builtin_styles), function(style) {
-  data_env$my_styles[[style]] <<- builtin_styles[[style]]
+  data_env$my_styles[[style]] <- builtin_styles[[style]]
   assign(style, make_style(style), envir = asNamespace("crayon"))
 })
 
@@ -316,7 +316,7 @@ sapply(names(builtin_styles), function(style) {
 }
 
 define_style <- function(name, ansi_seq) {
-  data_env$my_styles[[name]] <<- ansi_seq
+  data_env$my_styles[[name]] <- ansi_seq
 }
 
 #' Remove a style
@@ -334,6 +334,6 @@ define_style <- function(name, ansi_seq) {
 #' "new_style" %in% names(styles())
 
 drop_style <- function(style) {
-  data_env$my_styles[[style]] <<- NULL
+  data_env$my_styles[[style]] <- NULL
   invisible()
 }
