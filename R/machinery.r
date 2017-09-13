@@ -17,7 +17,7 @@ crayon_template <- function(...) {
 hash_color_regex <- "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
 
 is_builtin_style <- function(x) {
-  x %in% names(builtin_styles)
+  is_string(x) && x %in% names(builtin_styles)
 }
 
 #' @importFrom grDevices colors

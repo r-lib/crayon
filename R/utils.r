@@ -133,3 +133,7 @@ rstudio_with_ansi_support <- function() {
     requireNamespace("rstudioapi", quietly = TRUE) &&
     rstudioapi::hasFun("getConsoleHasColor")
 }
+
+is_string <- function(x) {
+  is.character(x) && length(x) == 1 && !is.na(x)
+}
