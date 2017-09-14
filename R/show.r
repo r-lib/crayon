@@ -23,6 +23,8 @@ show_ansi_colors <- function(colors = num_colors()) {
   }
 }
 
+#' @importFrom grDevices rgb
+
 ansi_colors_256_col <- function() {
   sapply(0:5, function(r) {
     sapply(0:5, function(g) {
@@ -33,6 +35,8 @@ ansi_colors_256_col <- function() {
     })
   })
 }
+
+#' @importFrom grDevices grey
 
 ansi_colors_256_grey <- function() {
   sapply(0:23, function(g) {
