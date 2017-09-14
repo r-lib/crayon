@@ -108,8 +108,16 @@ inside_emacs <- function() {
 }
 
 rstudio_with_ansi_support <- function() {
-  Sys.getenv("RSTUDIO", "") != "" &&
-    requireNamespace("rstudioapi", quietly = TRUE) &&
+  if (Sys.getenv("RSTUDIO", "") == "") return(FALSE)
+
+  ## This is set *before* the rstudio initialization, in 1.1 and above
+  if ((cols <- Sys.getenv("RSTUDIO_CONSOLE_COLOR", "")) != "" &&
+      !is.na(as.numeric(cols))) {
+    return(TRUE)
+  }
+
+  ## This only works if the initialization is complete
+  requireNamespace("rstudioapi", quietly = TRUE) &&
     rstudioapi::hasFun("getConsoleHasColor")
 }
 

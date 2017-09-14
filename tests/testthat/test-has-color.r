@@ -1,22 +1,51 @@
 
 context("Color detection")
 
-test_that("Color is detected properly", {
+test_that("has_color, option", {
 
-  op <- options()
-  on.exit(options(op), add = TRUE)
+  withr::with_options(
+    c(crayon.enabled = FALSE),
+    expect_false(has_color())
+  )
+  withr::with_options(
+    c(crayon.enabled = TRUE),
+    expect_true(has_color())
+  )
+})
 
-  ## If disabled, then no
-  options(crayon.enabled = FALSE)
-  hc <- has_color()
-  options(op)
-  expect_false(hc)
+test_that("has_color, rstudio", {
+  mockery::stub(has_color, "rstudio_with_ansi_support", TRUE)
+  mockery::stub(has_color, "rstudioapi::callFun", TRUE)
+  expect_true(has_color())
+})
 
-  ## If enabled, then yes
-  options(crayon.enabled = TRUE)
-  hc <- has_color()
-  expect_true(hc)
+test_that("has_color, not a terminal", {
+  mockery::stub(has_color, "rstudio_with_ansi_support", FALSE)
+  mockery::stub(has_color, "isatty", FALSE)
+  withr::with_options(
+    list(crayon.enabled = NULL),
+    expect_false(has_color())
+  )
+})
 
+test_that("has_color, windows terminal", {
+  mockery::stub(has_color, "rstudio_with_ansi_support", FALSE)
+  mockery::stub(has_color, "os_type", "windows")
+  withr::with_envvar(
+    c(ConEmuANSI = "ON", CMDER_ROOT = ""),
+    expect_true(has_color())
+  )
+  withr::with_envvar(
+    c(ConEmuANSI = "OFF", CMDER_ROOT = "/foobar"),
+    expect_true(has_color())
+  )
+  withr::with_options(
+    list(crayon.enabled = NULL),
+    withr::with_envvar(
+      c(ConEmuANSI = "OFF", CMDER_ROOT = NA_character_),
+      expect_false(has_color())
+    )
+  )
 })
 
 test_that("number of colors is detected", {
@@ -24,7 +53,6 @@ test_that("number of colors is detected", {
   nc <- num_colors()
   expect_true(nc > 0)
   expect_equal(nc, as.integer(nc))
-
 })
 
 test_that("closure based memoization works", {

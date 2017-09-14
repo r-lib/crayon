@@ -58,7 +58,7 @@ has_color <- function() {
   if (!isatty(stdout())) { return(FALSE) }
 
   ## Are we in a windows terminal with color support?
-  if (.Platform$OS.type == "windows") {
+  if (os_type() == "windows") {
     if (Sys.getenv("ConEmuANSI") == "ON") { return(TRUE) }
     if (Sys.getenv("CMDER_ROOT") != "") { return(TRUE) }
 
