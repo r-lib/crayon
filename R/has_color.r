@@ -141,6 +141,17 @@ i_num_colors <- function() {
   ## Emacs
   if (inside_emacs()) { return(8) }
 
+  ## Are we in a windows terminal with color support?
+  if (os_type() == "windows") {
+    if (Sys.getenv("ConEmuANSI") == "ON" ||
+        Sys.getenv("CMDER_ROOT") != "") {
+      return(get_terminal_colors())
+    }
+
+    ## Are we in another windows terminal or GUI? :(
+    return(1)
+  }
+
   ## Otherwise
   get_terminal_colors()
 }
