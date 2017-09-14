@@ -33,6 +33,19 @@ with \code{screen}, \code{xterm} or \code{vt100}, or matches
 \item Otherwise \code{FALSE} is returned.
 }
 }
+\section{Sinks}{
+
+Note that \code{has_color()} returns \code{FALSE} if a sink is active
+(see \code{\link[=sink]{sink()}}). It assumes that the constructed string will be printed
+to the standard output, and \code{sink()} redirects to a file, and usually
+you don't want ANSI colors in the file.
+
+The same applies to the case when R's standard output is redirected
+to a file, from the command line, e.g.:\preformatted{R -q -e 'cat(crayon::red("no color here\n"))' > /tmp/crayon-test.txt
+cat /tmp/crayon-test.txt
+}
+}
+
 \examples{
 has_color()
 }

@@ -24,6 +24,19 @@
 #'   \item Otherwise `FALSE` is returned.
 #' }
 #'
+#' @section Sinks:
+#' Note that `has_color()` returns `FALSE` if a sink is active
+#' (see [sink()]). It assumes that the constructed string will be printed
+#' to the standard output, and `sink()` redirects to a file, and usually
+#' you don't want ANSI colors in the file.
+#'
+#' The same applies to the case when R's standard output is redirected
+#' to a file, from the command line, e.g.:
+#' ```
+#' R -q -e 'cat(crayon::red("no color here\n"))' > /tmp/crayon-test.txt
+#' cat /tmp/crayon-test.txt
+#' ```
+#'
 #' @return `TRUE` if the current R session supports color.
 #'
 #' @export
@@ -89,7 +102,8 @@ has_color <- function() {
 #'
 #' For efficiency, `num_colors()` caches its result. To
 #' re-check the number of colors, set the `forget` argument to
-#' `TRUE`.
+#' `TRUE`. The cached value is only used if no sinks are active,
+#' see also [has_color()] for more information about sinks.
 #'
 #' @param forget Whether to forget the cached result of the color check.
 #' @return Numeric scalar, the number of colors the terminal supports.

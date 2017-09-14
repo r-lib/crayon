@@ -35,7 +35,8 @@ There is some discussion about this here:
 
 For efficiency, \code{num_colors()} caches its result. To
 re-check the number of colors, set the \code{forget} argument to
-\code{TRUE}.
+\code{TRUE}. The cached value is only used if no sinks are active,
+see also \code{\link[=has_color]{has_color()}} for more information about sinks.
 }
 \examples{
 num_colors()
