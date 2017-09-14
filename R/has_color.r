@@ -103,8 +103,15 @@ num_colors <- (function() {
   cache <- NULL
 
   function(forget=FALSE) {
-    if (forget || is.null(cache)) cache <<- i_num_colors()
-    cache
+    if (forget || is.null(cache)) {
+      result <- i_num_colors()
+      if (sink.number() == 0 && rstudio_initialized()) {
+        cache <<- result
+      }
+    } else {
+      result <- cache
+    }
+    result
   }
 })()
 

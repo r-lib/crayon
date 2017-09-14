@@ -112,3 +112,16 @@ rstudio_with_ansi_support <- function() {
     requireNamespace("rstudioapi", quietly = TRUE) &&
     rstudioapi::hasFun("getConsoleHasColor")
 }
+
+rstudio_initialized <- function() {
+  ## Not in RStudio, so no worries
+  if (Sys.getenv("RSTUDIO") == "") return(TRUE)
+
+  ## Otherwise check
+  requireNamespace("rstudioapi", quietly = TRUE) &&
+    rstudioapi::isAvailable()
+}
+
+os_type <- function() {
+  .Platform$OS.type
+}
