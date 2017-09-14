@@ -37,7 +37,7 @@ has_color <- function() {
   if (!is.null(enabled)) { return(isTRUE(enabled))  }
 
   ## RStudio with (potential) ANSI support?
-  if (rstudio_with_ansi_support()) {
+  if (rstudio_with_ansi_support() && sink.number() == 0) {
     return(rstudioapi::callFun("getConsoleHasColor"))
   }
 
