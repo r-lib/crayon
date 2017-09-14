@@ -138,6 +138,8 @@ i_num_colors <- function() {
   ## RStudio
   if (rstudio_with_ansi_support()) { return(256) }
 
+  if (!has_color()) { return(1) }
+
   ## Emacs
   if (inside_emacs()) { return(8) }
 
@@ -159,8 +161,10 @@ i_num_colors <- function() {
 get_terminal_colors <- function() {
   ## Try to run tput colors. If it did not run, but has_colors() is TRUE,
   ## then we just report 8 colors
-  cols <- suppressWarnings(try(silent = TRUE,
-              as.numeric(system("tput colors", intern = TRUE))))
+  cols <- suppressWarnings(try(
+    silent = TRUE,
+    as.numeric(system("tput colors 2>/dev/null", intern = TRUE))[1]
+  ))
   if (inherits(cols, "try-error") || !length(cols) || is.na(cols)) { return(8) }
   if (cols %in% c(-1, 0, 1)) { return(1) }
 
