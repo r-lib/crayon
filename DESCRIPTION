@@ -38,6 +38,7 @@ Imports:
     methods,
     utils
 Suggests:
+    mockery,
     rstudioapi,
     testthat
 RoxygenNote: 6.0.1.9000

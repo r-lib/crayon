@@ -46,31 +46,18 @@ test_that("closure based memoization works", {
 
 test_that("tput errors are handled gracefully", {
 
-  # if tput errors num_colors is 8
-  with_mock(
-            `base::system` = function(...) stop("Error!"),
+  ## if tput errors num_colors is 8
+  mockery::stub(get_terminal_colors, "system", function(...) stop("Error!"))
+  expect_equal(get_terminal_colors(), 8)
 
-            expect_equal(num_colors(forget = TRUE), 8)
-            )
+  ## if tput returns nothing num_colors is 8
+  mockery::stub(get_terminal_colors, "system", function(...) character(0))
+  expect_equal(get_terminal_colors(), 8)
 
-  # if tput returns nothing num_colors is 8
-  with_mock(
-            `base::system` = function(...) character(0),
+  ## if tput returns a non-number num_colors is 8
+  mockery::stub(get_terminal_colors, "system", function(...) "no colors!")
 
-            expect_equal(num_colors(forget = TRUE), 8)
-            )
-
-  # if tput returns a non-number num_colors is 8
-  with_mock(
-            `base::system` = function(...) "no colors found!",
-
-            expect_equal(num_colors(forget = TRUE), 8)
-            )
-
-  # if tput returns a number the result is that number
-  with_mock(
-            `base::system` = function(...) "16",
-
-            expect_equal(num_colors(forget = TRUE), 16)
-            )
+  ## if tput returns a number the result is that number
+  mockery::stub(get_terminal_colors, "system", function(...) 16)
+  expect_equal(get_terminal_colors(), 16)
 })

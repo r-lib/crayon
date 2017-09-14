@@ -114,15 +114,17 @@ i_num_colors <- function() {
   cols <- getOption("crayon.colors")
   if (!is.null(cols)) { return(as.integer(cols)) }
 
-  ## Otherwise try to detect. If no color support, then 1
-  if (!has_color()) { return(1) }
-
   ## RStudio
   if (rstudio_with_ansi_support()) { return(256) }
 
   ## Emacs
   if (inside_emacs()) { return(8) }
 
+  ## Otherwise
+  get_terminal_colors()
+}
+
+get_terminal_colors <- function() {
   ## Try to run tput colors. If it did not run, but has_colors() is TRUE,
   ## then we just report 8 colors
   cols <- suppressWarnings(try(silent = TRUE,
