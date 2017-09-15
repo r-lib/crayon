@@ -51,7 +51,7 @@ has_color <- function() {
 
   ## RStudio with (potential) ANSI support?
   if (rstudio_with_ansi_support() && sink.number() == 0) {
-    return(rstudioapi::callFun("getConsoleHasColor"))
+    return(TRUE)
   }
 
   ## Are we in a terminal? No?

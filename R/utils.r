@@ -118,6 +118,7 @@ rstudio_with_ansi_support <- function() {
 
   ## This only works if the initialization is complete
   requireNamespace("rstudioapi", quietly = TRUE) &&
+    rstudioapi::isAvailable() &&
     rstudioapi::hasFun("getConsoleHasColor")
 }
 
