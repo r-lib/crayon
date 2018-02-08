@@ -9,6 +9,8 @@
 #'     with [options()], then `TRUE` is returned. If it is
 #'     set to something else than `TRUE` (typically `FALSE`),
 #'     then `FALSE` is returned.
+#'   \item Otherwise, if the `NO_COLOR` environment variable is
+#'     set, `FALSE` is returned.
 #'   \item Otherwise, if the standard output is not a terminal, then
 #'     `FALSE` is returned.
 #'   \item Otherwise, if the platform is Windows, `TRUE` is returned
