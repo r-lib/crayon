@@ -9,6 +9,8 @@
 #'     with [options()], then `TRUE` is returned. If it is
 #'     set to something else than `TRUE` (typically `FALSE`),
 #'     then `FALSE` is returned.
+#'   \item Otherwise, if the `NO_COLOR` environment variable is
+#'     set, `FALSE` is returned.
 #'   \item Otherwise, if the standard output is not a terminal, then
 #'     `FALSE` is returned.
 #'   \item Otherwise, if the platform is Windows, `TRUE` is returned
@@ -49,6 +51,10 @@ has_color <- function() {
   enabled <- getOption("crayon.enabled")
   if (!is.null(enabled)) { return(isTRUE(enabled))  }
 
+  if (!is.na(Sys.getenv("NO_COLOR", NA))) {
+    return(FALSE)
+  }
+  
   ## RStudio with (potential) ANSI support?
   if (rstudio_with_ansi_support() && sink.number() == 0) {
     return(TRUE)
