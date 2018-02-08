@@ -91,8 +91,11 @@ test_that("tput errors are handled gracefully", {
 })
 
 test_that("has_color, NO_COLOR=1", {
-  withr::with_envvar(
-    c(NO_COLOR="1"),
-    expect_false(has_color())
+  withr::with_options(
+    list(crayon.enabled = NULL),
+    withr::with_envvar(
+      c(NO_COLOR="1"),
+      expect_false(has_color())
+    )
   )
 })
