@@ -18,6 +18,8 @@ The following algorithm is used to detect ANSI support: \itemize{
 with \code{\link[=options]{options()}}, then \code{TRUE} is returned. If it is
 set to something else than \code{TRUE} (typically \code{FALSE}),
 then \code{FALSE} is returned.
+\item Otherwise, if the \code{NO_COLOR} environment variable is
+set, \code{FALSE} is returned.
 \item Otherwise, if the standard output is not a terminal, then
 \code{FALSE} is returned.
 \item Otherwise, if the platform is Windows, \code{TRUE} is returned
