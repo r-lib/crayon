@@ -1,3 +1,6 @@
+# Next
+
+* `NO_COLOR` enviroment variable disables color (#64)
 
 # 1.3.4
 

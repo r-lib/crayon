@@ -89,3 +89,10 @@ test_that("tput errors are handled gracefully", {
   mockery::stub(get_terminal_colors, "system", function(...) 16)
   expect_equal(get_terminal_colors(), 16)
 })
+
+test_that("has_color, NO_COLOR=1", {
+  withr::with_envvar(
+    c(NO_COLOR="1"),
+    expect_false(has_color())
+  )
+})
