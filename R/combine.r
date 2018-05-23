@@ -12,7 +12,7 @@
 #' e.g. background color, foreground color, bold font.
 #'
 #' The `$` operator can also be used to combine styles.
-#' Not that the left hand side of `$` is a style function,
+#' Note that the left hand side of `$` is a style function,
 #' and the right hand side is the name of a style in [styles()].
 #'
 #' @param ... The styles to combine. They will be applied from
