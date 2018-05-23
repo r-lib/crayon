@@ -31,7 +31,7 @@ library(crayon)
 
 ## Styles
 
-Crayon defines several styles, that can be combined. Each style in the list
+Crayon defines several styles that can be combined. Each style in the list
 has a corresponding function with the same name.
 
 ### General styles
@@ -82,8 +82,8 @@ library(crayon)
 cat(blue("Hello", "world!\n"))
 ```
 
-Crayon defines the `%+%` string concatenation operator, to make it easy
-to assemble stings with different styles.
+Crayon defines the `%+%` string concatenation operator to make it easy
+to assemble strings with different styles.
 
 ```r
 cat("... to highlight the " %+% red("search term") %+% " in a block of text\n")
@@ -121,7 +121,7 @@ cat(note("Note: no such directory.\n"))
 Most modern terminals support the ANSI standard for 256 colors,
 and you can define new styles that make use of them. The `make_style`
 function defines a new style. It can handle R's built in color names
-(see the output of `colors()`), and also RGB specifications, via the
+(see the output of `colors()`) as well as RGB specifications via the
 `rgb()` function. It automatically chooses the ANSI colors that
 are closest to the specified R and RGB colors, and it also has
 a fallback to terminals with 8 ANSI colors only.
