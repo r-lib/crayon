@@ -233,3 +233,57 @@ test_that("col_align", {
     col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "right"),
     c("   foo", "\u6210\u4ea4\u65e5", "      ", "     a"))
 })
+
+test_that("col_strwrap", {
+  rainbow_text <- paste(rep(c(red("red"), yellow("yellow"), green("green"), 
+      cyan("cyan"), blue("blue"), magenta("magenta")), 10), collapse = " ")
+  
+  lorem_ipsum <- paste0("Lorem ipsum dolor sit amet, consectetur adipiscing ",
+    "elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+    "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ",
+    "ut aliquip ex ea commodo consequat. Duis aute irure dolor in ", 
+    "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla ", 
+    "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa ",
+    "qui officia deserunt mollit anim id est laborum.")
+  
+  # splint sentence clauses 
+  lorem_ipsum <- unlist(strsplit(lorem_ipsum, "(?<=,|\\.)", perl = TRUE))
+  
+  # color sentence clauses randomly
+  lorem_ipsum <- unlist(Map(function(x, f) f(x), lorem_ipsum,
+    sample(c(red, yellow, green, cyan, blue, magenta, 
+             bgRed, bgYellow, bgGreen, bgCyan, bgBlue, bgMagenta), 
+      length(lorem_ipsum), 
+      replace = TRUE)))
+  
+  # merge randomly colored segements
+  lorem_ipsum <- paste0(lorem_ipsum, collapse = "")
+  
+  # test a bunch of permutations of various inputs to compare against 
+  # base::strwrap
+  test_text <- list("", rainbow_text, lorem_ipsum, c(rainbow_text, lorem_ipsum))
+  for (width in c(20, 80))
+    for (indent in c(1, 5))
+      for (exdent in c(1, 5))
+        for (prefix in c("", "#>"))
+          for (initial in c("", "#>")) 
+            for (simplify in c(TRUE, FALSE))
+              for (text in test_text) {
+                
+    expect_equal({
+        col_strwrap_out <- col_strwrap(x = text, width = width, indent = indent, 
+            exdent = exdent, prefix = prefix, initial = initial, 
+            simplify = simplify)
+        
+        # handle differences in strip_style behavior on output
+        if (simplify) strip_style(col_strwrap_out)
+        else lapply(col_strwrap_out, strip_style)
+      },
+      {
+        text_stripped <- sapply(text, strip_style, USE.NAMES = FALSE)
+        strwrap(x = text_stripped, width = width, indent = indent, 
+            exdent = exdent, prefix = prefix, initial = initial, 
+            simplify = simplify)
+    })
+  }
+})

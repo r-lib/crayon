@@ -316,3 +316,80 @@ strrep <- function (x, times) {
     USE.NAMES = FALSE
   )
 }
+
+#' Helper function for wrapping crayon text
+#'
+#' A drop-in replacement for \code{strwrap} for use with stylized crayon text.
+#'
+#' @inheritParams base::strwrap
+#' @return a character vector of line content after wrapping
+#' 
+#' @family ANSI string operations
+#' 
+#' @export
+#'
+#' @examples
+#' 
+#' text <- paste(rep(c(red("red"), yellow("yellow"), green("green"), 
+#'     cyan("cyan"), blue("blue"), magenta("magenta")), 5), collapse = " ")
+#' 
+#' wrapped_crayon_output <- col_strwrap(
+#'   text, 
+#'   indent = 1, 
+#'   exdent = 3, 
+#'   initial = bgBlack(white("<#> ")),
+#'   prefix  = bgBlack(white(" #> ")))
+#' 
+#' cat(paste(wrapped_crayon_output, collapse = "\n"))
+#'
+
+col_strwrap <- function(x, width = 0.9 * getOption("width"), indent = 0,
+    exdent = 0, prefix = "", simplify = TRUE, initial = prefix) {
+  
+  x_strip <- sapply(x, strip_style, USE.NAMES = FALSE)
+  
+  # use space character for prefixes to strip out prefix from strwrap template
+  x_strip_wrap <- strwrap(x_strip, width = width, 
+      indent = indent, exdent = exdent, simplify = FALSE,
+      prefix = if (p <- col_nchar(prefix)) strrep(" ", p) else "",  
+      initial = if (i <- col_nchar(initial)) strrep(" ", i) else "")
+  
+  x_out <- Map(function(x, x_strip_wrap, pre = initial, xi_out = c()) {
+      for (next_x in x_strip_wrap) {
+        # sort out next line characters and leading strwrap whitespace
+        next_x_lead_ws <- nchar(gsub("^(\\s*).*", "\\1", next_x))
+        next_x_trimmed <- nchar(gsub("^\\s*(.*?)\\s*$", "\\1", next_x))
+        x_leading_ws   <- nchar(gsub("^(\\s*).*", "\\1", strip_style(x)))
+      
+        if (nchar(x)) {
+          # reconstruct the next line and add to output
+          xi_out <- append(
+              xi_out,
+              pre %+% 
+                strrep(" ", next_x_lead_ws - col_nchar(pre)) %+%
+                col_substr(x, 1 + x_leading_ws, next_x_trimmed + x_leading_ws))
+        } else { 
+          # handle edge case, ignoring initial for "" strings
+          xi_out <- append(xi_out, "")
+        }
+        
+        # for any following lines, use the prefix instead of initial
+        pre <- prefix
+
+        # cut out already processed strings
+        x <- col_substr(x, 1 + nchar(next_x) - (next_x_lead_ws - 1), nchar(x))
+      }
+      
+      xi_out
+    },
+    x = x,
+    x_strip_wrap = x_strip_wrap,
+    pre = c(initial, rep(prefix, length(x) - 1)))
+    
+  names(x_out) <- names(x)
+  if (simplify) as.character(unlist(x_out))
+  else x_out
+}
+
+
+
