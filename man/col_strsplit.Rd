@@ -44,6 +44,6 @@ strsplit(strip_style(str), "")
 }
 \seealso{
 Other ANSI string operations: \code{\link{col_align}},
-  \code{\link{col_nchar}}, \code{\link{col_substring}},
-  \code{\link{col_substr}}
+  \code{\link{col_nchar}}, \code{\link{col_strwrap}},
+  \code{\link{col_substring}}, \code{\link{col_substr}}
 }

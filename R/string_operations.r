@@ -390,6 +390,3 @@ col_strwrap <- function(x, width = 0.9 * getOption("width"), indent = 0,
   if (simplify) as.character(unlist(x_out))
   else x_out
 }
-
-
-
