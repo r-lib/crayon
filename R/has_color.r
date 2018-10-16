@@ -67,6 +67,7 @@ has_color <- function() {
   if (os_type() == "windows") {
     if (Sys.getenv("ConEmuANSI") == "ON") { return(TRUE) }
     if (Sys.getenv("CMDER_ROOT") != "") { return(TRUE) }
+    if (Sys.getenv("ANSICON") != "") {  return(TRUE) }
 
     ## Are we in another windows terminal or GUI? :(
     return(FALSE)
@@ -155,6 +156,7 @@ i_num_colors <- function() {
         Sys.getenv("CMDER_ROOT") != "") {
       return(get_terminal_colors())
     }
+    if (Sys.getenv("ANSICON") != "") return(8)
 
     ## Are we in another windows terminal or GUI? :(
     return(1)

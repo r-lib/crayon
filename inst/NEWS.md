@@ -2,6 +2,9 @@
 
 * `NO_COLOR` enviroment variable disables color (#64)
 
+* Now colors are turned on if ANSICON (<https://github.com/adoxa/ansicon>
+  is active.
+
 # 1.3.4
 
 * Style fucntions convert arguments to character now
