@@ -10,7 +10,10 @@
 #'
 #' See also
 #' <https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda>.
-#' 
+#'
+#' @param text Text to show. `text` and `url` are recycled to match their
+#'   length, via a `paste0()` call.
+#' @param url URL to link to.
 #' @return Logical scalar, for `has_hyperlink()`.
 #' 
 #' @export

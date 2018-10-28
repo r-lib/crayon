@@ -9,6 +9,12 @@ hyperlink(text, url)
 
 has_hyperlink()
 }
+\arguments{
+\item{text}{Text to show. \code{text} and \code{url} are recycled to match their
+length, via a \code{paste0()} call.}
+
+\item{url}{URL to link to.}
+}
 \value{
 Logical scalar, for \code{has_hyperlink()}.
 }
