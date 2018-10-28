@@ -55,3 +55,4 @@ Other ANSI string operations: \code{\link{col_align}},
   \code{\link{col_nchar}}, \code{\link{col_strsplit}},
   \code{\link{col_substring}}
 }
+\concept{ANSI string operations}

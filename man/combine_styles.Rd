@@ -33,7 +33,7 @@ It does make sense to combine different kind of styles,
 e.g. background color, foreground color, bold font.
 
 The \code{$} operator can also be used to combine styles.
-Not that the left hand side of \code{$} is a style function,
+Note that the left hand side of \code{$} is a style function,
 and the right hand side is the name of a style in \code{\link[=styles]{styles()}}.
 }
 \examples{

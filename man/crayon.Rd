@@ -4,7 +4,6 @@
 \name{crayon}
 \alias{crayon}
 \alias{crayon-package}
-\alias{crayon}
 \alias{reset}
 \alias{bold}
 \alias{blurred}

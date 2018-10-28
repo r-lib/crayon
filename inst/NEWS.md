@@ -5,6 +5,10 @@
 * Now colors are turned on if ANSICON (<https://github.com/adoxa/ansicon>)
   is active.
 
+* New `hyperlink()` function to add hyperlinks to terminal output.
+  The new `has_hyperlink()` function tests if the current `stdout()`
+  supports this.
+
 # 1.3.4
 
 * Style fucntions convert arguments to character now
