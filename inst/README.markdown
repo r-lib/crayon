@@ -25,8 +25,7 @@ inspired by [chalk](https://github.com/sindresorhus/chalk).
 ## Installation
 
 ```r
-devtools::install_github("r-lib/crayon")
-library(crayon)
+install.packages("crayon")
 ```
 
 ## Styles
