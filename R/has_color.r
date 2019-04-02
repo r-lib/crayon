@@ -128,6 +128,8 @@ num_colors <- (function() {
       result <- i_num_colors()
       if (sink.number() == 0 && rstudio_initialized()) {
         cache <<- result
+      } else {
+        cache <<- NULL
       }
     } else {
       result <- cache
