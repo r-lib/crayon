@@ -1,6 +1,6 @@
 # Next
 
-* `NO_COLOR` enviroment variable disables color (#64)
+* `NO_COLOR` environment variable disables color (#64)
 
 * Now colors are turned on if ANSICON (<https://github.com/adoxa/ansicon>)
   is active.
@@ -9,9 +9,12 @@
   The new `has_hyperlink()` function tests if the current `stdout()`
   supports this.
 
+* `reset` style now restores previous style for text following it (@brodieG,
+  #35).
+
 # 1.3.4
 
-* Style fucntions convert arguments to character now
+* Style functions convert arguments to character now
 
 * Autodetect RStudio ANSI support
 

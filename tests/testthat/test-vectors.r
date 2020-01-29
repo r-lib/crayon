@@ -51,8 +51,9 @@ test_that("Nested styles of the same type are supported", {
 test_that("Reset all styles", {
 
   expect_equal(reset(red$bgGreen$underline(foobar) %+% foobar),
-               c('\u001b[0m\u001b[31m\u001b[42m\u001b[4mfoo\u001b[24m\u001b[49m\u001b[39mfoo\u001b[0m',
-                 '\u001b[0m\u001b[31m\u001b[42m\u001b[4mbar\u001b[24m\u001b[49m\u001b[39mbar\u001b[0m'))
+
+c("\033[0m\033[31m\033[42m\033[4mfoo\033[24m\033[49m\033[39mfoo\033[0m\033[22m\033[23m\033[24m\033[27m\033[28m\033[29m\033[39m\033[49m", "\033[0m\033[31m\033[42m\033[4mbar\033[24m\033[49m\033[39mbar\033[0m\033[22m\033[23m\033[24m\033[27m\033[28m\033[29m\033[39m\033[49m")
+)
 })
 
 test_that("Variable number of arguments", {
