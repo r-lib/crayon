@@ -1,3 +1,22 @@
+# Next
+
+* `NO_COLOR` enviroment variable disables color (#64)
+
+* Now colors are turned on if ANSICON (<https://github.com/adoxa/ansicon>)
+  is active.
+
+* New `hyperlink()` function to add hyperlinks to terminal output.
+  The new `has_hyperlink()` function tests if the current `stdout()`
+  supports this.
+
+# 1.3.4
+
+* Style fucntions convert arguments to character now
+
+* Autodetect RStudio ANSI support
+
+* `col_align()` gains `type` argument, default `"width"` (#54).
+
 # 1.3.2
 
 * Removed dependency to `memoise` (@brodieG, #25)

@@ -10,10 +10,10 @@ style(string, as = NULL, bg = NULL)
 \item{string}{Character vector to style.}
 
 \item{as}{Style function to apply, either the function object,
-or its name, or an object to pass to \code{\link{make_style}}.}
+or its name, or an object to pass to \code{\link[=make_style]{make_style()}}.}
 
 \item{bg}{Background style, a style function, or a name that
-is passed to \code{\link{make_style}}.}
+is passed to \code{\link[=make_style]{make_style()}}.}
 }
 \value{
 Styled character vector.
@@ -27,4 +27,3 @@ style("foobar", bold)
 style("foobar", "bold")
 bold("foobar")
 }
-

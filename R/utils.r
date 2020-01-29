@@ -1,35 +1,14 @@
 
-data_frame <- function(...) {
-
-  args <- list(...)
-
-  ## Replicate arguments if needed
-  len <- vapply(args, length, numeric(1))
-  stopifnot(length(setdiff(len, 1)) <= 1)
-  len <- max(0, max(len))
-  args <- lapply(args, function(x) rep(x, length.out = len))
-
-  ## Names
-  names <- as.character(names(args))
-  length(names) <- length(args)
-  names <- ifelse(
-    is.na(names) | names == "",
-    paste0("V", seq_along(args)),
-    names)
-
-  structure(args,
-            class = "data.frame",
-            names = names,
-            row.names = seq_along(args[[1]]))
+is_string <- function(x) {
+  is.character(x) && length(x) == 1 && !is.na(x)
 }
 
 check_string <- function(x) {
-  stopifnot(is.character(x), length(x) == 1, !is.na(x))
+  stopifnot(is_string(x))
 }
 
 mypaste <- function(..., sep = " ") {
-  args <- list(...)
-  if (any(!sapply(args, is.character))) stop("Need character strings")
+  args <- lapply(list(...), as.character)
   len <- setdiff(sapply(args, length), 1)
   if (length(len) > 1) {
     stop("All character vectors must have the same length (or length 1)")
@@ -125,5 +104,33 @@ emacs_version <- function() {
 }
 
 inside_emacs <- function() {
-  Sys.getenv("EMACS") != ""
+    Sys.getenv("EMACS") != "" || Sys.getenv("INSIDE_EMACS") != ""
+}
+
+rstudio_with_ansi_support <- function() {
+  if (Sys.getenv("RSTUDIO", "") == "") return(FALSE)
+
+  ## This is set *before* the rstudio initialization, in 1.1 and above
+  if ((cols <- Sys.getenv("RSTUDIO_CONSOLE_COLOR", "")) != "" &&
+      !is.na(as.numeric(cols))) {
+    return(TRUE)
+  }
+
+  ## This only works if the initialization is complete
+  requireNamespace("rstudioapi", quietly = TRUE) &&
+    rstudioapi::isAvailable() &&
+    rstudioapi::hasFun("getConsoleHasColor")
+}
+
+rstudio_initialized <- function() {
+  ## Not in RStudio, so no worries
+  if (Sys.getenv("RSTUDIO") == "") return(TRUE)
+
+  ## Otherwise check
+  requireNamespace("rstudioapi", quietly = TRUE) &&
+    rstudioapi::isAvailable()
+}
+
+os_type <- function() {
+  .Platform$OS.type
 }

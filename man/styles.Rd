@@ -8,7 +8,7 @@ styles()
 }
 \value{
 A named list. Each list element is a list of two
-  strings, named \sQuote{open} and \sQuote{close}.
+strings, named \sQuote{open} and \sQuote{close}.
 }
 \description{
 You can use this function to list all availables crayon styles,
@@ -20,6 +20,5 @@ names(styles())
 cat(styles()[["bold"]]$close)
 }
 \seealso{
-\code{\link{crayon}} for the beginning of the crayon manual.
+\code{\link[=crayon]{crayon()}} for the beginning of the crayon manual.
 }
-

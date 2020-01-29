@@ -1,10 +1,12 @@
 
+# nocov start
 fgcodes <- c(paste0('\x1b[38;5;', 0:255, 'm'), '\x1b[39m')
 bgcodes <- c(paste0('\x1b[48;5;', 0:255, 'm'), '\x1b[49m')
 
 rgb_index <- 17:232
 gray_index <- 233:256
 reset_index <- 257
+#nocov end
 
 ansi256 <- function(rgb, bg = FALSE, grey = FALSE) {
   codes <- if (bg) bgcodes else fgcodes

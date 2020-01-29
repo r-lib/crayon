@@ -3,11 +3,11 @@ ansi_regex <- paste0("(?:(?:\\x{001b}\\[)|\\x{009b})",
                      "(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])",
                      "|\\x{001b}[A-M]")
 
-#' Check if a sting has some ANSI styling
+#' Check if a string has some ANSI styling
 #'
 #' @param string The string to check. It can also be a character
 #'   vector.
-#' @return Logical vector, \code{TRUE} for the strings that have some
+#' @return Logical vector, `TRUE` for the strings that have some
 #'   ANSI styling.
 #'
 #' @export

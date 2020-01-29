@@ -19,10 +19,10 @@ of \code{x}.}
 }
 \value{
 Character vector of the same length as \code{x}, containing
-  the requested substrings. ANSI styles are retained.
+the requested substrings. ANSI styles are retained.
 }
 \description{
-This is the color-aware counterpart of \code{base::substring}.
+This is the color-aware counterpart of \code{\link[base:substring]{base::substring()}}.
 It works exactly like the original, but keeps the colors in the
 substrings. The ANSI escape sequences are ignored when
 calculating the positions within the string.
@@ -52,7 +52,8 @@ cat(col_substring(str2, c(3,5), c(7, 18)), sep = "\\n")
 substring(strip_style(str2), c(3,5), c(7, 18))
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_nchar}},
-  \code{\link{col_strsplit}}, \code{\link{col_substr}}
+Other ANSI string operations: \code{\link{col_align}},
+  \code{\link{col_nchar}}, \code{\link{col_strsplit}},
+  \code{\link{col_substr}}
 }
-
+\concept{ANSI string operations}

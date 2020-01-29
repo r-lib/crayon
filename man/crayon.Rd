@@ -2,33 +2,33 @@
 % Please edit documentation in R/crayon-package.r, R/machinery.r
 \docType{package}
 \name{crayon}
-\alias{bgBlack}
-\alias{bgBlue}
-\alias{bgCyan}
-\alias{bgGreen}
-\alias{bgMagenta}
-\alias{bgRed}
-\alias{bgWhite}
-\alias{bgYellow}
-\alias{black}
-\alias{blue}
-\alias{blurred}
-\alias{bold}
 \alias{crayon}
 \alias{crayon-package}
-\alias{cyan}
-\alias{green}
-\alias{hidden}
-\alias{inverse}
-\alias{italic}
-\alias{magenta}
-\alias{red}
 \alias{reset}
-\alias{silver}
-\alias{strikethrough}
+\alias{bold}
+\alias{blurred}
+\alias{italic}
 \alias{underline}
-\alias{white}
+\alias{inverse}
+\alias{hidden}
+\alias{strikethrough}
+\alias{black}
+\alias{red}
+\alias{green}
 \alias{yellow}
+\alias{blue}
+\alias{magenta}
+\alias{cyan}
+\alias{white}
+\alias{silver}
+\alias{bgBlack}
+\alias{bgRed}
+\alias{bgGreen}
+\alias{bgYellow}
+\alias{bgBlue}
+\alias{bgMagenta}
+\alias{bgCyan}
+\alias{bgWhite}
 \title{Colored terminal output}
 \usage{
 ## Simple styles
@@ -56,14 +56,14 @@ has a corresponding function with the same name.
 
 
 \itemize{
-  \item reset
-  \item bold
-  \item blurred (usually called \sQuote{dim}, renamed to avoid name clash)
-  \item italic (not widely supported)
-  \item underline
-  \item inverse
-  \item hidden
-  \item strikethrough (not widely supported)
+\item reset
+\item bold
+\item blurred (usually called \sQuote{dim}, renamed to avoid name clash)
+\item italic (not widely supported)
+\item underline
+\item inverse
+\item hidden
+\item strikethrough (not widely supported)
 }
 }
 
@@ -71,15 +71,15 @@ has a corresponding function with the same name.
 
 
 \itemize{
-  \item black
-  \item red
-  \item green
-  \item yellow
-  \item blue
-  \item magenta
-  \item cyan
-  \item white
-  \item silver (usually called \sQuote{gray}, renamed to avoid name clash)
+\item black
+\item red
+\item green
+\item yellow
+\item blue
+\item magenta
+\item cyan
+\item white
+\item silver (usually called \sQuote{gray}, renamed to avoid name clash)
 }
 }
 
@@ -87,14 +87,14 @@ has a corresponding function with the same name.
 
 
 \itemize{
-  \item bgBlack
-  \item bgRed
-  \item bgGreen
-  \item bgYellow
-  \item bgBlue
-  \item bgMagenta
-  \item bgCyan
-  \item bgWhite
+\item bgBlack
+\item bgRed
+\item bgGreen
+\item bgYellow
+\item bgBlue
+\item bgMagenta
+\item bgCyan
+\item bgWhite
 }
 }
 
@@ -112,7 +112,7 @@ to assemble stings with different styles. \preformatted{  cat("... to highlight 
 }
 
 Styles can be combined using the \code{$} operator: \preformatted{  cat(yellow$bgMagenta$bold('Hello world!\n'))
-} See also \code{\link{combine_styles}}.
+} See also \code{\link[=combine_styles]{combine_styles()}}.
 
 Styles can also be nested, and then inner style takes
 precedence: \preformatted{  cat(green(
@@ -130,17 +130,18 @@ It is easy to define your own themes: \preformatted{  error <- red $ bold
   cat(note("Note: no such directory.\n"))
 }
 }
+
 \examples{
 cat(blue("Hello", "world!"))
 
-cat("... to highlight the " \\\%+\\\% red("search term") \\\%+\\\%
+cat("... to highlight the " \%+\% red("search term") \%+\%
     " in a block of text")
 
 cat(yellow$bgMagenta$bold('Hello world!'))
 
 cat(green(
- 'I am a green line ' \\\%+\\\%
- blue$underline$bold('with a blue substring') \\\%+\\\%
+ 'I am a green line ' \%+\%
+ blue$underline$bold('with a blue substring') \%+\%
  ' that becomes green again!'
 ))
 
@@ -153,6 +154,5 @@ cat(note("Note: no such directory.\\n"))
 
 }
 \seealso{
-\code{\link{make_style}} for using the 256 ANSI colors.
+\code{\link[=make_style]{make_style()}} for using the 256 ANSI colors.
 }
-

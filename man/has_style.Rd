@@ -2,7 +2,7 @@
 % Please edit documentation in R/has_ansi.r
 \name{has_style}
 \alias{has_style}
-\title{Check if a sting has some ANSI styling}
+\title{Check if a string has some ANSI styling}
 \usage{
 has_style(string)
 }
@@ -12,14 +12,13 @@ vector.}
 }
 \value{
 Logical vector, \code{TRUE} for the strings that have some
-  ANSI styling.
+ANSI styling.
 }
 \description{
-Check if a sting has some ANSI styling
+Check if a string has some ANSI styling
 }
 \examples{
 ## The second one has style if crayon is enabled
 has_style("foobar")
 has_style(red("foobar"))
 }
-

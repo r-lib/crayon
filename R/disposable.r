@@ -1,4 +1,6 @@
 
+## nocov start
+
 install_quietly <- TRUE
 
 with_wd <- function(dir, expr) {
@@ -96,3 +98,5 @@ make_packages <- function(..., lib_dir = tempfile(),
   }
   invisible(lib_dir)
 }
+
+## nocov end

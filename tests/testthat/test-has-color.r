@@ -1,30 +1,58 @@
 
 context("Color detection")
 
-test_that("Color is detected properly", {
+test_that("has_color, option", {
 
-  op <- options()
-  on.exit(options(op), add = TRUE)
+  withr::with_options(
+    c(crayon.enabled = FALSE),
+    expect_false(has_color())
+  )
+  withr::with_options(
+    c(crayon.enabled = TRUE),
+    expect_true(has_color())
+  )
+})
 
-  ## If disabled, then no
-  options(crayon.enabled = FALSE)
-  hc <- has_color()
-  options(op)
-  expect_false(hc)
+test_that("has_color, rstudio", {
+  mockery::stub(has_color, "rstudio_with_ansi_support", TRUE)
+  mockery::stub(has_color, "rstudioapi::callFun", TRUE)
+  expect_true(has_color())
+})
 
-  ## If enabled, then yes
-  options(crayon.enabled = TRUE)
-  hc <- has_color()
-  expect_true(hc)
+test_that("has_color, not a terminal", {
+  mockery::stub(has_color, "rstudio_with_ansi_support", FALSE)
+  mockery::stub(has_color, "isatty", FALSE)
+  withr::with_options(
+    list(crayon.enabled = NULL),
+    expect_false(has_color())
+  )
+})
 
+test_that("has_color, windows terminal", {
+  mockery::stub(has_color, "rstudio_with_ansi_support", FALSE)
+  mockery::stub(has_color, "os_type", "windows")
+  withr::with_envvar(
+    c(ConEmuANSI = "ON", CMDER_ROOT = ""),
+    expect_true(has_color())
+  )
+  withr::with_envvar(
+    c(ConEmuANSI = "OFF", CMDER_ROOT = "/foobar"),
+    expect_true(has_color())
+  )
+  withr::with_options(
+    list(crayon.enabled = NULL),
+    withr::with_envvar(
+      c(ConEmuANSI = "OFF", CMDER_ROOT = NA_character_),
+      expect_false(has_color())
+    )
+  )
 })
 
 test_that("number of colors is detected", {
 
   nc <- num_colors()
-  expect_more_than(nc, 0)
+  expect_true(nc > 0)
   expect_equal(nc, as.integer(nc))
-
 })
 
 test_that("closure based memoization works", {
@@ -46,31 +74,28 @@ test_that("closure based memoization works", {
 
 test_that("tput errors are handled gracefully", {
 
-  # if tput errors num_colors is 8
-  with_mock(
-            `base::system` = function(...) stop("Error!"),
+  ## if tput errors num_colors is 8
+  mockery::stub(get_terminal_colors, "system", function(...) stop("Error!"))
+  expect_equal(get_terminal_colors(), 8)
 
-            expect_equal(num_colors(forget = TRUE), 8)
-            )
+  ## if tput returns nothing num_colors is 8
+  mockery::stub(get_terminal_colors, "system", function(...) character(0))
+  expect_equal(get_terminal_colors(), 8)
 
-  # if tput returns nothing num_colors is 8
-  with_mock(
-            `base::system` = function(...) character(0),
+  ## if tput returns a non-number num_colors is 8
+  mockery::stub(get_terminal_colors, "system", function(...) "no colors!")
 
-            expect_equal(num_colors(forget = TRUE), 8)
-            )
+  ## if tput returns a number the result is that number
+  mockery::stub(get_terminal_colors, "system", function(...) 16)
+  expect_equal(get_terminal_colors(), 16)
+})
 
-  # if tput returns a non-number num_colors is 8
-  with_mock(
-            `base::system` = function(...) "no colors found!",
-
-            expect_equal(num_colors(forget = TRUE), 8)
-            )
-
-  # if tput returns a number the result is that number
-  with_mock(
-            `base::system` = function(...) "16",
-
-            expect_equal(num_colors(forget = TRUE), 16)
-            )
+test_that("has_color, NO_COLOR=1", {
+  withr::with_options(
+    list(crayon.enabled = NULL),
+    withr::with_envvar(
+      c(NO_COLOR="1"),
+      expect_false(has_color())
+    )
+  )
 })

@@ -84,7 +84,9 @@ test_that("col_substr corner cases", {
 
   # non-numeric arguments cause errors; NOTE: this actually "works" 
   # with 'substr' but not implemented in 'col_substr'
-  expect_error(col_substr("abc", "hello", 1), "non-numeric")
+  suppressWarnings(
+    expect_error(col_substr("abc", "hello", 1), "non-numeric")
+  )
 
 })
 
@@ -189,4 +191,45 @@ test_that("Weird length 'split'", {
   expect_identical(
     col_strsplit("ab", character(0L)), strsplit("ab", character(0L))
   )
+})
+
+test_that("col_align", {
+  expect_equal(col_align(character()), character())
+  expect_equal(col_align("", 0), "")
+  expect_equal(col_align(" ", 0), " ")
+  expect_equal(col_align(" ", 1), " ")
+  expect_equal(col_align(" ", 2), "  ")
+  expect_equal(col_align("a", 1), "a")
+  expect_equal(col_align(letters, 1), letters)
+  expect_equal(col_align(letters, 0), letters)
+  expect_equal(col_align(letters, -1), letters)
+
+  expect_equal(col_align(letters, 2), paste0(letters, " "))
+  expect_equal(col_align(letters, 3, "center"), paste0(" ", letters, " "))
+  expect_equal(col_align(letters, 2, "right"), paste0(" ", letters))
+
+  expect_equal(
+    col_align(c("foo", "foobar", "", "a"), 6, "left"),
+    c("foo   ", "foobar", "      ", "a     "))
+
+  expect_equal(
+    col_align(c("foo", "foobar", "", "a"), 6, "center"),
+    c("  foo ", "foobar", "      ", "   a  "))
+
+  expect_equal(
+    col_align(c("foo", "foobar", "", "a"), 6, "right"),
+    c("   foo", "foobar", "      ", "     a"))
+
+  # #54: alignment of wide characters
+  expect_equal(
+    col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "left"),
+    c("foo   ", "\u6210\u4ea4\u65e5", "      ", "a     "))
+
+  expect_equal(
+    col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "center"),
+    c("  foo ", "\u6210\u4ea4\u65e5", "      ", "   a  "))
+
+  expect_equal(
+    col_align(c("foo", "\u6210\u4ea4\u65e5", "", "a"), 6, "right"),
+    c("   foo", "\u6210\u4ea4\u65e5", "      ", "     a"))
 })

@@ -11,9 +11,9 @@
 #' It does make sense to combine different kind of styles,
 #' e.g. background color, foreground color, bold font.
 #'
-#' The \code{$} operator can also be used to combine styles.
-#' Not that the left hand side of \code{$} is a style function,
-#' and the right hand side is the name of a style in \code{styles()}.
+#' The `$` operator can also be used to combine styles.
+#' Note that the left hand side of `$` is a style function,
+#' and the right hand side is the name of a style in [styles()].
 #'
 #' @param ... The styles to combine. They will be applied from
 #'   right to left.
@@ -45,11 +45,12 @@ combine_styles <- function(...) {
 
 #' @rdname combine_styles
 #' @param crayon A style function.
-#' @param style A style name that is included in \code{names(styles())}.
+#' @param style A style name that is included in `names(styles())`.
 #' @export
 #' @method $ crayon
 
 `$.crayon` <- function(crayon, style) {
-  attr(crayon, "_styles") <- c(attr(crayon, "_styles"), my_styles[style])
+  attr(crayon, "_styles") <-
+    c(attr(crayon, "_styles"), data_env$my_styles[style])
   crayon
 }

@@ -1,35 +1,17 @@
+language: r
+sudo: false
+cache: packages
 
-language: c
-sudo: required
-
-before_install:
-  - curl -OL https://raw.githubusercontent.com/metacran/r-builder/master/pkg-build.sh
-  - chmod 755 pkg-build.sh
-  - ./pkg-build.sh bootstrap
-
-install:
-  - ./pkg-build.sh install_deps
-  - ./pkg-build.sh install_r covr
-
-script:
-  - ./pkg-build.sh run_build
-  - ./pkg-build.sh run_check
-
-after_failure:
-  - ./pkg-build.sh dump_logs
+r:
+ - 3.1
+ - 3.2
+ - release
+ - devel
+ - oldrel
 
 after_success:
-  - if [[ ! -z "$COVERAGE" ]];then ./pkg-build.sh run_script -e 'covr::codecov()'; fi
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
+  - test $TRAVIS_R_VERSION_STRING = "release" && Rscript -e 'covr::codecov()'
 
 env:
-  matrix:
-    - RVERSION=oldrel
-    - RVERSION=release
-    - RVERSION=devel COVERAGE=true
   global:
     - NOT_CRAN=1
