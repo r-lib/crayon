@@ -11,6 +11,9 @@
 
 * `reset` style now restores previous style for text following it (@brodieG,
   #35).
+  
+* Warnings are no longer generated when the INSIDE_EMACS environment variable is
+  set but does not include a version number.
 
 # 1.3.4
 
