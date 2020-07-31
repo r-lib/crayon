@@ -60,13 +60,13 @@ has_color <- function() {
     return(TRUE)
   }
 
-  ## Are we in a terminal? No?
-  if (!isatty(stdout())) { return(FALSE) }
-
   ## Are we running on GitHub Actions?
   if (identical(Sys.getenv("GITHUB_ACTIONS", "false"), "true")) {
     return(TRUE)
   }
+
+  ## Are we in a terminal? No?
+  if (!isatty(stdout())) { return(FALSE) }
 
   ## Are we in a windows terminal with color support?
   if (os_type() == "windows") {
