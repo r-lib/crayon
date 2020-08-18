@@ -94,10 +94,10 @@ style_from_rgb <- function(rgb, bg, num_colors, grey) {
 #' @param ... The style to create. See details and examples below.
 #' @param bg Whether the color applies to the background.
 #' @param grey Whether to specifically create a grey color.
-#'   This flag is included, because ANSI 256 has a finer color scale
-#'   for greys, then the usual 0:5 scale for R, G and B components.
+#'   This flag is included because ANSI 256 has a finer color scale
+#'   for greys than the usual 0:5 scale for R, G and B components.
 #'   It is only used for RGB color specifications (either numerically
-#'   or via a hexa string), and it is ignored on eigth color ANSI
+#'   or via a hexa string) and is ignored on eigth color ANSI
 #'   terminals.
 #' @param colors Number of colors, detected automatically
 #'   by default.
