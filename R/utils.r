@@ -122,7 +122,7 @@ rstudio_with_ansi_support <- function() {
 
 rstudio_initialized <- function() {
   ## Not in RStudio, so no worries
-  if (Sys.getenv("RSTUDIO") == "") return(TRUE)
+  if (Sys.getenv("RSTUDIO", "0") == "0") return(TRUE)
 
   ## Otherwise check
   requireNamespace("rstudioapi", quietly = TRUE) &&
