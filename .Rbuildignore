@@ -1,8 +1,3 @@
-^\.travis\.yml$
 ^tags$
-^.travis.yml$
-^appveyor.yml$
-^NEWS.md$
-^README.markdown$
 ^\.github$
 ^crayon\.Rproj$
