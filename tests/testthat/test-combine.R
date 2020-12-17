@@ -1,6 +1,4 @@
 
-context("combine_styles")
-
 test_that("one style", {
   expect_equal(combine_styles(red), red)
   expect_equal(combine_styles(bold), bold)

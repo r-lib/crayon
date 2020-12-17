@@ -33,10 +33,10 @@ str <- paste(
   green("green")
 )
 
-cat(str, "\\n")
-cat(col_substr(str, 1, 5), "\\n")
-cat(col_substr(str, 1, 15), "\\n")
-cat(col_substr(str, 3, 7), "\\n")
+cat(str, "\n")
+cat(col_substr(str, 1, 5), "\n")
+cat(col_substr(str, 1, 15), "\n")
+cat(col_substr(str, 3, 7), "\n")
 
 substr(strip_style(str), 1, 5)
 substr(strip_style(str), 1, 15)
@@ -46,13 +46,15 @@ str2 <- "another " \%+\%
   red("multi-", sep = "", underline("style")) \%+\%
   " text"
 
-cat(str2, "\\n")
-cat(col_substr(c(str, str2), c(3,5), c(7, 18)), sep = "\\n")
+cat(str2, "\n")
+cat(col_substr(c(str, str2), c(3,5), c(7, 18)), sep = "\n")
 substr(strip_style(c(str, str2)), c(3,5), c(7, 18))
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_align}},
-  \code{\link{col_nchar}}, \code{\link{col_strsplit}},
-  \code{\link{col_substring}}
+Other ANSI string operations: 
+\code{\link{col_align}()},
+\code{\link{col_nchar}()},
+\code{\link{col_strsplit}()},
+\code{\link{col_substring}()}
 }
 \concept{ANSI string operations}

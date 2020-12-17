@@ -7,36 +7,14 @@
 num_colors(forget = FALSE)
 }
 \arguments{
-\item{forget}{Whether to forget the cached result of the color check.}
+\item{forget}{Ignored. Included for backwards compatibility.}
 }
 \value{
-Numeric scalar, the number of colors the terminal supports.
+Number of ANSI colors.
 }
 \description{
-Number of colors the terminal supports
-}
-\details{
-If the \code{crayon.colors} option is set, then we
-just use that. It should be an integer number. You can use this
-option as a workaround if crayon does not detect the number of
-colors accurately.
-
-In Emacs, we report eight colors.
-
-Otherwise, we use the \code{tput} shell command to detect the
-number of colors. If \code{tput} is not available,
-but we think that the terminal supports colors, then
-eigth colors are assumed.
-
-If tput returns 8, but TERM is xterm, we return 256, as most xterm
-compatible terminals in fact do support 256 colors.
-There is some discussion about this here:
-\url{https://github.com/r-lib/crayon/issues/17}
-
-For efficiency, \code{num_colors()} caches its result. To
-re-check the number of colors, set the \code{forget} argument to
-\code{TRUE}. The cached value is only used if no sinks are active,
-see also \code{\link[=has_color]{has_color()}} for more information about sinks.
+From crayon version 2.0.0, this function is a simple wrapper on
+\code{\link[=num_ansi_colors]{num_ansi_colors()}}.
 }
 \examples{
 num_colors()

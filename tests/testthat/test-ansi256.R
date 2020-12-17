@@ -1,6 +1,4 @@
 
-context("ansi-256")
-
 ## These are really basic cases...
 
 test_that("ansi256", {

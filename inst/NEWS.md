@@ -1,4 +1,8 @@
-# Next
+
+# Development version
+
+* Overhauled and much improved detection of ANSI color support and
+  number of ANSI colors.
 
 * `NO_COLOR` environment variable disables color (#64)
 

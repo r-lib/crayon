@@ -1,6 +1,4 @@
 
-context("Defining new styles")
-
 test_that("new styles are local to importing package", {
 
   skip("This is not implemented, yet.")

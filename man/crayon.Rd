@@ -3,7 +3,6 @@
 \docType{package}
 \name{crayon}
 \alias{crayon}
-\alias{crayon-package}
 \alias{reset}
 \alias{bold}
 \alias{blurred}
@@ -148,9 +147,9 @@ cat(green(
 error <- red $ bold
 warn <- magenta $ underline
 note <- cyan
-cat(error("Error: subscript out of bounds!\\n"))
-cat(warn("Warning: shorter argument was recycled.\\n"))
-cat(note("Note: no such directory.\\n"))
+cat(error("Error: subscript out of bounds!\n"))
+cat(warn("Warning: shorter argument was recycled.\n"))
+cat(note("Note: no such directory.\n"))
 
 }
 \seealso{

@@ -4,8 +4,12 @@
 \alias{col_align}
 \title{Align an ANSI colored string}
 \usage{
-col_align(text, width = getOption("width"), align = c("left", "center",
-  "right"), type = "width")
+col_align(
+  text,
+  width = getOption("width"),
+  align = c("left", "center", "right"),
+  type = "width"
+)
 }
 \arguments{
 \item{text}{The character vector to align.}
@@ -28,8 +32,10 @@ col_align(red("foobar"), 20, "center")
 col_align(red("foobar"), 20, "right")
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_nchar}},
-  \code{\link{col_strsplit}}, \code{\link{col_substring}},
-  \code{\link{col_substr}}
+Other ANSI string operations: 
+\code{\link{col_nchar}()},
+\code{\link{col_strsplit}()},
+\code{\link{col_substring}()},
+\code{\link{col_substr}()}
 }
 \concept{ANSI string operations}

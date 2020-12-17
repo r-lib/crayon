@@ -1,4 +1,3 @@
-context("utils")
 
 test_that("non_matching", {
   chr <- "abc"

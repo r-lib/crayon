@@ -31,6 +31,6 @@ See also
 \url{https://gist.github.com/egmontkob/eb114294efbcd5adb1944c9f3cb5feda}.
 }
 \examples{
-cat("This is an", hyperlink("R", "https://r-project.org"), "link.\\n")
+cat("This is an", hyperlink("R", "https://r-project.org"), "link.\n")
 has_hyperlink()
 }

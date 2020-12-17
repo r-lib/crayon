@@ -22,7 +22,7 @@ Character vector of the same length as \code{x}, containing
 the requested substrings. ANSI styles are retained.
 }
 \description{
-This is the color-aware counterpart of \code{\link[base:substring]{base::substring()}}.
+This is the color-aware counterpart of \code{\link[base:substr]{base::substring()}}.
 It works exactly like the original, but keeps the colors in the
 substrings. The ANSI escape sequences are ignored when
 calculating the positions within the string.
@@ -34,10 +34,10 @@ str <- paste(
   green("green")
 )
 
-cat(str, "\\n")
-cat(col_substring(str, 1, 5), "\\n")
-cat(col_substring(str, 1, 15), "\\n")
-cat(col_substring(str, 3, 7), "\\n")
+cat(str, "\n")
+cat(col_substring(str, 1, 5), "\n")
+cat(col_substring(str, 1, 15), "\n")
+cat(col_substring(str, 3, 7), "\n")
 
 substring(strip_style(str), 1, 5)
 substring(strip_style(str), 1, 15)
@@ -47,13 +47,15 @@ str2 <- "another " \%+\%
   red("multi-", sep = "", underline("style")) \%+\%
   " text"
 
-cat(str2, "\\n")
-cat(col_substring(str2, c(3,5), c(7, 18)), sep = "\\n")
+cat(str2, "\n")
+cat(col_substring(str2, c(3,5), c(7, 18)), sep = "\n")
 substring(strip_style(str2), c(3,5), c(7, 18))
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_align}},
-  \code{\link{col_nchar}}, \code{\link{col_strsplit}},
-  \code{\link{col_substr}}
+Other ANSI string operations: 
+\code{\link{col_align}()},
+\code{\link{col_nchar}()},
+\code{\link{col_strsplit}()},
+\code{\link{col_substr}()}
 }
 \concept{ANSI string operations}

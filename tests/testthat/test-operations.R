@@ -1,6 +1,4 @@
 
-context("String operations")
-
 str <- c("",
          "plain",
          "\033[31m",

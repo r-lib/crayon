@@ -29,14 +29,16 @@ str <- paste(
   green("green")
 )
 
-cat(str, "\\n")
+cat(str, "\n")
 nchar(str)
 col_nchar(str)
 nchar(strip_style(str))
 }
 \seealso{
-Other ANSI string operations: \code{\link{col_align}},
-  \code{\link{col_strsplit}}, \code{\link{col_substring}},
-  \code{\link{col_substr}}
+Other ANSI string operations: 
+\code{\link{col_align}()},
+\code{\link{col_strsplit}()},
+\code{\link{col_substring}()},
+\code{\link{col_substr}()}
 }
 \concept{ANSI string operations}

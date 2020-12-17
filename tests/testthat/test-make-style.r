@@ -1,6 +1,4 @@
 
-context("Making new ANSI 256 styles")
-
 test_that("make_style without name", {
 
   st <- styles()

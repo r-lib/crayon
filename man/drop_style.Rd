@@ -18,11 +18,12 @@ Remove a style
 }
 \examples{
 make_style(new_style = "maroon", bg = TRUE)
-cat(style("I am maroon", "new_style"), "\\n")
+cat(style("I am maroon", "new_style"), "\n")
 drop_style("new_style")
 "new_style" \%in\% names(styles())
 }
 \seealso{
-Other styles: \code{\link{make_style}}
+Other styles: 
+\code{\link{make_style}()}
 }
 \concept{styles}

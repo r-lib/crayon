@@ -10,44 +10,9 @@ has_color()
 \code{TRUE} if the current R session supports color.
 }
 \description{
-Does the current R session support ANSI colors?
+From crayon 2.0.0, this function is simply a wrapper on
+\code{\link[=num_ansi_colors]{num_ansi_colors()}}.
 }
-\details{
-The following algorithm is used to detect ANSI support: \itemize{
-\item If the \code{crayon.enabled} option is set to \code{TRUE}
-with \code{\link[=options]{options()}}, then \code{TRUE} is returned. If it is
-set to something else than \code{TRUE} (typically \code{FALSE}),
-then \code{FALSE} is returned.
-\item Otherwise, if the \code{NO_COLOR} environment variable is
-set, \code{FALSE} is returned.
-\item Otherwise, if the standard output is not a terminal, then
-\code{FALSE} is returned.
-\item Otherwise, if the platform is Windows, \code{TRUE} is returned
-if running in ConEmu (\url{https://conemu.github.io/}) or
-cmder (\url{http://cmder.net}) with ANSI color support.
-Otherwise \code{FALSE} is returned.
-\item Otherwise, if the \code{COLORTERM} environment variable is
-set, \code{TRUE} is returned.
-\item Otherwise, if the \code{TERM} environment variable starts
-with \code{screen}, \code{xterm} or \code{vt100}, or matches
-\code{color}, \code{ansi}, \code{cygwin} or \code{linux}
-(with case insentive matching), then \code{TRUE} is returned.
-\item Otherwise \code{FALSE} is returned.
-}
-}
-\section{Sinks}{
-
-Note that \code{has_color()} returns \code{FALSE} if a sink is active
-(see \code{\link[=sink]{sink()}}). It assumes that the constructed string will be printed
-to the standard output, and \code{sink()} redirects to a file, and usually
-you don't want ANSI colors in the file.
-
-The same applies to the case when R's standard output is redirected
-to a file, from the command line, e.g.:\preformatted{R -q -e 'cat(crayon::red("no color here\n"))' > /tmp/crayon-test.txt
-cat /tmp/crayon-test.txt
-}
-}
-
 \examples{
 has_color()
 }

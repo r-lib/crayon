@@ -1,10 +1,4 @@
 
-context("Does a string have ANSI style?")
-
-op <- options()
-on.exit(options(op))
-options(crayon.enabled = TRUE)
-
 test_that("has_style works", {
 
   expect_false(has_style("foobar"))
@@ -13,8 +7,6 @@ test_that("has_style works", {
   }
 
 })
-
-context("Strip style from string")
 
 test_that("strip_style works", {
 

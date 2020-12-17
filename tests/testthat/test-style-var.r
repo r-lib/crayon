@@ -1,9 +1,4 @@
 
-context("General style function")
-
-op <- options(crayon.enabled = TRUE)
-on.exit(options(op))
-
 test_that("style works", {
 
   x1 <- style("foobar", bold)

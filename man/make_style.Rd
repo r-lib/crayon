@@ -12,10 +12,10 @@ make_style(..., bg = FALSE, grey = FALSE, colors = num_colors())
 \item{bg}{Whether the color applies to the background.}
 
 \item{grey}{Whether to specifically create a grey color.
-This flag is included, because ANSI 256 has a finer color scale
-for greys, then the usual 0:5 scale for R, G and B components.
+This flag is included because ANSI 256 has a finer color scale
+for greys than the usual 0:5 scale for R, G and B components.
 It is only used for RGB color specifications (either numerically
-or via a hexa string), and it is ignored on eigth color ANSI
+or via a hexa string) and is ignored on eigth color ANSI
 terminals.}
 
 \item{colors}{Number of colors, detected automatically
@@ -51,7 +51,7 @@ of the function, to create a style function.
 The style (the code{...} argument) can be anything of the
 following: \itemize{
 \item An R color name, see \code{\link[=colors]{colors()}}.
-\item A 6- or 8-digit hexa color string, e.g. \code{#ff0000} means
+\item A 6- or 8-digit hexa color string, e.g. \verb{#ff0000} means
 red. Transparency (alpha channel) values are ignored.
 \item A one-column matrix with three rows for the red, green
 and blue channels, as returned by \code{col2rgb} (in the base
@@ -70,16 +70,17 @@ See the examples below.
 ## Create a style function without creating a style
 pink <- make_style("pink")
 bgMaroon <- make_style(rgb(0.93, 0.19, 0.65), bg = TRUE)
-cat(bgMaroon(pink("I am pink if your terminal wants it, too.\\n")))
+cat(bgMaroon(pink("I am pink if your terminal wants it, too.\n")))
 
 ## Create a new style for pink and maroon background
 make_style(pink = "pink")
 make_style(bgMaroon = rgb(0.93, 0.19, 0.65), bg = TRUE)
 "pink" \%in\% names(styles())
 "bgMaroon" \%in\% names(styles())
-cat(style("I am pink, too!\\n", "pink", bg = "bgMaroon"))
+cat(style("I am pink, too!\n", "pink", bg = "bgMaroon"))
 }
 \seealso{
-Other styles: \code{\link{drop_style}}
+Other styles: 
+\code{\link{drop_style}()}
 }
 \concept{styles}
