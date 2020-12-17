@@ -4,3 +4,4 @@
 ^appveyor.yml$
 ^NEWS.md$
 ^README.markdown$
+^\.github$
