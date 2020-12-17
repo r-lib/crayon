@@ -13,8 +13,7 @@
 <!-- badges: start -->
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![R build
-status](https://github.com/r-lib/webfakes/workflows/check-pak/badge.svg)](https://github.com/r-lib/webfakes/actions)
+[![R build status](https://github.com/r-lib/crayon/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/crayon/actions)
 [![](http://www.r-pkg.org/badges/version/crayon)](http://cran.rstudio.com/web/packages/crayon/index.html)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/crayon)](http://cran.r-project.org/web/packages/crayon/index.html)
 [![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/crayon/master.svg)](https://codecov.io/github/r-lib/crayon?branch=master)
