@@ -33,7 +33,7 @@
 ## Simple styles
 red(...)
 bold(...)
-...
+# ...
 
 ## See more styling below
 }

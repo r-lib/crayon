@@ -167,7 +167,7 @@ make_crayon <- function(ansi_seq) {
 #' ## Simple styles
 #' red(...)
 #' bold(...)
-#' ...
+#' # ...
 #'
 #' ## See more styling below
 #'
