@@ -44,7 +44,7 @@ jobs:
           pak::local_install_dev_deps(upgrade = TRUE)
           pak::pkg_install("rcmdcheck")
         shell: Rscript {0}
-x
+
       - name: Test coverage
         run: covr::codecov()
         shell: Rscript {0}
