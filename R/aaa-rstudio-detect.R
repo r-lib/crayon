@@ -44,7 +44,7 @@ rstudio <- local({
   detect <- function(clear_cache = FALSE) {
     # Cached?
     if (clear_cache) data <<- list()
-    if (!is.null(data)) return(get_caps(data))
+    if (!is.null(data) && length(data) > 1) return(get_caps(data))
 
     # Otherwise get data
     new <- get_data()

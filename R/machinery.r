@@ -312,7 +312,7 @@ sapply(names(builtin_styles), function(style) {
 })
 
 .onLoad <- function(libname, pkgname) {
-  num_colors(forget = TRUE)
+  rstudio$detect(clear_cache = TRUE)
 }
 
 define_style <- function(name, ansi_seq) {
