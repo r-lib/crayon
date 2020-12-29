@@ -1,3 +1,4 @@
 ^tags$
 ^\.github$
 ^crayon\.Rproj$
+^\.Rproj\.user$
