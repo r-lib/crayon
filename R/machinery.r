@@ -311,10 +311,6 @@ sapply(names(builtin_styles), function(style) {
   assign(style, make_style(style), envir = asNamespace("crayon"))
 })
 
-.onLoad <- function(libname, pkgname) {
-  num_colors(forget = TRUE)
-}
-
 define_style <- function(name, ansi_seq) {
   data_env$my_styles[[name]] <- ansi_seq
 }
