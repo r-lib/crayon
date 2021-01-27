@@ -46,7 +46,7 @@ for notes, warnings, errors; and combine styles.
 }
 \details{
 ANSI color support is automatically detected and used. Crayon was largely
-inspired by chalk \url{https://github.com/sindresorhus/chalk}.
+inspired by chalk \url{https://github.com/chalk/chalk}.
 
 Crayon defines several styles, that can be combined. Each style in the list
 has a corresponding function with the same name.
