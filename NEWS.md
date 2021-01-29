@@ -1,5 +1,5 @@
 
-# Development version
+# 1.4.0
 
 * Overhauled and much improved detection of ANSI color support and
   number of ANSI colors.
