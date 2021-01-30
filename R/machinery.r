@@ -204,6 +204,15 @@ make_crayon <- function(ansi_seq) {
 #'   \item cyan
 #'   \item white
 #'   \item silver (usually called \sQuote{gray}, renamed to avoid name clash)
+#'   \item blackBright
+#'   \item redBright
+#'   \item greenBright
+#'   \item yellowBright
+#'   \item blueBright
+#'   \item magentaBright
+#'   \item cyanBright
+#'   \item whiteBright
+#'   \item silverBright
 #' }
 #'
 #' @section Background colors:
@@ -217,6 +226,14 @@ make_crayon <- function(ansi_seq) {
 #'   \item bgMagenta
 #'   \item bgCyan
 #'   \item bgWhite
+#'   \item bgBlackBright
+#'   \item bgRedBright
+#'   \item bgGreenBright
+#'   \item bgYellowBright
+#'   \item bgBlueBright
+#'   \item bgMagentaBright
+#'   \item bgCyanBright
+#'   \item bgWhiteBright 
 #' }
 #'
 #' @section Styling:
