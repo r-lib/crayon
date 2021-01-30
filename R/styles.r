@@ -22,6 +22,16 @@ codes <- list(
   white = list(37, 39),
   silver = list(90, 39),
 
+  blackBright = list(90, 39),
+  redBright = list(91, 39),
+  greenBright = list(92, 39),
+  yellowBright = list(93, 39),
+  blueBright = list(94, 39),
+  magentaBright = list(95, 39),
+  cyanBright = list(96, 39),
+  whiteBright = list(97, 39),
+  silverBright = list(98, 39),
+
   bgBlack = list(40, 49),
   bgRed = list(41, 49),
   bgGreen = list(42, 49),
@@ -29,7 +39,16 @@ codes <- list(
   bgBlue = list(44, 49),
   bgMagenta = list(45, 49),
   bgCyan = list(46, 49),
-  bgWhite = list(47, 49)
+  bgWhite = list(47, 49),
+
+  bgBlackBright = list(100, 49),
+  bgRedBright = list(101, 49),
+  bgGreenBright = list(102, 49),
+  bgYellowBright = list(103, 49),
+  bgBlueBright = list(104, 49),
+  bgMagentaBright = list(105, 49),
+  bgCyanBright = list(106, 49),
+  bgWhiteBright = list(107, 49)
 )
 
 ## ANSI fg color -> R color
@@ -43,7 +62,16 @@ ansi_fg_r <- c(
   "magenta" = "magenta",
   "cyan" = "cyan",
   "white" = "white",
-  "silver" = "grey"
+  "silver" = "grey",
+  "blackBright" = "black",
+  "redBright" = "red",
+  "greenBright" = "green",
+  "yellowBright" = "yellow",
+  "blueBright" = "blue",
+  "magentaBright" = "magenta",
+  "cyanBright" = "cyan",
+  "whiteBright" = "white",
+  "silverBright" = "grey"
 )
 
 ansi_fg_rgb <- col2rgb(ansi_fg_r)
@@ -56,7 +84,15 @@ ansi_bg_r <- c(
   "bgBlue" = "blue",
   "bgMagenta" = "magenta",
   "bgCyan" = "cyan",
-  "bgWhite" = "white"
+  "bgWhite" = "white",
+  "bgBlackBright" = "black",
+  "bgRedBright" = "red",
+  "bgGreenBright" = "green",
+  "bgYellowBright" = "yellow",
+  "bgBlueBright" = "blue",
+  "bgMagentaBright" = "magenta",
+  "bgCyaBrightn" = "cyan",
+  "bgWhiteBright" = "white"
 )
 
 ansi_bg_rgb <- col2rgb(ansi_bg_r)
