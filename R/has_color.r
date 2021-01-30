@@ -17,7 +17,8 @@ has_color <- function() {
 #' Number of colors the terminal supports
 #'
 #' From crayon version 2.0.0, this function is a simple wrapper on
-#' [num_ansi_colors()].
+#' [num_ansi_colors()], with the additional twist that the `crayon.colors`
+#' option is still obseved, and takes precedence, for compatibility.
 #'
 #' @param forget Ignored. Included for backwards compatibility.
 #' @return Number of ANSI colors.
@@ -27,5 +28,7 @@ has_color <- function() {
 #' num_colors()
 
 num_colors <- function(forget = FALSE) {
+  cray_opt_num <- getOption("crayon.colors", NULL)
+  if (!is.null(cray_opt_num)) return(as.integer(cray_opt_num))
   num_ansi_colors()
 }

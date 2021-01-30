@@ -14,7 +14,8 @@ Number of ANSI colors.
 }
 \description{
 From crayon version 2.0.0, this function is a simple wrapper on
-\code{\link[=num_ansi_colors]{num_ansi_colors()}}.
+\code{\link[=num_ansi_colors]{num_ansi_colors()}}, with the additional twist that the \code{crayon.colors}
+option is still obseved, and takes precedence, for compatibility.
 }
 \examples{
 num_colors()
