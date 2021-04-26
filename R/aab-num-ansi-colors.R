@@ -119,8 +119,8 @@ num_ansi_colors <- function(stream = "auto") {
   # the `stderr()` stream, so we need to catch this case.
   if (is_stderr && sink.number("message") != 2) return(1L)
 
-  # RGui or Rapp?
-  if (.Platform$GUI == "Rgui" || .Platform$GUI == "AQUA") return(1L)
+  # Rapp?
+  if (.Platform$GUI == "AQUA") return(1L)
 
   # RStudio?
   rstudio <- rstudio$detect()
@@ -133,6 +133,10 @@ num_ansi_colors <- function(stream = "auto") {
   if (rstudio$type %in% rstudio_colors && is_std) {
     return(rstudio$num_colors)
   }
+
+  # RGui? We need to do this after RStudio, because .Platform$GUI is
+  # "Rgui" in RStudio when we are starting up
+  if (.Platform$GUI == "Rgui") return(1L)
 
   # Windows Emacs? The top R process will have `--ess` in ESS, but the
   # subprocesses won't. (Without ESS subprocesses will also report 8L
@@ -159,8 +163,15 @@ detect_tty_colors <- function() {
   # Emacs on Unix?
   if (os_type() == "unix" && is_emacs_with_color()) return(8L)
 
+  # RStudio terminal and Windows, apparently only eight colors
+  win10_build_ok <- win10_build() >= 16257
+  if (os_type() == "windows" && win10_build_ok &&
+      rstudio$detect()$type == "rstudio_terminal") {
+   return(8L)
+  }
+
   # Windows terminal with native color support?
-  if (os_type() == "windows" && win10_build() >= 16257) {
+  if (os_type() == "windows" && win10_build_ok) {
     # this is rather weird, but echo turns on color support :D
     system2("cmd", c("/c", "echo 1 >NUL"))
     return(256L)
