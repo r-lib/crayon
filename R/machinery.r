@@ -23,7 +23,11 @@ is_builtin_style <- function(x) {
 #' @importFrom grDevices colors
 
 is_r_color <- function(x) {
-  x %in% colors() || grepl(hash_color_regex, x)
+  if (!is.character(x) || length(x) != 1 || is.na(x)) {
+    FALSE
+  } else {
+    x %in% grDevices::colors() || grepl(hash_color_regex, x)
+  }
 }
 
 is_rgb_matrix <- function(x) {
