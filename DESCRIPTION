@@ -14,7 +14,6 @@ Description: Colored terminal output on terminals that support 'ANSI'
     be combined and nested. New styles can also be created easily.
     This package was inspired by the 'chalk' 'JavaScript' project.
 License: MIT + file LICENSE
-LazyData: true
 URL: https://github.com/r-lib/crayon#readme
 BugReports: https://github.com/r-lib/crayon/issues
 Collate:
