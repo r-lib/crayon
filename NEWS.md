@@ -1,6 +1,10 @@
 
 # development version
 
+* Better ANSI support detection if there is an active `sink()`.
+
+* Support ANSI markup in RStudio jobs.
+
 # 1.4.1
 
 * ANSI color support detection works correctly now in older RStudio (#112).
