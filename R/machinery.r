@@ -4,8 +4,10 @@
 crayon_template <- function(...) {
   my_styles <- attr(sys.function(), "_styles")
   text <- mypaste(...)
-  if (has_color()) {
+  nc <- num_ansi_colors()
+  if (nc > 1) {
     for (st in rev(my_styles)) {
+      if (!is.null(st$palette)) st <- get_palette_color(st, nc)
       text <- st$open %+%
         gsub(st$close, st$open, text, fixed = TRUE) %+%
         st$close
@@ -36,7 +38,7 @@ is_rgb_matrix <- function(x) {
 
 #' @importFrom grDevices col2rgb
 
-style_from_r_color <- function(color, bg, num_colors, grey) {
+ansi_style_from_r_color <- function(color, bg, num_colors, grey) {
   style_from_rgb(col2rgb(color), bg, num_colors, grey)
 }
 
@@ -144,7 +146,7 @@ make_style <- function(..., bg = FALSE, grey = FALSE,
 
   } else if (is_r_color(style)) {
     if (is.null(style_name)) style_name <- style
-    style_from_r_color(style, bg, colors, grey)
+    ansi_style_from_r_color(style, bg, colors, grey)
 
   } else if (is_rgb_matrix(style)) {
     style_from_rgb(style, bg, colors, grey)

@@ -35,5 +35,3 @@ no_sink <- function() {
 `%||%` <- function(l, r) if (is.null(l)) r else l
 
 clienv <- new.env(parent = emptyenv())
-
-truecolor <- as.integer(256 ^ 3)
