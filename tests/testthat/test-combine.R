@@ -1,5 +1,9 @@
 
 test_that("one style", {
+  # Need 3rd edition for testthat's comparison that works for these
+  # functions. `all_equal()`, used by the 2nd edition gives a
+  # deprecation warning.
+  local_edition(3)
   expect_equal(combine_styles(red), red)
   expect_equal(combine_styles(bold), bold)
 })

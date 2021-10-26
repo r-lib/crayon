@@ -20,6 +20,7 @@ BugReports: https://github.com/r-lib/crayon/issues
 Collate:
     'aaa-rstudio-detect.R'
     'aab-num-ansi-colors.R'
+    'aac-num-ansi-colors.R'
     'ansi-256.r'
     'combine.r'
     'string.r'
@@ -46,6 +47,6 @@ Suggests:
     rstudioapi,
     testthat,
     withr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
