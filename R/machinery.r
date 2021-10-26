@@ -42,6 +42,10 @@ ansi_style_from_r_color <- function(color, bg, num_colors, grey) {
   style_from_rgb(col2rgb(color), bg, num_colors, grey)
 }
 
+# multicolor depends on this name, apparently
+
+style_from_r_color <- ansi_style_from_r_color
+
 style_8_from_rgb <- function(rgb, bg) {
   ansi_cols <- if (bg) ansi_bg_rgb else ansi_fg_rgb
   dist <- colSums((ansi_cols - as.vector(rgb)) ^ 2 )
