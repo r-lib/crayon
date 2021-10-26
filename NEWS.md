@@ -1,5 +1,5 @@
 
-# development version
+# 1.4.2
 
 * Better ANSI support detection if there is an active `sink()`.
 
