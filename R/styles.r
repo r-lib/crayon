@@ -1,4 +1,22 @@
 
+palette_idx <- function(id) {
+  ifelse(
+    id < 38,
+    id - (30 - 1),
+  ifelse(
+    id < 48,
+    -(id - (40 - 1)),
+  ifelse(
+    id < 98,
+    id - (90 - 9),
+    -(id - (100 - 9))
+  )))
+}
+
+palette_color <- function(x) {
+  c(x, palette = palette_idx(x[[1]]))
+}
+
 ## ----------------------------------------------------------------------
 ## Styles
 
@@ -12,24 +30,24 @@ codes <- list(
   hidden = list(8, 28),
   strikethrough = list(9, 29),
 
-  black = list(30, 39),
-  red = list(31, 39),
-  green = list(32, 39),
-  yellow = list(33, 39),
-  blue = list(34, 39),
-  magenta = list(35, 39),
-  cyan = list(36, 39),
-  white = list(37, 39),
-  silver = list(90, 39),
+  black = palette_color(list(30, 39)),
+  red = palette_color(list(31, 39)),
+  green = palette_color(list(32, 39)),
+  yellow = palette_color(list(33, 39)),
+  blue = palette_color(list(34, 39)),
+  magenta = palette_color(list(35, 39)),
+  cyan = palette_color(list(36, 39)),
+  white = palette_color(list(37, 39)),
+  silver = palette_color(list(90, 39)),
 
-  bgBlack = list(40, 49),
-  bgRed = list(41, 49),
-  bgGreen = list(42, 49),
-  bgYellow = list(43, 49),
-  bgBlue = list(44, 49),
-  bgMagenta = list(45, 49),
-  bgCyan = list(46, 49),
-  bgWhite = list(47, 49)
+  bgBlack = palette_color(list(40, 49)),
+  bgRed = palette_color(list(41, 49)),
+  bgGreen = palette_color(list(42, 49)),
+  bgYellow = palette_color(list(43, 49)),
+  bgBlue = palette_color(list(44, 49)),
+  bgMagenta = palette_color(list(45, 49)),
+  bgCyan = palette_color(list(46, 49)),
+  bgWhite = palette_color(list(47, 49))
 )
 
 ## ANSI fg color -> R color
@@ -69,7 +87,8 @@ make_chr_ansi_tag <- function(code)
 make_chr_style <- function(code) {
   list(
     open = make_chr_ansi_tag(codes[[code]][[1]]),
-    close = make_chr_ansi_tag(codes[[code]][[2]])
+    close = make_chr_ansi_tag(codes[[code]][[2]]),
+    palette = if (length(codes[[code]]) >= 3) codes[[code]][[3]]
   )
 }
 

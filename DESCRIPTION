@@ -22,6 +22,7 @@ Collate:
     'aab-num-ansi-colors.R'
     'aac-num-ansi-colors.R'
     'ansi-256.r'
+    'ansi-palette.R'
     'combine.r'
     'string.r'
     'utils.r'
