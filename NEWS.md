@@ -5,6 +5,8 @@
   number of ANSI colors, only if ANSI support is otherwise detected.
   See the details in the manual of `num_ansi_colors()`. (From cli.)
 
+* crayon now install cleanly on R 3.4.x and R 3.5.x on Windows (#131).
+
 # 1.4.2
 
 * Better ANSI support detection if there is an active `sink()`.
