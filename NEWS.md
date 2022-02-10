@@ -1,6 +1,10 @@
 
 # development version
 
+* You can use the new `cli.default_num_colors` option to set the default
+  number of ANSI colors, only if ANSI support is otherwise detected.
+  See the details in the manual of `num_ansi_colors()`. (From cli.)
+
 # 1.4.2
 
 * Better ANSI support detection if there is an active `sink()`.
