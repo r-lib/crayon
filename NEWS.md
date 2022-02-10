@@ -1,5 +1,5 @@
 
-# development version
+# 1.5.0
 
 * You can use the new `cli.default_num_colors` option to set the default
   number of ANSI colors, only if ANSI support is otherwise detected.
