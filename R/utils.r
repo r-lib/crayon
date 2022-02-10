@@ -137,3 +137,11 @@ os_type <- function() {
 rstudio_detect <- function() {
   rstudio$detect()
 }
+
+is_count <- function(x) {
+  is.numeric(x) &&
+    length(x) == 1 &&
+    !is.na(x) &&
+    as.integer(x) == x &&
+    x >= 0
+}
