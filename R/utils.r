@@ -133,3 +133,7 @@ rstudio_initialized <- function() {
 os_type <- function() {
   .Platform$OS.type
 }
+
+rstudio_detect <- function() {
+  rstudio$detect()
+}
