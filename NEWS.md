@@ -1,6 +1,9 @@
 
 # development version
 
+* crayon now does not fail to install from source if the utils package
+  is not loaded (#133).
+
 # 1.5.0
 
 * You can use the new `cli.default_num_colors` option to set the default
