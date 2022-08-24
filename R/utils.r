@@ -95,7 +95,7 @@ myseq <- function(from, to, by = 1) {
 
 emacs_version <- function() {
   ver <- Sys.getenv("INSIDE_EMACS")
-  ver <- gsub("[^0-9\\.]+", "", ver, useBytes = TRUE)
+  ver <- gsub("[^0-9\\.]+", "", ver)
   if (ver == "") return(NA_integer_)
   ver <- strsplit(ver, ".", fixed = TRUE)[[1]]
   as.numeric(ver)

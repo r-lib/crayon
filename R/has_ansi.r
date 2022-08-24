@@ -30,5 +30,5 @@ has_style <- function(string) {
 #' strip_style(red("foobar")) == "foobar"
 
 strip_style <- function(string) {
-  gsub(ansi_regex, "", string, perl = TRUE, useBytes = TRUE)
+  gsub_(ansi_regex, "", string, perl = TRUE, useBytes = TRUE)
 }

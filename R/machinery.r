@@ -9,7 +9,7 @@ crayon_template <- function(...) {
     for (st in rev(my_styles)) {
       if (!is.null(st$palette)) st <- get_palette_color(st, nc)
       text <- st$open %+%
-        gsub(st$close, st$open, text, fixed = TRUE, useBytes = TRUE) %+%
+        gsub_(st$close, st$open, text, fixed = TRUE, useBytes = TRUE) %+%
         st$close
     }
   }
