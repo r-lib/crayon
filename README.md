@@ -1,5 +1,5 @@
 
-# crayon is now superseded by the cli package.
+## 🚀 crayon is now superseded by the cli package. 🚀
 
 > Please use [cli](https://github.com/r-lib/cli) for new projects.
 >
