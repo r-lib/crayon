@@ -1,5 +1,4 @@
-
-# development version
+# crayon 1.5.2
 
 * crayon functions now mark their output with the right encoding,
   if their input was marked (#136, #138).
