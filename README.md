@@ -1,4 +1,11 @@
 
+# crayon is now superseded by the cli package.
+
+> Please use [cli](https://github.com/r-lib/cli) for new projects.
+>
+> crayon is still supported and will receive important bug fixes,
+> but no new features.
+
 <h1 align="center">
     <br>
     <br>
@@ -12,7 +19,7 @@
 
 <!-- badges: start -->
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/)
+[![Lifecycle: superseded](https://img.shields.io/badge/lifecycle-superseded-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#superseded)
 [![R build status](https://github.com/r-lib/crayon/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/crayon/actions)
 [![](https://www.r-pkg.org/badges/version/crayon)](https://r-pkg.org/pkg/crayon)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/crayon)](https://r-pkg.org/pkg/crayon)
