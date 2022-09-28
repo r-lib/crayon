@@ -8,7 +8,7 @@ Authors@R: c(
     "Brodie", "Gaslam", email="brodie.gaslam@yahoo.com",
     role=c("ctb"))
     )
-Description: This package is now superseded. Please use the cli package
+Description: The crayon package is now superseded. Please use the 'cli' package
     for new projects.
     Colored terminal output on terminals that support 'ANSI'
     color and highlight codes. It also works in 'Emacs' 'ESS'. 'ANSI'
