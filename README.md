@@ -33,8 +33,16 @@ inspired by [chalk](https://github.com/chalk/chalk).
 
 ## Installation
 
+Stable version:
+
 ```r
 install.packages("crayon")
+```
+
+Development version:
+
+```r
+pak::pak("r-lib/crayon")
 ```
 
 ## Styles
