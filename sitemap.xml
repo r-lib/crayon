@@ -1,84 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://r-lib.github.io/crayon/404.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/LICENSE-text.html</loc>
+    <loc>/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/authors.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/index.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/news/index.html</loc>
+    <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/chr.html</loc>
+    <loc>/reference/chr.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/col_align.html</loc>
+    <loc>/reference/col_align.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/col_nchar.html</loc>
+    <loc>/reference/col_nchar.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/col_strsplit.html</loc>
+    <loc>/reference/col_strsplit.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/col_substr.html</loc>
+    <loc>/reference/col_substr.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/col_substring.html</loc>
+    <loc>/reference/col_substring.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/combine_styles.html</loc>
+    <loc>/reference/combine_styles.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/concat.html</loc>
+    <loc>/reference/concat.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/crayon.html</loc>
+    <loc>/reference/crayon.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/drop_style.html</loc>
+    <loc>/reference/drop_style.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/has_color.html</loc>
+    <loc>/reference/has_color.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/has_style.html</loc>
+    <loc>/reference/has_style.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/hyperlink.html</loc>
+    <loc>/reference/hyperlink.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/index.html</loc>
+    <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/make_style.html</loc>
+    <loc>/reference/make_style.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/num_ansi_colors.html</loc>
+    <loc>/reference/num_ansi_colors.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/num_colors.html</loc>
+    <loc>/reference/num_colors.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/show_ansi_colors.html</loc>
+    <loc>/reference/show_ansi_colors.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/start.crayon.html</loc>
+    <loc>/reference/start.crayon.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/strip_style.html</loc>
+    <loc>/reference/strip_style.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/style.html</loc>
+    <loc>/reference/style.html</loc>
   </url>
   <url>
-    <loc>http://r-lib.github.io/crayon/reference/styles.html</loc>
+    <loc>/reference/styles.html</loc>
   </url>
 </urlset>
