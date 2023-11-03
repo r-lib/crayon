@@ -6,7 +6,8 @@ Authors@R: c(
     role = c("aut", "cre")),
     person(
     "Brodie", "Gaslam", email="brodie.gaslam@yahoo.com",
-    role=c("ctb"))
+    role=c("ctb")),
+    person("Posit Software, PBC", role = c("cph", "fnd"))
     )
 Description: The crayon package is now superseded. Please use the 'cli' package
     for new projects.
