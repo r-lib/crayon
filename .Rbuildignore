@@ -3,3 +3,4 @@
 ^crayon\.Rproj$
 ^\.Rproj\.user$
 ^revdep$
+^codecov\.yml$

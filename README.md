@@ -20,11 +20,10 @@
 <!-- badges: start -->
 
 [![Lifecycle: superseded](https://img.shields.io/badge/lifecycle-superseded-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#superseded)
-[![R build status](https://github.com/r-lib/crayon/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/crayon/actions)
 [![](https://www.r-pkg.org/badges/version/crayon)](https://r-pkg.org/pkg/crayon)
 [![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/crayon)](https://r-pkg.org/pkg/crayon)
-[![Coverage Status](https://img.shields.io/codecov/c/github/r-lib/crayon/master.svg)](https://codecov.io/github/r-lib/crayon?branch=master)
-
+[![R-CMD-check](https://github.com/r-lib/crayon/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/crayon/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/r-lib/crayon/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/crayon?branch=main)
 <!-- badges: end -->
 
 With crayon it is easy to add color to terminal output, create styles for notes, warnings, errors; and combine styles.
