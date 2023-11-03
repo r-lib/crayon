@@ -3,6 +3,7 @@
 \docType{package}
 \name{crayon}
 \alias{crayon}
+\alias{crayon-package}
 \alias{reset}
 \alias{bold}
 \alias{blurred}
@@ -153,5 +154,22 @@ cat(note("Note: no such directory.\n"))
 
 }
 \seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/r-lib/crayon#readme}
+  \item \url{http://r-lib.github.io/crayon/}
+  \item Report bugs at \url{https://github.com/r-lib/crayon/issues}
+}
+
+
 \code{\link[=make_style]{make_style()}} for using the 256 ANSI colors.
+}
+\author{
+\strong{Maintainer}: Gábor Csárdi \email{csardi.gabor@gmail.com}
+
+Other contributors:
+\itemize{
+  \item Brodie Gaslam \email{brodie.gaslam@yahoo.com} [contributor]
+}
+
 }
