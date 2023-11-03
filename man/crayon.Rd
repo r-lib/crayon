@@ -170,6 +170,7 @@ Useful links:
 Other contributors:
 \itemize{
   \item Brodie Gaslam \email{brodie.gaslam@yahoo.com} [contributor]
+  \item Posit Software, PBC [copyright holder, funder]
 }
 
 }
