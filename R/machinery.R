@@ -171,7 +171,7 @@ make_crayon <- function(ansi_seq) {
   crayon
 }
 
-#' @include styles.r
+#' @include styles.R
 #'
 #' @usage
 #' ## Simple styles

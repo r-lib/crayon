@@ -1,5 +1,5 @@
 
-#' @include style-var.r
+#' @include style-var.R
 NULL
 
 #' Show the ANSI color table on the screen
