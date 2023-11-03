@@ -16,7 +16,7 @@ Description: The crayon package is now superseded. Please use the 'cli' package
     be combined and nested. New styles can also be created easily.
     This package was inspired by the 'chalk' 'JavaScript' project.
 License: MIT + file LICENSE
-URL: https://github.com/r-lib/crayon#readme
+URL: https://github.com/r-lib/crayon#readme, http://r-lib.github.io/crayon/
 BugReports: https://github.com/r-lib/crayon/issues
 Collate:
     'aaa-rstudio-detect.R'
@@ -53,3 +53,4 @@ Suggests:
 RoxygenNote: 7.1.2
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
+Config/Needs/website: tidyverse/tidytemplate
