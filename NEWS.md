@@ -1,4 +1,4 @@
-# crayon (development version)
+# crayon 1.5.3
 
 * The semantics of the `cli.default_num_colors` options is now different.
   It is now used as the default number of colors if the number of colors
