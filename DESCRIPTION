@@ -14,8 +14,7 @@ Description: The crayon package is now superseded. Please use the 'cli'
     created easily.  This package was inspired by the 'chalk' 'JavaScript'
     project.
 License: MIT + file LICENSE
-URL: https://github.com/r-lib/crayon#readme,
-    http://r-lib.github.io/crayon/
+URL: https://r-lib.github.io/crayon/, https://github.com/r-lib/crayon
 BugReports: https://github.com/r-lib/crayon/issues
 Imports:
     grDevices,
