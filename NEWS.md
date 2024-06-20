@@ -1,5 +1,13 @@
 # crayon (development version)
 
+* The semantics of the `cli.default_num_colors` options is now different.
+  It is now used as the default number of colors if the number of colors
+  is not already set by the `cli.num_colors` option, the `R_CLI_NUM_COLORS`
+  environment variable, the `crayon.enabled` and `crayon.colors` options,
+  the `NO_COLOR` environment variable, the `knitr.in.progress` option,
+  or a `sink()` call for the stream. This matches the behavior of the cli
+  package.
+
 # crayon 1.5.2
 
 * crayon functions now mark their output with the right encoding,
