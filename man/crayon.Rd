@@ -156,8 +156,8 @@ cat(note("Note: no such directory.\n"))
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/r-lib/crayon#readme}
-  \item \url{http://r-lib.github.io/crayon/}
+  \item \url{https://r-lib.github.io/crayon/}
+  \item \url{https://github.com/r-lib/crayon}
   \item Report bugs at \url{https://github.com/r-lib/crayon/issues}
 }
 
