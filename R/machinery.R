@@ -83,7 +83,7 @@ style_from_rgb <- function(rgb, bg, num_colors, grey) {
 #'     of the function, to create a style function.
 #' }
 #'
-#' The style (the code{...} argument) can be anything of the
+#' The style (the \code{...} argument) can be anything of the
 #' following: \itemize{
 #'   \item An R color name, see [colors()].
 #'   \item A 6- or 8-digit hexa color string, e.g. `#ff0000` means

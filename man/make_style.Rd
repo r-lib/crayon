@@ -48,7 +48,7 @@ style with the given name. This style can be used in
 of the function, to create a style function.
 }
 
-The style (the code{...} argument) can be anything of the
+The style (the \code{...} argument) can be anything of the
 following: \itemize{
 \item An R color name, see \code{\link[=colors]{colors()}}.
 \item A 6- or 8-digit hexa color string, e.g. \verb{#ff0000} means

@@ -38,7 +38,7 @@ nchar(strip_style(str))
 Other ANSI string operations: 
 \code{\link{col_align}()},
 \code{\link{col_strsplit}()},
-\code{\link{col_substring}()},
-\code{\link{col_substr}()}
+\code{\link{col_substr}()},
+\code{\link{col_substring}()}
 }
 \concept{ANSI string operations}
