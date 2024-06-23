@@ -1,6 +1,6 @@
 Package: crayon
 Title: Colored Terminal Output
-Version: 1.5.3
+Version: 1.5.3.9000
 Authors@R: c(
     person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("Brodie", "Gaslam", , "brodie.gaslam@yahoo.com", role = "ctb"),
