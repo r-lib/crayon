@@ -21,7 +21,6 @@ Imports:
     methods,
     utils
 Suggests:
-    mockery,
     rstudioapi,
     testthat,
     withr
