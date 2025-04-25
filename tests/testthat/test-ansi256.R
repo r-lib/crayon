@@ -1,13 +1,12 @@
-
 ## These are really basic cases...
 
 test_that("ansi256", {
   cases <- list(
-    list(c(0,0,0), 233),
-    list(c(255,0,0), 197),
-    list(c(0,255,0), 47),
-    list(c(0,0,255), 22),
-    list(c(255,255,255), 256)
+    list(c(0, 0, 0), 233),
+    list(c(255, 0, 0), 197),
+    list(c(0, 255, 0), 47),
+    list(c(0, 0, 255), 22),
+    list(c(255, 255, 255), 256)
   )
 
   for (case in cases) {
@@ -26,9 +25,9 @@ test_that("ansi256", {
 
 test_that("ansi256, grey", {
   cases <- list(
-    list(c(0,0,0), 233),
-    list(c(128,128,128), 245),
-    list(c(255,255,255), 256)
+    list(c(0, 0, 0), 233),
+    list(c(128, 128, 128), 245),
+    list(c(255, 255, 255), 256)
   )
 
   for (case in cases) {
@@ -47,11 +46,11 @@ test_that("ansi256, grey", {
 
 test_that("ansi256_rgb_index", {
   cases <- list(
-    list(c(0,0,0), 233),
-    list(c(255,0,0), 197),
-    list(c(0,255,0), 47),
-    list(c(0,0,255), 22),
-    list(c(255,255,255), 256)
+    list(c(0, 0, 0), 233),
+    list(c(255, 0, 0), 197),
+    list(c(0, 255, 0), 47),
+    list(c(0, 0, 255), 22),
+    list(c(255, 255, 255), 256)
   )
 
   for (case in cases) {

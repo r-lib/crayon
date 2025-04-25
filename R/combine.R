@@ -1,4 +1,3 @@
-
 #' Combine two or more ANSI styles
 #'
 #' Combine two or more styles or style functions into a new style function
@@ -38,7 +37,7 @@
 #' cat(alert("Warning!"), "\n")
 
 combine_styles <- function(...) {
-  styles <- lapply(list(...),  use_or_make_style)
+  styles <- lapply(list(...), use_or_make_style)
   all_ansi <- unlist(lapply(styles, attr, "_styles"), recursive = FALSE)
   make_crayon(all_ansi)
 }

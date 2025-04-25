@@ -1,4 +1,3 @@
-
 test_that("hyperlinks", {
   withr::local_options(crayon.hyperlink = TRUE)
   expect_equal(

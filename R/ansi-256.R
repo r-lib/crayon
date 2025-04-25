@@ -1,4 +1,3 @@
-
 # nocov start
 fgcodes <- c(paste0('\x1b[38;5;', 0:255, 'm'), '\x1b[39m')
 bgcodes <- c(paste0('\x1b[48;5;', 0:255, 'm'), '\x1b[49m')
@@ -16,7 +15,6 @@ ansi256 <- function(rgb, bg = FALSE, grey = FALSE) {
       open = codes[gray_index][scale(rgb[1], to = c(0, 23)) + 1],
       close = codes[reset_index]
     )
-    
   } else {
     ## Not gray
     list(

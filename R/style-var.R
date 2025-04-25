@@ -1,4 +1,3 @@
-
 #' Add style to a string
 #'
 #' See `names(styles)`, or the crayon manual for available styles.
@@ -20,7 +19,6 @@
 #' bold("foobar")
 
 style <- function(string, as = NULL, bg = NULL) {
-
   as <- use_or_make_style(as)
   bg <- use_or_make_style(bg, bg = TRUE)
 

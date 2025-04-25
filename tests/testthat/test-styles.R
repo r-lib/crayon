@@ -1,6 +1,4 @@
-
 test_that("new styles are local to importing package", {
-
   skip("This is not implemented, yet.")
 
   lib_dir <- tempfile()

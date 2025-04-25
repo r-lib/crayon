@@ -8,3 +8,5 @@
 ^docs$
 ^pkgdown$
 ^LICENSE\.md$
+^[\.]?air\.toml$
+^\.vscode$

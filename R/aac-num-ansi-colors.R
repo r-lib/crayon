@@ -1,4 +1,3 @@
-
 # Helper functions from cli, for the ANSI color detection
 
 #' @include aab-num-ansi-colors.R
@@ -19,7 +18,9 @@ is_interactive <- function() {
     FALSE
   } else if (tolower(getOption("knitr.in.progress", "false")) == "true") {
     FALSE
-  } else if (tolower(getOption("rstudio.notebook.executing", "false")) == "true") {
+  } else if (
+    tolower(getOption("rstudio.notebook.executing", "false")) == "true"
+  ) {
     FALSE
   } else if (identical(Sys.getenv("TESTTHAT"), "true")) {
     FALSE

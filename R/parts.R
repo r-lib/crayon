@@ -1,4 +1,3 @@
-
 #' Switch on or off a style
 #'
 #' Make a style active. The text printed to the screen from now
@@ -39,8 +38,7 @@ start.crayon <- function(x, ...) {
 #' @rdname start.crayon
 #' @export
 
-finish <- function(x, ...)
-  UseMethod("finish")
+finish <- function(x, ...) UseMethod("finish")
 
 #' @rdname start.crayon
 #' @export

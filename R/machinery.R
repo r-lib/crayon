@@ -1,4 +1,3 @@
-
 ## ----------------------------------------------------------------------
 
 crayon_template <- function(...) {
@@ -48,13 +47,15 @@ style_from_r_color <- ansi_style_from_r_color
 
 style_8_from_rgb <- function(rgb, bg) {
   ansi_cols <- if (bg) ansi_bg_rgb else ansi_fg_rgb
-  dist <- colSums((ansi_cols - as.vector(rgb)) ^ 2 )
+  dist <- colSums((ansi_cols - as.vector(rgb))^2)
   builtin_name <- names(which.min(dist))[1]
   builtin_styles[[builtin_name]]
 }
 
 style_from_rgb <- function(rgb, bg, num_colors, grey) {
-  if (num_colors < 256) { return(style_8_from_rgb(rgb, bg)) }
+  if (num_colors < 256) {
+    return(style_8_from_rgb(rgb, bg))
+  }
   ansi256(rgb, bg, grey)
 }
 
@@ -128,18 +129,19 @@ style_from_rgb <- function(rgb, bg, num_colors, grey) {
 #' "bgMaroon" %in% names(styles())
 #' cat(style("I am pink, too!\n", "pink", bg = "bgMaroon"))
 
-make_style <- function(..., bg = FALSE, grey = FALSE,
-                       colors = num_colors()) {
-
+make_style <- function(..., bg = FALSE, grey = FALSE, colors = num_colors()) {
   args <- list(...)
   stopifnot(length(args) == 1)
   style <- args[[1]]
   orig_style_name <- style_name <- names(args)[1]
 
-  stopifnot(is.character(style) && length(style) == 1 ||
-            is_rgb_matrix(style) && ncol(style) == 1,
-            is.logical(bg) && length(bg) == 1,
-            is.numeric(colors) && length(colors) == 1)
+  stopifnot(
+    is.character(style) &&
+      length(style) == 1 ||
+      is_rgb_matrix(style) && ncol(style) == 1,
+    is.logical(bg) && length(bg) == 1,
+    is.numeric(colors) && length(colors) == 1
+  )
 
   ansi_seqs <- if (is_builtin_style(style)) {
     if (bg && substr(style, 1, 2) != "bg") {
@@ -147,14 +149,11 @@ make_style <- function(..., bg = FALSE, grey = FALSE,
     }
     if (is.null(style_name)) style_name <- style
     builtin_styles[[style]]
-
   } else if (is_r_color(style)) {
     if (is.null(style_name)) style_name <- style
     ansi_style_from_r_color(style, bg, colors, grey)
-
   } else if (is_rgb_matrix(style)) {
     style_from_rgb(style, bg, colors, grey)
-
   } else {
     stop("Unknown style specification: ", style)
   }

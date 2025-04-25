@@ -1,4 +1,3 @@
-
 is_string <- function(x) {
   is.character(x) && length(x) == 1 && !is.na(x)
 }
@@ -55,7 +54,7 @@ re_table <- function(...) {
       end = x + attr(x, "match.length") - 1,
       length = attr(x, "match.length")
     )
-    res <- res[res[, "start"] != -1, , drop=FALSE]
+    res <- res[res[, "start"] != -1, , drop = FALSE]
   })
 }
 
@@ -63,13 +62,13 @@ re_table <- function(...) {
 
 non_matching <- function(table, str, empty = FALSE) {
   mapply(table, str, SIMPLIFY = FALSE, FUN = function(t, s) {
-    if (! nrow(t)) {
+    if (!nrow(t)) {
       cbind(start = 1, end = base::nchar(s), length = base::nchar(s))
     } else {
       start <- c(1, t[, "end"] + 1)
       end <- c(t[, "start"] - 1, base::nchar(s))
       res <- cbind(start = start, end = end, length = end - start + 1)
-      if (!empty) res[ res[, "length"] != 0, , drop = FALSE ] else res
+      if (!empty) res[res[, "length"] != 0, , drop = FALSE] else res
     }
   })
 }
@@ -102,15 +101,17 @@ emacs_version <- function() {
 }
 
 inside_emacs <- function() {
-    Sys.getenv("EMACS") != "" || Sys.getenv("INSIDE_EMACS") != ""
+  Sys.getenv("EMACS") != "" || Sys.getenv("INSIDE_EMACS") != ""
 }
 
 rstudio_with_ansi_support <- function() {
   if (Sys.getenv("RSTUDIO", "") == "") return(FALSE)
 
   ## This is set *before* the rstudio initialization, in 1.1 and above
-  if ((cols <- Sys.getenv("RSTUDIO_CONSOLE_COLOR", "")) != "" &&
-      !is.na(as.numeric(cols))) {
+  if (
+    (cols <- Sys.getenv("RSTUDIO_CONSOLE_COLOR", "")) != "" &&
+      !is.na(as.numeric(cols))
+  ) {
     return(TRUE)
   }
 

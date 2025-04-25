@@ -1,4 +1,3 @@
-
 # keep encoding, even if useBytes = TRUE
 
 Encoding_ <- function(x) {
