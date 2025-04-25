@@ -4,7 +4,8 @@ Version: 1.5.3.9000
 Authors@R: c(
     person("Gábor", "Csárdi", , "csardi.gabor@gmail.com", role = c("aut", "cre")),
     person("Brodie", "Gaslam", , "brodie.gaslam@yahoo.com", role = "ctb"),
-    person("Posit Software, PBC", role = c("cph", "fnd"), comment = c(ROR = "03wc8by49"))
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
 Description: The crayon package is now superseded. Please use the 'cli'
     package for new projects.  Colored terminal output on terminals that
@@ -25,6 +26,7 @@ Suggests:
     testthat,
     withr
 Config/Needs/website: tidyverse/tidytemplate
+Config/usethis/last-upkeep: 2025-04-25
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
@@ -51,4 +53,3 @@ Collate:
     'style-var.R'
     'show.R'
     'string_operations.R'
-Config/usethis/last-upkeep: 2025-04-25
