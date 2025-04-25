@@ -1,4 +1,3 @@
-
 #' Does the current R session support ANSI colors?
 #'
 #' From crayon 2.0.0, this function is simply a wrapper on

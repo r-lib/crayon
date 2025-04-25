@@ -1,4 +1,3 @@
-
 get_palette_color <- function(style, colors = num_ansi_colors()) {
   opt <- getOption("cli.palette")
   if (is.null(opt) || colors < 256) return(style)
@@ -9,7 +8,7 @@ palette_cache <- new.env(parent = emptyenv())
 
 cache_palette_color <- function(pal, idx, colors = num_ansi_colors()) {
   if (is_string(pal)) {
-    if (! pal %in% rownames(ansi_palettes)) {
+    if (!pal %in% rownames(ansi_palettes)) {
       stop("Cannot find cli ANSI palette '", pal, "'.")
     }
     pal <- ansi_palettes[pal, ]
@@ -48,7 +47,7 @@ cache_palette_color <- function(pal, idx, colors = num_ansi_colors()) {
 #' @noRd
 #' @rdname ansi_palettes
 
-truecolor <- as.integer(256 ^ 3)
+truecolor <- as.integer(256^3)
 
 #' ANSI colors palettes
 #'

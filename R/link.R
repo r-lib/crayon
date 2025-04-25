@@ -1,5 +1,3 @@
-
-
 #' Terminal Hyperlinks
 #'
 #' @details
@@ -15,7 +13,7 @@
 #'   length, via a `paste0()` call.
 #' @param url URL to link to.
 #' @return Logical scalar, for `has_hyperlink()`.
-#' 
+#'
 #' @export
 #' @examples
 #' cat("This is an", hyperlink("R", "https://r-project.org"), "link.\n")
@@ -34,26 +32,36 @@ hyperlink <- function(text, url) {
 #' has_hyperlink()
 
 has_hyperlink <- function() {
-
   ## Hyperlinks forced?
   enabled <- getOption("crayon.hyperlink")
-  if (!is.null(enabled)) { return(isTRUE(enabled)) }
+  if (!is.null(enabled)) {
+    return(isTRUE(enabled))
+  }
 
   ## Are we in a terminal? No?
-  if (!isatty(stdout())) { return(FALSE) }
+  if (!isatty(stdout())) {
+    return(FALSE)
+  }
 
   ## Are we in a windows terminal?
-  if (os_type() == "windows")  { return(TRUE) }
+  if (os_type() == "windows") {
+    return(TRUE)
+  }
 
   ## Better to avoid it in CIs
-  if (nzchar(Sys.getenv("CI")) ||
-      nzchar(Sys.getenv("TEAMCITY_VERSION"))) { return(FALSE) }
+  if (
+    nzchar(Sys.getenv("CI")) ||
+      nzchar(Sys.getenv("TEAMCITY_VERSION"))
+  ) {
+    return(FALSE)
+  }
 
   ## iTerm
   if (nzchar(TERM_PROGRAM <- Sys.getenv("TERM_PROGRAM"))) {
     version <- package_version(
       Sys.getenv("TERM_PROGRAM_VERSION"),
-      strict = FALSE)
+      strict = FALSE
+    )
 
     if (TERM_PROGRAM == "iTerm.app") {
       if (!is.na(version) && version >= "3.1") return(TRUE)
@@ -61,7 +69,7 @@ has_hyperlink <- function() {
   }
 
   if (nzchar(VTE_VERSION <- Sys.getenv("VTE_VERSION"))) {
-    if (package_version(VTE_VERSION) >= "0.50.1")  return(TRUE)
+    if (package_version(VTE_VERSION) >= "0.50.1") return(TRUE)
   }
 
   FALSE

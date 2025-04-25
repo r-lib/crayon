@@ -1,13 +1,11 @@
-
 ## Create a mapping between the string and its style-less version.
 ## This is useful to work with the colored string.
 
 #' @importFrom utils tail
 
 map_to_ansi <- function(x, text = NULL) {
-
   if (is.null(text)) {
-    text <- non_matching(re_table(ansi_regex, x), x, empty=TRUE)
+    text <- non_matching(re_table(ansi_regex, x), x, empty = TRUE)
   }
 
   map <- lapply(
@@ -17,7 +15,8 @@ map_to_ansi <- function(x, text = NULL) {
         pos = cumsum(c(1, text[, "length"], Inf)),
         offset = c(text[, "start"] - 1, tail(text[, "end"], 1), NA)
       )
-    })
+    }
+  )
 
   function(pos) {
     pos <- rep(pos, length.out = length(map))
@@ -108,26 +107,33 @@ col_nchar <- function(x, ...) {
 #' substr(strip_style(c(str, str2)), c(3,5), c(7, 18))
 
 col_substr <- function(x, start, stop) {
-  if(!is.character(x)) x <- as.character(x)
-  if(!length(x)) return(x)
+  if (!is.character(x)) x <- as.character(x)
+  if (!length(x)) return(x)
   start <- as.integer(start)
   stop <- as.integer(stop)
-  if(!length(start) || !length(stop))
-    stop("invalid substring arguments")
-  if(anyNA(start) || anyNA(stop))
+  if (!length(start) || !length(stop)) stop("invalid substring arguments")
+  if (anyNA(start) || anyNA(stop))
     stop("non-numeric substring arguments not supported")
   ansi <- re_table(ansi_regex, x)
-  text <- non_matching(ansi, x, empty=TRUE)
+  text <- non_matching(ansi, x, empty = TRUE)
   mapper <- map_to_ansi(x, text = text)
   nstart <- mapper(start)
-  nstop  <- mapper(stop)
+  nstop <- mapper(stop)
 
   bef <- base::substr(x, 1, nstart - 1)
   aft <- base::substr(x, nstop + 1, base::nchar(x))
-  ansi_bef <- vapply(regmatches(bef, gregexpr(ansi_regex, bef)),
-                     paste, collapse = "", FUN.VALUE = "")
-  ansi_aft <- vapply(regmatches(aft, gregexpr(ansi_regex, aft)),
-                     paste, collapse = "", FUN.VALUE = "")
+  ansi_bef <- vapply(
+    regmatches(bef, gregexpr(ansi_regex, bef)),
+    paste,
+    collapse = "",
+    FUN.VALUE = ""
+  )
+  ansi_aft <- vapply(
+    regmatches(aft, gregexpr(ansi_regex, aft)),
+    paste,
+    collapse = "",
+    FUN.VALUE = ""
+  )
 
   paste(sep = "", ansi_bef, base::substr(x, nstart, nstop), ansi_aft)
 }
@@ -219,27 +225,30 @@ col_substring <- function(text, first, last = 1000000L) {
 #' strsplit(strip_style(str), "")
 
 col_strsplit <- function(x, split, ...) {
-  split <- try(as.character(split), silent=TRUE)
-  if(inherits(split, "try-error") || !is.character(split) || length(split) > 1L)
+  split <- try(as.character(split), silent = TRUE)
+  if (
+    inherits(split, "try-error") || !is.character(split) || length(split) > 1L
+  )
     stop("`split` must be character of length <= 1, or must coerce to that")
-  if(!length(split)) split <- ""
+  if (!length(split)) split <- ""
   plain <- strip_style(x)
   splits <- re_table(split, plain, ...)
   chunks <- non_matching(splits, plain, empty = TRUE)
   # silently recycle `split`; doesn't matter currently since we don't support
   # split longer than 1, but might in future
-  split.r <- rep(split, length.out=length(x))
+  split.r <- rep(split, length.out = length(x))
   # Drop empty chunks to align with `substr` behavior
   chunks <- lapply(
     seq_along(chunks),
     function(i) {
       y <- chunks[[i]]
       # empty split means drop empty first match
-      if(nrow(y) && !nzchar(split.r[[i]]) && !head(y, 1L)[, "length"]) {
-        y <- y[-1L, , drop=FALSE]
+      if (nrow(y) && !nzchar(split.r[[i]]) && !head(y, 1L)[, "length"]) {
+        y <- y[-1L, , drop = FALSE]
       }
       # drop empty last matches
-      if(nrow(y) && !tail(y, 1L)[, "length"]) y[-nrow(y), , drop=FALSE] else y
+      if (nrow(y) && !tail(y, 1L)[, "length"]) y[-nrow(y), , drop = FALSE] else
+        y
     }
   )
   zero.chunks <- !vapply(chunks, nrow, integer(1L))
@@ -248,7 +257,9 @@ col_strsplit <- function(x, split, ...) {
   res <- vector("list", length(chunks))
   res[zero.chunks] <- list(character(0L))
   res[!zero.chunks] <- mapply(
-    chunks[!zero.chunks], x[!zero.chunks], SIMPLIFY = FALSE,
+    chunks[!zero.chunks],
+    x[!zero.chunks],
+    SIMPLIFY = FALSE,
     FUN = function(tab, xx) col_substring(xx, tab[, "start"], tab[, "end"])
   )
   res
@@ -269,10 +280,12 @@ col_strsplit <- function(x, split, ...) {
 #' col_align(red("foobar"), 20, "center")
 #' col_align(red("foobar"), 20, "right")
 
-col_align <- function(text, width = getOption("width"),
-                      align = c("left", "center", "right"),
-                      type = "width") {
-
+col_align <- function(
+  text,
+  width = getOption("width"),
+  align = c("left", "center", "right"),
+  type = "width"
+) {
   align <- match.arg(align)
   nc <- col_nchar(text, type = type)
 
@@ -280,12 +293,12 @@ col_align <- function(text, width = getOption("width"),
 
   if (align == "left") {
     paste0(text, make_space(width - nc))
-
   } else if (align == "center") {
-    paste0(make_space(ceiling((width - nc) / 2)),
-           text,
-           make_space(floor((width - nc) / 2)))
-
+    paste0(
+      make_space(ceiling((width - nc) / 2)),
+      text,
+      make_space(floor((width - nc) / 2))
+    )
   } else {
     paste0(make_space(width - nc), text)
   }
@@ -298,7 +311,7 @@ make_space <- function(num, filling = " ") {
   res
 }
 
-strrep <- function (x, times) {
+strrep <- function(x, times) {
   x = as.character(x)
   if (length(x) == 0L) return(x)
 
@@ -312,7 +325,8 @@ strrep <- function (x, times) {
         paste0(rep(x, times), collapse = "")
       }
     },
-    x, times,
+    x,
+    times,
     USE.NAMES = FALSE
   )
 }

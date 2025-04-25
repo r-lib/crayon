@@ -1,16 +1,17 @@
-
 palette_idx <- function(id) {
   ifelse(
     id < 38,
     id - (30 - 1),
-  ifelse(
-    id < 48,
-    -(id - (40 - 1)),
-  ifelse(
-    id < 98,
-    id - (90 - 9),
-    -(id - (100 - 9))
-  )))
+    ifelse(
+      id < 48,
+      -(id - (40 - 1)),
+      ifelse(
+        id < 98,
+        id - (90 - 9),
+        -(id - (100 - 9))
+      )
+    )
+  )
 }
 
 palette_color <- function(x) {
@@ -82,7 +83,7 @@ ansi_bg_rgb <- col2rgb(ansi_bg_r)
 # code can have length > 1, used to generate the closing tags for reset
 
 make_chr_ansi_tag <- function(code)
-  paste0('\u001b[', chr(code), 'm', collapse="")
+  paste0('\u001b[', chr(code), 'm', collapse = "")
 
 make_chr_style <- function(code) {
   list(
