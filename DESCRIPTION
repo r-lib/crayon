@@ -20,6 +20,7 @@ BugReports: https://github.com/r-lib/crayon/issues
 Imports:
     grDevices,
     methods,
+    stats,
     utils
 Suggests:
     rstudioapi,
